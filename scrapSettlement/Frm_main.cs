@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Utility;
+using Utility.UI;
 
 namespace scrapSettlement
 {
@@ -19,7 +21,10 @@ namespace scrapSettlement
         private void 过磅登记ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_weighingSettltement w = new Frm_weighingSettltement();
-            w.Show();
+            string tabPageText = w.Text;
+            EmbedForm embedForm = new EmbedForm();
+            embedForm.openForm(w, tabPageText, tabControl1, panel1);
+     
         }
     }
 }

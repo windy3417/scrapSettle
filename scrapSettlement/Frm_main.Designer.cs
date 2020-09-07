@@ -35,7 +35,10 @@
             this.收入登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.过磅登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -63,13 +66,13 @@
             // 客户档案ToolStripMenuItem
             // 
             this.客户档案ToolStripMenuItem.Name = "客户档案ToolStripMenuItem";
-            this.客户档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.客户档案ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.客户档案ToolStripMenuItem.Text = "客户档案";
             // 
             // 废料档案ToolStripMenuItem
             // 
             this.废料档案ToolStripMenuItem.Name = "废料档案ToolStripMenuItem";
-            this.废料档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.废料档案ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.废料档案ToolStripMenuItem.Text = "废料档案";
             // 
             // 收入登记ToolStripMenuItem
@@ -91,17 +94,37 @@
             this.报表ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.报表ToolStripMenuItem.Text = "报表";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(805, 367);
+            this.panel1.TabIndex = 1;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(805, 367);
+            this.tabControl1.TabIndex = 0;
+            // 
             // Frm_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 262);
+            this.ClientSize = new System.Drawing.Size(805, 392);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Frm_main";
             this.Text = "过磅结算系统";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,5 +139,7 @@
         private System.Windows.Forms.ToolStripMenuItem 收入登记ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 过磅登记ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 报表ToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabControl tabControl1;
     }
 }

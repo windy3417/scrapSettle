@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using utility;
+
 using System.Drawing.Drawing2D;
 
 namespace scrapSettlement
@@ -16,6 +16,23 @@ namespace scrapSettlement
         public Frm_weighingSettltement()
         {
             InitializeComponent();
+            this.FormClosed +=new FormClosedEventHandler (this.closeParent);
+        }
+
+        private void Tsb_print_Click(object sender, EventArgs e)
+        {
+           
+            this.printPreviewDialog1.Show();
+        }
+
+        private void Tsb_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeParent(object sender,FormClosedEventArgs e)
+        {
+            this.Parent.Dispose();
         }
     }
 }
