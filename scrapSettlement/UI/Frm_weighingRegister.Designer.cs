@@ -1,4 +1,4 @@
-﻿namespace scrapSettlement
+﻿namespace ScrapSettlement
 {
     partial class Frm_weighingSettltement
     {
@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_weighingSettltement));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.horizonLine1 = new Utility.HorizonLine();
-            this.horizonLine2 = new Utility.HorizonLine();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_date = new System.Windows.Forms.Label();
@@ -47,11 +45,11 @@
             this.lbl_settleCoefficient = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_settleUnitPrice = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txb_settleUnitPrice = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -59,10 +57,16 @@
             this.lbl_customerCode = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
+            this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.tsb_close = new System.Windows.Forms.ToolStripButton();
+            this.lbl_vouchNo = new System.Windows.Forms.Label();
+            this.lbl_vouchNoValue = new System.Windows.Forms.Label();
+            this.tsb_save = new System.Windows.Forms.ToolStripButton();
+            this.tsb_new = new System.Windows.Forms.ToolStripButton();
+            this.horizonLine2 = new Utility.UControl.HorizonLine();
+            this.horizonLine1 = new Utility.UControl.HorizonLine();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -71,9 +75,11 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel1.Controls.Add(this.horizonLine1);
+            this.panel1.Controls.Add(this.lbl_vouchNo);
             this.panel1.Controls.Add(this.horizonLine2);
+            this.panel1.Controls.Add(this.horizonLine1);
             this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.lbl_vouchNoValue);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.lbl_date);
             this.panel1.Controls.Add(this.label7);
@@ -86,24 +92,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(931, 462);
             this.panel1.TabIndex = 6;
-            // 
-            // horizonLine1
-            // 
-            this.horizonLine1.LineColor = System.Drawing.SystemColors.ControlText;
-            this.horizonLine1.LineWidth = 1;
-            this.horizonLine1.Location = new System.Drawing.Point(159, 402);
-            this.horizonLine1.Name = "horizonLine1";
-            this.horizonLine1.Size = new System.Drawing.Size(583, 1);
-            this.horizonLine1.TabIndex = 16;
-            // 
-            // horizonLine2
-            // 
-            this.horizonLine2.LineColor = System.Drawing.SystemColors.ControlText;
-            this.horizonLine2.LineWidth = 1;
-            this.horizonLine2.Location = new System.Drawing.Point(159, 162);
-            this.horizonLine2.Name = "horizonLine2";
-            this.horizonLine2.Size = new System.Drawing.Size(583, 1);
-            this.horizonLine2.TabIndex = 16;
             // 
             // dateTimePicker1
             // 
@@ -188,7 +176,7 @@
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_personCode, 0, 1);
@@ -196,11 +184,11 @@
             this.tableLayoutPanel1.Controls.Add(this.lbl_settleCoefficient, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_settleUnitPrice, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox3, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox4, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox5, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txb_settleUnitPrice, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBox6, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox7, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox8, 1, 2);
@@ -213,7 +201,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(517, 193);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(527, 193);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
             // textBox2
@@ -253,9 +241,9 @@
             this.lbl_settleCoefficient.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbl_settleCoefficient.Location = new System.Drawing.Point(3, 162);
             this.lbl_settleCoefficient.Name = "lbl_settleCoefficient";
-            this.lbl_settleCoefficient.Size = new System.Drawing.Size(35, 12);
+            this.lbl_settleCoefficient.Size = new System.Drawing.Size(59, 12);
             this.lbl_settleCoefficient.TabIndex = 1;
-            this.lbl_settleCoefficient.Text = "净重:";
+            this.lbl_settleCoefficient.Text = "净重(KG):";
             // 
             // label1
             // 
@@ -275,20 +263,20 @@
             this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label2.Location = new System.Drawing.Point(243, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 12);
+            this.label2.Size = new System.Drawing.Size(83, 12);
             this.label2.TabIndex = 1;
-            this.label2.Text = "网价:";
+            this.label2.Text = "网价(RMB/吨):";
             // 
-            // label3
+            // lbl_settleUnitPrice
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label3.Location = new System.Drawing.Point(243, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "结算价格:";
+            this.lbl_settleUnitPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_settleUnitPrice.AutoSize = true;
+            this.lbl_settleUnitPrice.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_settleUnitPrice.Location = new System.Drawing.Point(243, 114);
+            this.lbl_settleUnitPrice.Name = "lbl_settleUnitPrice";
+            this.lbl_settleUnitPrice.Size = new System.Drawing.Size(59, 12);
+            this.lbl_settleUnitPrice.TabIndex = 1;
+            this.lbl_settleUnitPrice.Text = "结算单价:";
             // 
             // label4
             // 
@@ -304,7 +292,7 @@
             // textBox3
             // 
             this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox3.Location = new System.Drawing.Point(323, 13);
+            this.textBox3.Location = new System.Drawing.Point(333, 13);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(139, 21);
             this.textBox3.TabIndex = 0;
@@ -312,23 +300,23 @@
             // textBox4
             // 
             this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox4.Location = new System.Drawing.Point(323, 61);
+            this.textBox4.Location = new System.Drawing.Point(333, 61);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(139, 21);
             this.textBox4.TabIndex = 0;
             // 
-            // textBox5
+            // txb_settleUnitPrice
             // 
-            this.textBox5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox5.Location = new System.Drawing.Point(323, 109);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(139, 21);
-            this.textBox5.TabIndex = 0;
+            this.txb_settleUnitPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txb_settleUnitPrice.Location = new System.Drawing.Point(333, 109);
+            this.txb_settleUnitPrice.Name = "txb_settleUnitPrice";
+            this.txb_settleUnitPrice.Size = new System.Drawing.Size(139, 21);
+            this.txb_settleUnitPrice.TabIndex = 0;
             // 
             // textBox6
             // 
             this.textBox6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox6.Location = new System.Drawing.Point(323, 158);
+            this.textBox6.Location = new System.Drawing.Point(333, 158);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(139, 21);
             this.textBox6.TabIndex = 0;
@@ -372,6 +360,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsb_new,
+            this.tsb_save,
             this.tsb_print,
             this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -389,6 +379,15 @@
             this.tsb_print.Text = "打印";
             this.tsb_print.Click += new System.EventHandler(this.Tsb_print_Click);
             // 
+            // tsb_close
+            // 
+            this.tsb_close.Image = ((System.Drawing.Image)(resources.GetObject("tsb_close.Image")));
+            this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_close.Name = "tsb_close";
+            this.tsb_close.Size = new System.Drawing.Size(52, 22);
+            this.tsb_close.Text = "关闭";
+            this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
+            // 
             // printPreviewDialog1
             // 
             this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
@@ -403,14 +402,61 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
-            // tsb_close
+            // lbl_vouchNo
             // 
-            this.tsb_close.Image = ((System.Drawing.Image)(resources.GetObject("tsb_close.Image")));
-            this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_close.Name = "tsb_close";
-            this.tsb_close.Size = new System.Drawing.Size(52, 22);
-            this.tsb_close.Text = "关闭";
-            this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
+            this.lbl_vouchNo.AutoSize = true;
+            this.lbl_vouchNo.Location = new System.Drawing.Point(162, 141);
+            this.lbl_vouchNo.Name = "lbl_vouchNo";
+            this.lbl_vouchNo.Size = new System.Drawing.Size(65, 12);
+            this.lbl_vouchNo.TabIndex = 16;
+            this.lbl_vouchNo.Text = "单据编号：";
+            // 
+            // lbl_vouchNoValue
+            // 
+            this.lbl_vouchNoValue.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbl_vouchNoValue.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_vouchNoValue.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_vouchNoValue.Location = new System.Drawing.Point(224, 139);
+            this.lbl_vouchNoValue.Name = "lbl_vouchNoValue";
+            this.lbl_vouchNoValue.Size = new System.Drawing.Size(130, 14);
+            this.lbl_vouchNoValue.TabIndex = 6;
+            // 
+            // tsb_save
+            // 
+            this.tsb_save.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_save.Image = ((System.Drawing.Image)(resources.GetObject("tsb_save.Image")));
+            this.tsb_save.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_save.Name = "tsb_save";
+            this.tsb_save.Size = new System.Drawing.Size(23, 22);
+            this.tsb_save.Text = "保存";
+            // 
+            // tsb_new
+            // 
+            this.tsb_new.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_new.Image = ((System.Drawing.Image)(resources.GetObject("tsb_new.Image")));
+            this.tsb_new.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_new.Name = "tsb_new";
+            this.tsb_new.Size = new System.Drawing.Size(23, 22);
+            this.tsb_new.Text = "新增";
+            this.tsb_new.Click += new System.EventHandler(this.Tsb_new_Click);
+            // 
+            // horizonLine2
+            // 
+            this.horizonLine2.LineColor = System.Drawing.SystemColors.ControlText;
+            this.horizonLine2.LineWidth = 1;
+            this.horizonLine2.Location = new System.Drawing.Point(164, 401);
+            this.horizonLine2.Name = "horizonLine2";
+            this.horizonLine2.Size = new System.Drawing.Size(578, 1);
+            this.horizonLine2.TabIndex = 15;
+            // 
+            // horizonLine1
+            // 
+            this.horizonLine1.LineColor = System.Drawing.SystemColors.ControlText;
+            this.horizonLine1.LineWidth = 1;
+            this.horizonLine1.Location = new System.Drawing.Point(164, 165);
+            this.horizonLine1.Name = "horizonLine1";
+            this.horizonLine1.Size = new System.Drawing.Size(578, 1);
+            this.horizonLine1.TabIndex = 15;
             // 
             // Frm_weighingSettltement
             // 
@@ -435,7 +481,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private Utility.HorizonLine horizonLine2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbl_date;
@@ -452,22 +497,27 @@
         private System.Windows.Forms.Label lbl_settleCoefficient;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_settleUnitPrice;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txb_settleUnitPrice;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox1;
-        private Utility.HorizonLine horizonLine1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.ToolStripButton tsb_print;
         private System.Windows.Forms.ToolStripButton tsb_close;
+        private Utility.UControl.HorizonLine horizonLine2;
+        private Utility.UControl.HorizonLine horizonLine1;
+        private System.Windows.Forms.Label lbl_vouchNo;
+        private System.Windows.Forms.Label lbl_vouchNoValue;
+        private System.Windows.Forms.ToolStripButton tsb_new;
+        private System.Windows.Forms.ToolStripButton tsb_save;
     }
 }
 

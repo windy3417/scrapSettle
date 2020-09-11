@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using System.Drawing.Drawing2D;
 
-namespace scrapSettlement
+namespace ScrapSettlement
 {
     public partial class Frm_weighingSettltement : Form
     {
@@ -17,6 +17,7 @@ namespace scrapSettlement
         {
             InitializeComponent();
             this.FormClosed +=new FormClosedEventHandler (this.closeParent);
+            this.tableLayoutPanel1.Enabled = false;
         }
 
         private void Tsb_print_Click(object sender, EventArgs e)
@@ -33,6 +34,12 @@ namespace scrapSettlement
         private void closeParent(object sender,FormClosedEventArgs e)
         {
             this.Parent.Dispose();
+        }
+
+        private void Tsb_new_Click(object sender, EventArgs e)
+        {
+            this.tableLayoutPanel1.Enabled = true;
+            this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMdd");
         }
     }
 }

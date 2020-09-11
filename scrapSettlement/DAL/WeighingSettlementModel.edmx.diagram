@@ -6,7 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="77aaf8c8d2004e5797d71de399e343b6" Name="Diagram1" >
         <EntityTypeShape EntityType="WeighingSettlementModel.WeighingSettlement" Width="1.5" PointX="3.875" PointY="0.5" />
-        <EntityTypeShape EntityType="WeighingSettlementModel.WeighingSettlement_child" Width="1.5" PointX="7.125" PointY="0.625" />
+        <EntityTypeShape EntityType="WeighingSettlementModel.Customer" Width="1.5" PointX="6.875" PointY="1.625" />
+        <AssociationConnector Association="WeighingSettlementModel.WeighingSettlementCustomer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

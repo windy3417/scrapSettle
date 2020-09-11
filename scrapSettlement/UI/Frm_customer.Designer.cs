@@ -1,0 +1,315 @@
+﻿namespace ScrapSettlement.UI
+{
+    partial class Frm_customer
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_customer));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lbl_customer = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_cusCode = new System.Windows.Forms.TextBox();
+            this.tex_cusName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbd_effect = new Utility.UControl.txtBoxWithDate();
+            this.tbd_failure = new Utility.UControl.txtBoxWithDate();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsb_add = new System.Windows.Forms.ToolStripButton();
+            this.tsb_save = new System.Windows.Forms.ToolStripButton();
+            this.tsb_close = new System.Windows.Forms.ToolStripButton();
+            this.cusCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tsb_modify = new System.Windows.Forms.ToolStripButton();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.lbl_customer);
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Location = new System.Drawing.Point(27, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(744, 410);
+            this.panel1.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cusCode,
+            this.cusName});
+            this.dataGridView1.Location = new System.Drawing.Point(3, 241);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(738, 150);
+            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
+            // 
+            // lbl_customer
+            // 
+            this.lbl_customer.AutoSize = true;
+            this.lbl_customer.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_customer.Location = new System.Drawing.Point(337, 32);
+            this.lbl_customer.Name = "lbl_customer";
+            this.lbl_customer.Size = new System.Drawing.Size(134, 21);
+            this.lbl_customer.TabIndex = 1;
+            this.lbl_customer.Text = "客 户 档 案";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txt_cusCode, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tex_cusName, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tbd_effect, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbd_failure, 1, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(175, 70);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(360, 122);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "客户名称";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "客户编码：";
+            // 
+            // txt_cusCode
+            // 
+            this.txt_cusCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_cusCode.Location = new System.Drawing.Point(105, 4);
+            this.txt_cusCode.Name = "txt_cusCode";
+            this.txt_cusCode.Size = new System.Drawing.Size(252, 21);
+            this.txt_cusCode.TabIndex = 1;
+            this.txt_cusCode.Validating += new System.ComponentModel.CancelEventHandler(this.txt_cusCode_Validating);
+            // 
+            // tex_cusName
+            // 
+            this.tex_cusName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tex_cusName.Location = new System.Drawing.Point(105, 34);
+            this.tex_cusName.Name = "tex_cusName";
+            this.tex_cusName.Size = new System.Drawing.Size(252, 21);
+            this.tex_cusName.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "生效日期：";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "失效日期：";
+            // 
+            // tbd_effect
+            // 
+            this.tbd_effect.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tbd_effect.Location = new System.Drawing.Point(105, 64);
+            this.tbd_effect.Name = "tbd_effect";
+            this.tbd_effect.Size = new System.Drawing.Size(252, 21);
+            this.tbd_effect.TabIndex = 3;
+            // 
+            // tbd_failure
+            // 
+            this.tbd_failure.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tbd_failure.Location = new System.Drawing.Point(105, 95);
+            this.tbd_failure.Name = "tbd_failure";
+            this.tbd_failure.Size = new System.Drawing.Size(252, 21);
+            this.tbd_failure.TabIndex = 3;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsb_add,
+            this.tsb_save,
+            this.tsb_modify,
+            this.tsb_close});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsb_add
+            // 
+            this.tsb_add.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_add.Image = ((System.Drawing.Image)(resources.GetObject("tsb_add.Image")));
+            this.tsb_add.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_add.Name = "tsb_add";
+            this.tsb_add.Size = new System.Drawing.Size(23, 22);
+            this.tsb_add.Text = "增加";
+            this.tsb_add.Click += new System.EventHandler(this.Tsb_add_Click);
+            // 
+            // tsb_save
+            // 
+            this.tsb_save.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_save.Image = ((System.Drawing.Image)(resources.GetObject("tsb_save.Image")));
+            this.tsb_save.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_save.Name = "tsb_save";
+            this.tsb_save.Size = new System.Drawing.Size(23, 22);
+            this.tsb_save.Text = "保存";
+            this.tsb_save.Click += new System.EventHandler(this.Tsb_save_Click);
+            // 
+            // tsb_close
+            // 
+            this.tsb_close.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_close.Image = ((System.Drawing.Image)(resources.GetObject("tsb_close.Image")));
+            this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_close.Name = "tsb_close";
+            this.tsb_close.Size = new System.Drawing.Size(23, 22);
+            this.tsb_close.Text = "关闭";
+            this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
+            // 
+            // cusCode
+            // 
+            this.cusCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.cusCode.DataPropertyName = "cusCode";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.cusCode.DefaultCellStyle = dataGridViewCellStyle2;
+            this.cusCode.FillWeight = 50.76142F;
+            this.cusCode.Frozen = true;
+            this.cusCode.HeaderText = "客户编码";
+            this.cusCode.Name = "cusCode";
+            this.cusCode.ReadOnly = true;
+            // 
+            // cusName
+            // 
+            this.cusName.DataPropertyName = "cusName";
+            this.cusName.FillWeight = 149.2386F;
+            this.cusName.HeaderText = "客户名称";
+            this.cusName.Name = "cusName";
+            this.cusName.ReadOnly = true;
+            // 
+            // tsb_modify
+            // 
+            this.tsb_modify.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_modify.Image = ((System.Drawing.Image)(resources.GetObject("tsb_modify.Image")));
+            this.tsb_modify.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_modify.Name = "tsb_modify";
+            this.tsb_modify.Size = new System.Drawing.Size(23, 22);
+            this.tsb_modify.Text = "修改";
+            // 
+            // Frm_customer
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.panel1);
+            this.Name = "Frm_customer";
+            this.Text = "客户档案";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbl_customer;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txt_cusCode;
+        private System.Windows.Forms.TextBox tex_cusName;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsb_save;
+        private System.Windows.Forms.ToolStripButton tsb_close;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private Utility.UControl.txtBoxWithDate tbd_effect;
+        private Utility.UControl.txtBoxWithDate tbd_failure;
+        private System.Windows.Forms.ToolStripButton tsb_add;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cusCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
+        private System.Windows.Forms.ToolStripButton tsb_modify;
+    }
+}

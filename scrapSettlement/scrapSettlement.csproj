@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -59,15 +60,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Customer.cs">
+      <DependentUpon>WeighingSettlementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\WeighingSettlement.cs">
+      <DependentUpon>WeighingSettlementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\WeighingSettlementModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeighingSettlementModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\WeighingSettlementModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WeighingSettlementModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Frm_weighingRegister.cs">
+    <Compile Include="UI\Frm_srcap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_weighingRegister.Designer.cs">
+    <Compile Include="UI\Frm_srcap.Designer.cs">
+      <DependentUpon>Frm_srcap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_weighingRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_weighingRegister.Designer.cs">
       <DependentUpon>Frm_weighingRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_main.cs">
@@ -78,7 +96,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Frm_weighingRegister.resx">
+    <Compile Include="UI\Frm_customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_customer.Designer.cs">
+      <DependentUpon>Frm_customer.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\Frm_srcap.resx">
+      <DependentUpon>Frm_srcap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_weighingRegister.resx">
       <DependentUpon>Frm_weighingRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_main.resx">
@@ -93,6 +120,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Frm_customer.resx">
+      <DependentUpon>Frm_customer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <EntityDeploy Include="DAL\WeighingSettlementModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -114,6 +144,19 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\WeighingSettlementModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WeighingSettlementModel.Context.cs</LastGenOutput>
+      <DependentUpon>WeighingSettlementModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DAL\WeighingSettlementModel.edmx.sql" />
+    <Content Include="DAL\WeighingSettlementModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WeighingSettlementModel.cs</LastGenOutput>
+      <DependentUpon>WeighingSettlementModel.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

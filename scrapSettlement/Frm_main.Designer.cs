@@ -1,4 +1,4 @@
-﻿namespace scrapSettlement
+﻿namespace ScrapSettlement
 {
     partial class Frm_main
     {
@@ -28,15 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.基础设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.客户档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.废料档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.经办人档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.收入登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.过磅登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.数据库设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +61,9 @@
             // 
             this.基础设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.客户档案ToolStripMenuItem,
-            this.废料档案ToolStripMenuItem});
+            this.废料档案ToolStripMenuItem,
+            this.经办人档案ToolStripMenuItem,
+            this.数据库设置ToolStripMenuItem});
             this.基础设置ToolStripMenuItem.Name = "基础设置ToolStripMenuItem";
             this.基础设置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.基础设置ToolStripMenuItem.Text = "基础设置";
@@ -66,14 +71,22 @@
             // 客户档案ToolStripMenuItem
             // 
             this.客户档案ToolStripMenuItem.Name = "客户档案ToolStripMenuItem";
-            this.客户档案ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.客户档案ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.客户档案ToolStripMenuItem.Text = "客户档案";
+            this.客户档案ToolStripMenuItem.Click += new System.EventHandler(this.客户档案ToolStripMenuItem_Click);
             // 
             // 废料档案ToolStripMenuItem
             // 
             this.废料档案ToolStripMenuItem.Name = "废料档案ToolStripMenuItem";
-            this.废料档案ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.废料档案ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.废料档案ToolStripMenuItem.Text = "废料档案";
+            this.废料档案ToolStripMenuItem.Click += new System.EventHandler(this.废料档案ToolStripMenuItem_Click);
+            // 
+            // 经办人档案ToolStripMenuItem
+            // 
+            this.经办人档案ToolStripMenuItem.Name = "经办人档案ToolStripMenuItem";
+            this.经办人档案ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.经办人档案ToolStripMenuItem.Text = "经办人档案";
             // 
             // 收入登记ToolStripMenuItem
             // 
@@ -112,6 +125,13 @@
             this.tabControl1.Size = new System.Drawing.Size(805, 367);
             this.tabControl1.TabIndex = 0;
             // 
+            // 数据库设置ToolStripMenuItem
+            // 
+            this.数据库设置ToolStripMenuItem.Name = "数据库设置ToolStripMenuItem";
+            this.数据库设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.数据库设置ToolStripMenuItem.Text = "数据库设置";
+            this.数据库设置ToolStripMenuItem.Click += new System.EventHandler(this.数据库设置ToolStripMenuItem_Click);
+            // 
             // Frm_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -119,6 +139,7 @@
             this.ClientSize = new System.Drawing.Size(805, 392);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Frm_main";
             this.Text = "过磅结算系统";
@@ -141,5 +162,7 @@
         private System.Windows.Forms.ToolStripMenuItem 报表ToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ToolStripMenuItem 经办人档案ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 数据库设置ToolStripMenuItem;
     }
 }
