@@ -8,6 +8,7 @@
   <EntityContainer Name="WeighingSettlementModelStoreContainer">
     <EntitySet Name="WeighingSettlementSet" EntityType="WeighingSettlementModel.Store.WeighingSettlementSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CustomerSet" EntityType="WeighingSettlementModel.Store.CustomerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ScrapSet" EntityType="WeighingSettlementModel.Store.ScrapSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="WeighingSettlementCustomer" Association="WeighingSettlementModel.Store.WeighingSettlementCustomer">
       <End Role="WeighingSettlement" EntitySet="WeighingSettlementSet" />
       <End Role="Customer" EntitySet="CustomerSet" />
@@ -39,6 +40,14 @@
     <Property Name="effectDate" Type="datetime" Nullable="false" />
     <Property Name="failuerDate" Type="datetime" Nullable="true" />
   </EntityType>
+  <EntityType Name="ScrapSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="scrapCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="scrapName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <Association Name="WeighingSettlementCustomer">
     <End Role="WeighingSettlement" Type="WeighingSettlementModel.Store.WeighingSettlementSet" Multiplicity="*" />
     <End Role="Customer" Type="WeighingSettlementModel.Store.CustomerSet" Multiplicity="1" />
@@ -62,6 +71,7 @@
             <End Role="WeighingSettlement" EntitySet="WeighingSettlementSet" />
             <End Role="Customer" EntitySet="CustomerSet" />
           </AssociationSet>
+          <EntitySet Name="ScrapSet" EntityType="WeighingSettlementModel.Scrap" />
         </EntityContainer>
         <EntityType Name="WeighingSettlement">
           <Key>
@@ -94,6 +104,14 @@
           <End Type="WeighingSettlementModel.WeighingSettlement" Role="WeighingSettlement" Multiplicity="*" />
           <End Type="WeighingSettlementModel.Customer" Role="Customer" Multiplicity="1" />
         </Association>
+        <EntityType Name="Scrap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="scrapCode" Type="String" Nullable="false" />
+          <Property Name="scrapName" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -124,6 +142,15 @@
           <ScalarProperty Name="cusName" ColumnName="cusName" />
           <ScalarProperty Name="effectDate" ColumnName="effectDate" />
           <ScalarProperty Name="failuerDate" ColumnName="failuerDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScrapSet">
+      <EntityTypeMapping TypeName="IsTypeOf(WeighingSettlementModel.Scrap)">
+        <MappingFragment StoreEntitySet="ScrapSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="scrapCode" ColumnName="scrapCode" />
+          <ScalarProperty Name="scrapName" ColumnName="scrapName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

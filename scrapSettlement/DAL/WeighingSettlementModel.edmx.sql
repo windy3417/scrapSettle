@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/09/2020 11:52:09
--- Generated from EDMX file: E:\code\scrapSettle\scrapSettlement\DAL\WeighingSettlementModel.edmx
+-- Date Created: 09/12/2020 13:14:19
+-- Generated from EDMX file: F:\code\scrapSettle\scrapSettlement\DAL\WeighingSettlementModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -62,6 +62,14 @@ CREATE TABLE [dbo].[CustomerSet] (
 );
 GO
 
+-- Creating table 'ScrapSet'
+CREATE TABLE [dbo].[ScrapSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [scrapCode] nvarchar(max)  NOT NULL,
+    [scrapName] nvarchar(max)  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -75,6 +83,12 @@ GO
 -- Creating primary key on [Id] in table 'CustomerSet'
 ALTER TABLE [dbo].[CustomerSet]
 ADD CONSTRAINT [PK_CustomerSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ScrapSet'
+ALTER TABLE [dbo].[ScrapSet]
+ADD CONSTRAINT [PK_ScrapSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 

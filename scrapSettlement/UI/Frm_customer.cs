@@ -1,10 +1,12 @@
-﻿using ScrapSettlement.DAL;
+﻿
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Linq;
 using System.Linq.Expressions;
+using ScrapSettlement.DAL;
+using System.Collections.Generic;
 
 namespace ScrapSettlement.UI
 {
@@ -17,13 +19,18 @@ namespace ScrapSettlement.UI
 
         }
 
+        List<Customer> customerList = new List<Customer>();
+        /// <summary>
+        /// 初始化控件
+        /// </summary>
         private void initialize()
         {
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
-            this.tbd_effect.Controls[0].Text = DateTime.Now.ToString();
-            this.tableLayoutPanel1.Enabled = false;
+
+                                   this.tsb_save.Enabled = false;
+            this.tsb_modify.Enabled = false;
+            this.dataGridView1.AutoGenerateColumns = false;
             
-            this.bind_gv_dateSource();
 
         }
 
@@ -60,38 +67,6 @@ namespace ScrapSettlement.UI
             this.Parent.Dispose();
         }
 
-        private void Tsb_save_Click(object sender, EventArgs e)
-        {
-
-
-            using (var db = new WeighingSettlementModelContainer())
-            {
-
-                Customer customers = new Customer();
-                customers.cusCode = this.txt_cusCode.Text;
-                customers.cusName = this.tex_cusName.Text;
-                customers.effectDate = Convert.ToDateTime(this.tbd_effect.Text);
-                if (this.tbd_failure.Text != null)
-                {
-                    customers.failuerDate = Convert.ToDateTime(this.tbd_failure.Text);
-                }
-
-
-                db.CustomerSet.Add(customers);
-                db.SaveChanges();
-                
-                //MessageBox.Show("数据保存成功", "保存提示");
-                this.bind_gv_dateSource();
-
-                //清空填制记录
-                this.txt_cusCode.Text = null;
-                this.tex_cusName.Text = null;
-
-                //再次调用新增事件
-                this.tsb_add.Click += this.Tsb_add_Click;
-            }
-        }
-
         /// <summary>
         /// 新增档案并自动生成客户编号
         /// </summary>
@@ -99,36 +74,131 @@ namespace ScrapSettlement.UI
         /// <param name="e"></param>
         private void Tsb_add_Click(object sender, EventArgs e)
         {
-            this.tableLayoutPanel1.Enabled = true;
+            this.tsb_save.Enabled = true;
+            //先清空查询时绑定的数据
+            this.dataGridView1.DataSource = null;
+            foreach (Control item in this.tableLayoutPanel1.Controls)
+            {
+               
+                if (item.Name.Substring(0,3)=="txt")
+                {
+                    item.Text = null;
+                }
+                
+               
+            }
+            //清空自定义控件中文本控件的值
+            this.tbd_failure.Controls[1].Text = null;
+            //赋值给dateTimePicker控件赋值，以其获取
+            this.tbd_effect.Controls[0].Text = DateTime.Now.ToString();
+
+            //取最大编号时速度太慢，三秒左右，同时最大号算法有误，取到第10号则不向上递增了。
+            //using (var db = new WeighingSettlementModelContainer())
+            //{
+            //    Customer customer = new Customer();
+
+            //    var custQuery = from cust in db.CustomerSet.AsNoTracking()
+
+            //                    select cust.cusCode;
+            //    maxCusCode = Convert.ToInt32(custQuery.Max()) + 1;
+
+
+            //}
+            //this.txt_cusCode.Text = maxCusCode.ToString();
+
+            this.txt_cusCode.Focus();
+        }
+
+        /// <summary>
+        /// 保存客户档案
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tsb_save_Click(object sender, EventArgs e)
+        {
+
+
             using (var db = new WeighingSettlementModelContainer())
             {
+
                 Customer customer = new Customer();
+                customer.cusCode = this.txt_cusCode.Text;
+                customer.cusName = this.txt_cusName.Text;
+                customer.effectDate = Convert.ToDateTime(this.tbd_effect.Text);
+                if (this.tbd_failure.Text != null)
+                {
+                    customer.failuerDate = Convert.ToDateTime(this.tbd_failure.Text);
+                }
 
-                var custQuery = from cust in db.CustomerSet.AsNoTracking()
 
-                                select cust.cusCode;
-                int cusCode = Convert.ToInt32(custQuery.Max()) + 1;
-                this.txt_cusCode.Text = cusCode.ToString();
+                db.CustomerSet.Add(customer);
+                db.SaveChanges();
+                                                customerList.Add(customer);
+                this.dataGridView1.DataSource = null;
+                this.dataGridView1.DataSource = customerList;
+                //MessageBox.Show("数据保存成功", "保存提示");
+                //this.bind_gv_dateSource();
 
-                this.tex_cusName.Focus();
+                //清空填制记录
+                this.txt_cusCode.Text = null;
+                this.txt_cusName.Text = null;
 
-
+                //再次调用新增事件
+                this.tsb_add.Click += this.Tsb_add_Click;
             }
         }
+
+
 
         /// <summary>
         /// 绑定dataGridView的数据源
         /// </summary>
         private void bind_gv_dateSource()
         {
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.DataSource = new WeighingSettlementModelContainer().CustomerSet.ToList<Customer>();
+
+            //使用EF速度很慢
+            //this.dataGridView1.DataSource = new WeighingSettlementModelContainer().CustomerSet.ToList<Customer>();
+
+            CustomerService customerService = new CustomerService();
+           customerList= customerService.getCustomerList();
+            this.dataGridView1.DataSource = customerList;
 
         }
 
-        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
+      
+
+        private void tsb_query_Click(object sender, EventArgs e)
         {
-            
+            this.tsb_save.Enabled = false;
+            this.bind_gv_dateSource();
+            this.tsb_modify.Enabled = true;
+        }
+
+        /// <summary>
+        /// 选择当前行数据进行处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+          
+
+            if (e.RowIndex > -1)
+            {
+                this.txt_cusCode.Text = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                this.txt_cusName.Text = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                this.tbd_effect.Controls[0].Text = this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                //if (this.dataGridView1.Rows[e.RowIndex].Cells[3].Value != null)
+                //{
+                //    this.tbd_failure.Enabled = Enabled;
+                    this.tbd_failure.Controls[0].Text = Convert.ToString(this.dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+                //}
+
+            }
+
+
+
+
         }
     }
 }

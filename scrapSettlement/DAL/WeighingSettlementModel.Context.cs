@@ -27,5 +27,6 @@ namespace ScrapSettlement.DAL
     
         public virtual DbSet<WeighingSettlement> WeighingSettlementSet { get; set; }
         public virtual DbSet<Customer> CustomerSet { get; set; }
+        public virtual DbSet<Scrap> ScrapSet { get; set; }
     }
 }
