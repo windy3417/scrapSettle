@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using Utility;
+using ScrapSettlement.DAL.Model;
 
 namespace ScrapSettlement.DAL
 {
@@ -12,7 +13,7 @@ namespace ScrapSettlement.DAL
         public List<Customer> getCustomerList()
         {
             List<Customer> listCustomer = new List<Customer>();
-            string sql = "select * from customerSet where 1=@queryAll";
+            string sql = "select * from customers where 1=@queryAll";
             SqlParameter[] sqlParameters =
             {
                 new SqlParameter("@queryAll",1 )
@@ -22,9 +23,9 @@ namespace ScrapSettlement.DAL
             while (sqlDataReader.Read())
             {
                 Customer customer = new Customer();
-                customer.cusCode = sqlDataReader["cusCode"].ToString();
-                customer.cusName = sqlDataReader["cusName"].ToString();
-                customer.effectDate = sqlDataReader.GetDateTime(3);
+                customer.CusCode =Convert.ToInt32( sqlDataReader["cusCode"]);
+                customer.CusName = sqlDataReader["cusName"].ToString();
+                customer.EffectDate = sqlDataReader.GetDateTime(3);
                 if (!sqlDataReader.IsDBNull(4))
                 {
                     sqlDataReader.GetDateTime(4);

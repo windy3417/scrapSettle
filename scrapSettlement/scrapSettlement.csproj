@@ -54,41 +54,23 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Utility">
-      <HintPath>..\..\Utinity\bin\Debug\Utility.dll</HintPath>
+    <Reference Include="Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Utility\bin\Debug\Utility.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\Customer.cs">
-      <DependentUpon>WeighingSettlementModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="DAL\Model\Customer.cs" />
     <Compile Include="DAL\CustomerService.cs" />
-    <Compile Include="DAL\Scrap.cs">
-      <DependentUpon>WeighingSettlementModel.tt</DependentUpon>
+    <Compile Include="DAL\Model\Coefficient.cs" />
+    <Compile Include="DAL\Model\Scrap.cs" />
+    <Compile Include="DAL\ScrapSettleContext.cs" />
+    <Compile Include="DAL\Model\WeighingSettlement.cs" />
+    <Compile Include="Migrations\202009280557131_recontructMoudle.cs" />
+    <Compile Include="Migrations\202009280557131_recontructMoudle.designer.cs">
+      <DependentUpon>202009280557131_recontructMoudle.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAL\WeighingSettlement.cs">
-      <DependentUpon>WeighingSettlementModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\WeighingSettlementModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WeighingSettlementModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\WeighingSettlementModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WeighingSettlementModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\WeighingSettlementModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WeighingSettlementModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="scrapSettleDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>scrapSettleDataSet.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\Frm_srcap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +97,9 @@
     <Compile Include="UI\Frm_customer.Designer.cs">
       <DependentUpon>Frm_customer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Migrations\202009280557131_recontructMoudle.resx">
+      <DependentUpon>202009280557131_recontructMoudle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_srcap.resx">
       <DependentUpon>Frm_srcap.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,13 +122,6 @@
       <DependentUpon>Frm_customer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
-    <EntityDeploy Include="DAL\WeighingSettlementModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WeighingSettlementModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DAL\WeighingSettlementModel.edmx.diagram">
-      <DependentUpon>WeighingSettlementModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -154,33 +132,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="scrapSettleDataSet.xsc">
-      <DependentUpon>scrapSettleDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="scrapSettleDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>scrapSettleDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="scrapSettleDataSet.xss">
-      <DependentUpon>scrapSettleDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DAL\WeighingSettlementModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>WeighingSettlementModel.Context.cs</LastGenOutput>
-      <DependentUpon>WeighingSettlementModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="DAL\WeighingSettlementModel.edmx.sql" />
-    <Content Include="DAL\WeighingSettlementModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>WeighingSettlementModel.cs</LastGenOutput>
-      <DependentUpon>WeighingSettlementModel.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
