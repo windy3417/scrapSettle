@@ -104,10 +104,18 @@ namespace ScrapSettlement.UI
             {
                 Customer customer = new Customer();
 
-                var custQuery = from cust in db.Customer.AsNoTracking()
+                var custQuery = from cust in db.Customers.AsNoTracking()
 
                                 select cust.CusCode;
-                maxCusCode = Convert.ToInt32(custQuery.Max()) + 1;
+                if (custQuery.Count()==0)
+                {
+                    maxCusCode = 1;
+                }
+                else
+                {
+                    maxCusCode = Convert.ToInt32(custQuery.Max()) + 1;
+                }
+               
 
 
             }
@@ -118,8 +126,7 @@ namespace ScrapSettlement.UI
 
         }
 
-
-
+        
         /// <summary>
         /// 删除选择定行
         /// </summary>
@@ -136,11 +143,11 @@ namespace ScrapSettlement.UI
 
                     ScrapSettleContext db = new ScrapSettleContext();
 
-                    List<Customer> delCustomer = (from del in db.Customer
+                    List<Customer> delCustomer = (from del in db.Customers
                                                   where del.CusCode ==Convert.ToInt32( selected)
                                                   select del).ToList<Customer>();
                     //移除数据库的数据
-                    db.Customer.Remove(delCustomer[0]);
+                    db.Customers.Remove(delCustomer[0]);
                     db.SaveChanges();
                     clearDate();
 
@@ -209,7 +216,11 @@ namespace ScrapSettlement.UI
             this.tsb_modify.Enabled = true;
 
             this.tsb_delete.Enabled = true;
-            this.dataGridView1.Rows[0].Selected = true;
+            if (dataGridView1.Rows.Count>0)
+            {
+                this.dataGridView1.Rows[0].Selected = true;
+            }
+
 
         }
 
@@ -275,9 +286,7 @@ namespace ScrapSettlement.UI
         }
         #endregion
 
-
-
-
+               
         #region 窗体操作
         /// <summary>
         /// 关闭嵌入式窗体
@@ -313,7 +322,7 @@ namespace ScrapSettlement.UI
             //查询状态的数据源
             if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.query.ToString())
             {
-                this.dataGridView1.DataSource = new ScrapSettleContext().Customer.ToList<Customer>();
+                this.dataGridView1.DataSource = new ScrapSettleContext().Customers.ToList<Customer>();
             }
             //新增状态的数据源
             else
@@ -371,9 +380,13 @@ namespace ScrapSettlement.UI
                         {
                             customer.FailuerDate= Convert.ToDateTime(this.tbd_failure.Text);
                         }
+                        else
+                        {
+                            //customer.FailuerDate = Convert.ToDateTime("");
+                        }
 
 
-                        db.Customer.Add(customer);
+                        db.Customers.Add(customer);
                         db.SaveChanges();
                         customerList.Add(customer);
                         //this.dataGridView1.DataSource = null;
@@ -397,7 +410,7 @@ namespace ScrapSettlement.UI
                 {
                     using (var db = new ScrapSettleContext())
                     {
-                        Customer customer = db.Customer.Where(c => c.CusCode ==System.Convert.ToInt32(txt_cusCode.Text)).FirstOrDefault();
+                        Customer customer = db.Customers.Where(c => c.CusCode ==System.Convert.ToInt32(txt_cusCode.Text)).FirstOrDefault();
 
                         customer.CusCode = System.Convert.ToInt32(txt_cusCode.Text); 
                             
@@ -437,11 +450,11 @@ namespace ScrapSettlement.UI
                 this.txt_cusName.Text = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 this.tbd_effect.Controls[2].Text = this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                 this.tbd_effect.Text = this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                //if (this.dataGridView1.Rows[e.RowIndex].Cells[3].Value != null)
-                //{
-                //    this.tbd_failure.Enabled = Enabled;
-                tbd_failure.Text = Convert.ToString(this.dataGridView1.Rows[e.RowIndex].Cells[3].Value);
-                //}
+                if (this.dataGridView1.Rows[e.RowIndex].Cells[3].Value != null & this.dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString() !="")
+                {
+                    //this.tbd_failure.Enabled = Enabled;
+                    tbd_failure.Text = Convert.ToString(this.dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+                }
 
             }
 

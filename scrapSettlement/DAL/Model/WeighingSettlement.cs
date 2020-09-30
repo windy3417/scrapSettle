@@ -20,6 +20,6 @@ namespace ScrapSettlement.DAL.Model
         public double settleAmount { get; set; }
         public int Customer_Id { get; set; }
 
-        public virtual Customer CustomerSet { get; set; }
+        public virtual Customer Customers { get; set; }
     }
 }

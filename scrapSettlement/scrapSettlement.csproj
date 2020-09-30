@@ -60,16 +60,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\Model\Customer.cs" />
     <Compile Include="DAL\CustomerService.cs" />
     <Compile Include="DAL\Model\Coefficient.cs" />
+    <Compile Include="DAL\Model\Customer.cs" />
     <Compile Include="DAL\Model\Scrap.cs" />
     <Compile Include="DAL\ScrapSettleContext.cs" />
     <Compile Include="DAL\Model\WeighingSettlement.cs" />
-    <Compile Include="Migrations\202009280557131_recontructMoudle.cs" />
-    <Compile Include="Migrations\202009280557131_recontructMoudle.designer.cs">
-      <DependentUpon>202009280557131_recontructMoudle.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\Frm_srcap.cs">
       <SubType>Form</SubType>
@@ -97,9 +93,6 @@
     <Compile Include="UI\Frm_customer.Designer.cs">
       <DependentUpon>Frm_customer.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202009280557131_recontructMoudle.resx">
-      <DependentUpon>202009280557131_recontructMoudle.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_srcap.resx">
       <DependentUpon>Frm_srcap.cs</DependentUpon>
     </EmbeddedResource>

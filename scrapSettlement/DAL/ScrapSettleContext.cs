@@ -21,7 +21,7 @@ namespace ScrapSettlement.DAL
             //throw new UnintentionalCodeFirstException();
         }
 
-        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<WeighingSettlement> WeighingSettlement { get; set; }
         public virtual DbSet<Scrap> Scraps { get; set; }
         public virtual DbSet<Coefficient> Coefficients{get;set;}
