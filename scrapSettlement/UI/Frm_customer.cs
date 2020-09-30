@@ -382,7 +382,7 @@ namespace ScrapSettlement.UI
                         }
                         else
                         {
-                            //customer.FailuerDate = Convert.ToDateTime("");
+                            //customer.FailuerDate = null;
                         }
 
 
