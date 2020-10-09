@@ -52,7 +52,7 @@ namespace ScrapSettlement
 
         private void 废料档案ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_scrap frm_Scrap = new Frm_scrap();
+            Frm_scrapItem frm_Scrap = new Frm_scrapItem();
             string tabPageText = frm_Scrap.Text;
             EmbedForm embedForm = new EmbedForm();
             embedForm.openForm(frm_Scrap, tabPageText, tabControl1, panel1);
@@ -65,6 +65,14 @@ namespace ScrapSettlement
             string tabPageText = frm_Scrap.Text;
             EmbedForm embedForm = new EmbedForm();
             embedForm.openForm(frm_Scrap, tabPageText, tabControl1, panel1);
+        }
+
+        private void 经办人档案ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_person frm_person = new Frm_person();
+            string tabPageText = frm_person.Text;
+            EmbedForm embedForm = new EmbedForm();
+            embedForm.openForm(frm_person, tabPageText, tabControl1, panel1);
         }
     }
 }

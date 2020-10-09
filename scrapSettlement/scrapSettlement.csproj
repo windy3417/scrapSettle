@@ -63,6 +63,7 @@
     <Compile Include="DAL\CustomerService.cs" />
     <Compile Include="DAL\Model\Coefficient.cs" />
     <Compile Include="DAL\Model\Customer.cs" />
+    <Compile Include="DAL\Model\Person.cs" />
     <Compile Include="DAL\Model\Scrap.cs" />
     <Compile Include="DAL\ScrapSettleContext.cs" />
     <Compile Include="DAL\Model\WeighingSettlement.cs" />
@@ -71,11 +72,17 @@
       <DependentUpon>202010090243428_addKey.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="UI\Frm_srcap.cs">
+    <Compile Include="UI\Frm_person.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_srcap.Designer.cs">
-      <DependentUpon>Frm_srcap.cs</DependentUpon>
+    <Compile Include="UI\Frm_person.Designer.cs">
+      <DependentUpon>Frm_person.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_scrapItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_scrapItem.Designer.cs">
+      <DependentUpon>Frm_scrapItem.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_weighingRegister.cs">
       <SubType>Form</SubType>
@@ -100,8 +107,11 @@
     <EmbeddedResource Include="Migrations\202010090243428_addKey.resx">
       <DependentUpon>202010090243428_addKey.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_srcap.resx">
-      <DependentUpon>Frm_srcap.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Frm_person.resx">
+      <DependentUpon>Frm_person.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_scrapItem.resx">
+      <DependentUpon>Frm_scrapItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_weighingRegister.resx">
       <DependentUpon>Frm_weighingRegister.cs</DependentUpon>

@@ -7,13 +7,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ScrapSettlement.DAL.Model
 {
-   public class Scrap
+   public class Person
+
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ScrapID { get; set; }
+        public int ID { get; set; }
         [Key]
-        public int ScrapCode { get; set; }
-        public string ScrapName { get; set; }
+        public int Code { get; set; }
+        public string Name { get; set; }
       
         public DateTime EffectDate { get; set; }
 

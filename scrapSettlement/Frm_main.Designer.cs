@@ -34,12 +34,12 @@
             this.客户档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.废料档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.经办人档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.数据库设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.收入登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.过磅登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.数据库设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +87,14 @@
             this.经办人档案ToolStripMenuItem.Name = "经办人档案ToolStripMenuItem";
             this.经办人档案ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.经办人档案ToolStripMenuItem.Text = "经办人档案";
+            this.经办人档案ToolStripMenuItem.Click += new System.EventHandler(this.经办人档案ToolStripMenuItem_Click);
+            // 
+            // 数据库设置ToolStripMenuItem
+            // 
+            this.数据库设置ToolStripMenuItem.Name = "数据库设置ToolStripMenuItem";
+            this.数据库设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.数据库设置ToolStripMenuItem.Text = "数据库设置";
+            this.数据库设置ToolStripMenuItem.Click += new System.EventHandler(this.数据库设置ToolStripMenuItem_Click);
             // 
             // 收入登记ToolStripMenuItem
             // 
@@ -124,13 +132,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(805, 367);
             this.tabControl1.TabIndex = 0;
-            // 
-            // 数据库设置ToolStripMenuItem
-            // 
-            this.数据库设置ToolStripMenuItem.Name = "数据库设置ToolStripMenuItem";
-            this.数据库设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.数据库设置ToolStripMenuItem.Text = "数据库设置";
-            this.数据库设置ToolStripMenuItem.Click += new System.EventHandler(this.数据库设置ToolStripMenuItem_Click);
             // 
             // Frm_main
             // 
