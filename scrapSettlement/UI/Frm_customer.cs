@@ -137,14 +137,14 @@ namespace ScrapSettlement.UI
 
             if (dataGridView1.Rows.Count > 0)
             {
-                string selected = this.dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                Int32 selected = (Int32)this.dataGridView1.SelectedRows[0].Cells[0].Value;
                 if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
 
                     ScrapSettleContext db = new ScrapSettleContext();
 
                     List<Customer> delCustomer = (from del in db.Customers
-                                                  where del.CusCode ==Convert.ToInt32( selected)
+                                                  where del.CusCode ==selected
                                                   select del).ToList<Customer>();
                     //移除数据库的数据
                     db.Customers.Remove(delCustomer[0]);
@@ -380,14 +380,20 @@ namespace ScrapSettlement.UI
                         {
                             customer.FailuerDate= Convert.ToDateTime(this.tbd_failure.Text);
                         }
-                        else
-                        {
-                            //customer.FailuerDate = null;
-                        }
-
+                      
 
                         db.Customers.Add(customer);
-                        db.SaveChanges();
+                        try
+                        {
+                            db.SaveChanges();
+                        }
+                        catch (Exception e)
+                        {
+
+                            MessageBox.Show("数据保存错误:" + e.Message+e.InnerException, "数据保存提示");
+                            return;
+                        }
+                        
                         customerList.Add(customer);
                         //this.dataGridView1.DataSource = null;
                         //this.dataGridView1.DataSource = customerList;
@@ -410,7 +416,7 @@ namespace ScrapSettlement.UI
                 {
                     using (var db = new ScrapSettleContext())
                     {
-                        Customer customer = db.Customers.Where(c => c.CusCode ==System.Convert.ToInt32(txt_cusCode.Text)).FirstOrDefault();
+                        Customer customer = db.Customers.Where(c => c.CusCode.ToString() ==txt_cusCode.Text).FirstOrDefault();
 
                         customer.CusCode = System.Convert.ToInt32(txt_cusCode.Text); 
                             
@@ -450,11 +456,19 @@ namespace ScrapSettlement.UI
                 this.txt_cusName.Text = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 this.tbd_effect.Controls[2].Text = this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                 this.tbd_effect.Text = this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                if (this.dataGridView1.Rows[e.RowIndex].Cells[3].Value != null & this.dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString() !="")
+                if (this.dataGridView1.Rows[e.RowIndex].Cells[3].Value is null)
                 {
-                    //this.tbd_failure.Enabled = Enabled;
-                    tbd_failure.Text = Convert.ToString(this.dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+                    return;
                 }
+                else
+                {
+                    tbd_failure.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                } 
+                //(this.dataGridView1.Rows[e.RowIndex].Cells[3].Value != null & this.dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString() !="")
+                //{
+                //    //this.tbd_failure.Enabled = Enabled;
+                //    tbd_failure.Text = Convert.ToString(this.dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+                //}
 
             }
 

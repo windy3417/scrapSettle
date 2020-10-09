@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ScrapSettlement.DAL.Model
 {
     public class Customer
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CustomerID { get; set; }
+        [Key]
         public int CusCode { get; set; }
         public string CusName { get; set; }
         public DateTime EffectDate { get; set; }
