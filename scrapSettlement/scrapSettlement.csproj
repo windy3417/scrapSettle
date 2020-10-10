@@ -67,6 +67,7 @@
     <Compile Include="DAL\Model\Scrap.cs" />
     <Compile Include="DAL\ScrapSettleContext.cs" />
     <Compile Include="DAL\Model\WeighingSettlement.cs" />
+    <Compile Include="DAL\Services\ScrapService.cs" />
     <Compile Include="Migrations\202010090243428_addKey.cs" />
     <Compile Include="Migrations\202010090243428_addKey.designer.cs">
       <DependentUpon>202010090243428_addKey.cs</DependentUpon>

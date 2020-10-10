@@ -69,6 +69,10 @@ namespace ScrapSettlement.UI
             cmb_cusName.ValueMember = "CusCode";
             //初始化废料档案数据源
 
+            cmb_scrapName.DataSource = new ScrapService().scrapList().Select(s => new { s.ScrapCode, s.ScrapName }).ToList();
+            cmb_scrapName.DisplayMember = "ScrapName";
+            cmb_scrapName.ValueMember = "ScrapCode";
+
 
 
 
