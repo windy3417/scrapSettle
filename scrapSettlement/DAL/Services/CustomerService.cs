@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using Utility;
 using ScrapSettlement.DAL.Model;
 
-namespace ScrapSettlement.DAL
+namespace ScrapSettlement.DAL.Services
 {
    public class CustomerService
     {

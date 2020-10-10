@@ -74,5 +74,13 @@ namespace ScrapSettlement
             EmbedForm embedForm = new EmbedForm();
             embedForm.openForm(frm_person, tabPageText, tabControl1, panel1);
         }
+
+        private void 结算系数调整单ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_coefficient frm_Coefficient = new Frm_coefficient();
+            string tabPageText = frm_Coefficient.Text;
+            EmbedForm embedForm = new EmbedForm();
+            embedForm.openForm(frm_Coefficient, tabPageText, tabControl1, panel1);
+        }
     }
 }

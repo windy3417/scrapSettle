@@ -40,6 +40,7 @@
             this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.结算系数调整单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +64,7 @@
             this.客户档案ToolStripMenuItem,
             this.废料档案ToolStripMenuItem,
             this.经办人档案ToolStripMenuItem,
+            this.结算系数调整单ToolStripMenuItem,
             this.数据库设置ToolStripMenuItem});
             this.基础设置ToolStripMenuItem.Name = "基础设置ToolStripMenuItem";
             this.基础设置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
@@ -133,6 +135,13 @@
             this.tabControl1.Size = new System.Drawing.Size(805, 367);
             this.tabControl1.TabIndex = 0;
             // 
+            // 结算系数调整单ToolStripMenuItem
+            // 
+            this.结算系数调整单ToolStripMenuItem.Name = "结算系数调整单ToolStripMenuItem";
+            this.结算系数调整单ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.结算系数调整单ToolStripMenuItem.Text = "结算系数调整单";
+            this.结算系数调整单ToolStripMenuItem.Click += new System.EventHandler(this.结算系数调整单ToolStripMenuItem_Click);
+            // 
             // Frm_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -165,5 +174,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem 经办人档案ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 数据库设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 结算系数调整单ToolStripMenuItem;
     }
 }
