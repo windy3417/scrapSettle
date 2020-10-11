@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Data.Entity;
 
 
-namespace scrapSettlement.Common
+namespace ScrapSettlement.Common
 {
   public  class DeleteTableRecord
     {

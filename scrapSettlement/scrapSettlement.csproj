@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DeleteTableRecord.cs" />
+    <Compile Include="Common\ValidateClear.cs" />
+    <Compile Include="DAL\Model\Income.cs" />
     <Compile Include="DAL\Services\CustomerService.cs" />
     <Compile Include="DAL\Model\Coefficient.cs" />
     <Compile Include="DAL\Model\Customer.cs" />
@@ -90,6 +92,12 @@
     </Compile>
     <Compile Include="UI\Frm_scrapItem.Designer.cs">
       <DependentUpon>Frm_scrapItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_income.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_income.Designer.cs">
+      <DependentUpon>Frm_income.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_weighingRegister.cs">
       <SubType>Form</SubType>
@@ -122,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_scrapItem.resx">
       <DependentUpon>Frm_scrapItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_income.resx">
+      <DependentUpon>Frm_income.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_weighingRegister.resx">
       <DependentUpon>Frm_weighingRegister.cs</DependentUpon>

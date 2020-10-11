@@ -34,13 +34,16 @@
             this.客户档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.废料档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.经办人档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.结算系数调整单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.收入登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.过磅登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.结算系数调整单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.单据列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.收款单列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.过磅单列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +54,7 @@
             this.基础设置ToolStripMenuItem,
             this.收入登记ToolStripMenuItem,
             this.过磅登记ToolStripMenuItem,
+            this.单据列表ToolStripMenuItem,
             this.报表ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -88,8 +92,15 @@
             // 
             this.经办人档案ToolStripMenuItem.Name = "经办人档案ToolStripMenuItem";
             this.经办人档案ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.经办人档案ToolStripMenuItem.Text = "经办人档案";
+            this.经办人档案ToolStripMenuItem.Text = "人员档案";
             this.经办人档案ToolStripMenuItem.Click += new System.EventHandler(this.经办人档案ToolStripMenuItem_Click);
+            // 
+            // 结算系数调整单ToolStripMenuItem
+            // 
+            this.结算系数调整单ToolStripMenuItem.Name = "结算系数调整单ToolStripMenuItem";
+            this.结算系数调整单ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.结算系数调整单ToolStripMenuItem.Text = "结算系数调整单";
+            this.结算系数调整单ToolStripMenuItem.Click += new System.EventHandler(this.结算系数调整单ToolStripMenuItem_Click);
             // 
             // 数据库设置ToolStripMenuItem
             // 
@@ -103,6 +114,7 @@
             this.收入登记ToolStripMenuItem.Name = "收入登记ToolStripMenuItem";
             this.收入登记ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.收入登记ToolStripMenuItem.Text = "收入登记";
+            this.收入登记ToolStripMenuItem.Click += new System.EventHandler(this.收入登记ToolStripMenuItem_Click);
             // 
             // 过磅登记ToolStripMenuItem
             // 
@@ -135,12 +147,26 @@
             this.tabControl1.Size = new System.Drawing.Size(805, 367);
             this.tabControl1.TabIndex = 0;
             // 
-            // 结算系数调整单ToolStripMenuItem
+            // 单据列表ToolStripMenuItem
             // 
-            this.结算系数调整单ToolStripMenuItem.Name = "结算系数调整单ToolStripMenuItem";
-            this.结算系数调整单ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.结算系数调整单ToolStripMenuItem.Text = "结算系数调整单";
-            this.结算系数调整单ToolStripMenuItem.Click += new System.EventHandler(this.结算系数调整单ToolStripMenuItem_Click);
+            this.单据列表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.收款单列表ToolStripMenuItem,
+            this.过磅单列表ToolStripMenuItem});
+            this.单据列表ToolStripMenuItem.Name = "单据列表ToolStripMenuItem";
+            this.单据列表ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.单据列表ToolStripMenuItem.Text = "单据列表";
+            // 
+            // 收款单列表ToolStripMenuItem
+            // 
+            this.收款单列表ToolStripMenuItem.Name = "收款单列表ToolStripMenuItem";
+            this.收款单列表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.收款单列表ToolStripMenuItem.Text = "收款单列表";
+            // 
+            // 过磅单列表ToolStripMenuItem
+            // 
+            this.过磅单列表ToolStripMenuItem.Name = "过磅单列表ToolStripMenuItem";
+            this.过磅单列表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.过磅单列表ToolStripMenuItem.Text = "过磅单列表";
             // 
             // Frm_main
             // 
@@ -175,5 +201,8 @@
         private System.Windows.Forms.ToolStripMenuItem 经办人档案ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 数据库设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 结算系数调整单ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 单据列表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 收款单列表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 过磅单列表ToolStripMenuItem;
     }
 }
