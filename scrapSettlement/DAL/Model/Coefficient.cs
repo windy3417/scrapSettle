@@ -17,7 +17,7 @@ namespace ScrapSettlement.DAL.Model
 
         public int CustomerID { get; set;  }
         public int ScrapID { get; set; }
-        public float Data { get; set; }
+        public Double Data { get; set; }
         public DateTime EffectDate { get; set; }
 
         public Nullable<DateTime> FailureDate { get; set; }

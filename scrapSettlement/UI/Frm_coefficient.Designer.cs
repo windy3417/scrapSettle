@@ -29,9 +29,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_coefficient));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_vouchNo = new System.Windows.Forms.Label();
             this.lbl_vouchNoValue = new System.Windows.Forms.Label();
@@ -39,18 +39,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_voucherStatus = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cusCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.effectDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.failuerDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_customer = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.cmb_cusName = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbd_effect = new Utility.UControl.txtBoxWithDate();
             this.label4 = new System.Windows.Forms.Label();
             this.tbd_failure = new Utility.UControl.txtBoxWithDate();
+            this.txt_data = new System.Windows.Forms.TextBox();
+            this.cmb_scrapName = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_add = new System.Windows.Forms.ToolStripButton();
             this.tsb_abandon = new System.Windows.Forms.ToolStripButton();
@@ -59,10 +59,12 @@
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txt_data = new System.Windows.Forms.TextBox();
-            this.cmb_cusName = new System.Windows.Forms.ComboBox();
-            this.cmb_scrapName = new System.Windows.Forms.ComboBox();
+            this.VoucherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scrapName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.effectDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FailureDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -71,7 +73,7 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel1.Controls.Add(this.lbl_vouchNo);
             this.panel1.Controls.Add(this.lbl_vouchNoValue);
             this.panel1.Controls.Add(this.dateTimePicker1);
@@ -106,15 +108,15 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(386, 56);
+            this.dateTimePicker1.Location = new System.Drawing.Point(356, 56);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(124, 21);
-            this.dateTimePicker1.TabIndex = 16;
+            this.dateTimePicker1.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(323, 60);
+            this.label5.Location = new System.Drawing.Point(293, 60);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 15;
@@ -136,71 +138,39 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cusCode,
+            this.VoucherNO,
             this.cusName,
+            this.scrapName,
+            this.data,
             this.effectDate,
-            this.failuerDate});
+            this.FailureDate});
             this.dataGridView1.Location = new System.Drawing.Point(3, 241);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(738, 150);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.Size = new System.Drawing.Size(738, 166);
+            this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
-            // 
-            // cusCode
-            // 
-            this.cusCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.cusCode.DataPropertyName = "Code";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            this.cusCode.DefaultCellStyle = dataGridViewCellStyle2;
-            this.cusCode.FillWeight = 50.76142F;
-            this.cusCode.Frozen = true;
-            this.cusCode.HeaderText = "人员编码";
-            this.cusCode.Name = "cusCode";
-            this.cusCode.ReadOnly = true;
-            // 
-            // cusName
-            // 
-            this.cusName.DataPropertyName = "Name";
-            this.cusName.FillWeight = 149.2386F;
-            this.cusName.HeaderText = "人员名称";
-            this.cusName.Name = "cusName";
-            this.cusName.ReadOnly = true;
-            // 
-            // effectDate
-            // 
-            this.effectDate.DataPropertyName = "effectDate";
-            this.effectDate.HeaderText = "生效日期";
-            this.effectDate.Name = "effectDate";
-            this.effectDate.ReadOnly = true;
-            // 
-            // failuerDate
-            // 
-            this.failuerDate.DataPropertyName = "failuerDate";
-            this.failuerDate.HeaderText = "失效日期";
-            this.failuerDate.Name = "failuerDate";
-            this.failuerDate.ReadOnly = true;
             // 
             // lbl_customer
             // 
             this.lbl_customer.AutoSize = true;
             this.lbl_customer.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_customer.Location = new System.Drawing.Point(337, 32);
+            this.lbl_customer.Location = new System.Drawing.Point(307, 32);
             this.lbl_customer.Name = "lbl_customer";
             this.lbl_customer.Size = new System.Drawing.Size(164, 21);
             this.lbl_customer.TabIndex = 1;
@@ -231,6 +201,27 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(738, 122);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // cmb_cusName
+            // 
+            this.cmb_cusName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmb_cusName.FormattingEnabled = true;
+            this.cmb_cusName.Location = new System.Drawing.Point(111, 10);
+            this.cmb_cusName.Name = "cmb_cusName";
+            this.cmb_cusName.Size = new System.Drawing.Size(264, 20);
+            this.cmb_cusName.TabIndex = 0;
+            this.cmb_cusName.Tag = "客户名称";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 95);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 0;
+            this.label6.Tag = "客户名称标签";
+            this.label6.Text = "结算系数：";
             // 
             // label1
             // 
@@ -291,8 +282,27 @@
             this.tbd_failure.Location = new System.Drawing.Point(477, 49);
             this.tbd_failure.Name = "tbd_failure";
             this.tbd_failure.Size = new System.Drawing.Size(252, 21);
-            this.tbd_failure.TabIndex = 3;
+            this.tbd_failure.TabIndex = 4;
             this.tbd_failure.Tag = "失效日期";
+            // 
+            // txt_data
+            // 
+            this.txt_data.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_data.Location = new System.Drawing.Point(111, 90);
+            this.txt_data.Name = "txt_data";
+            this.txt_data.Size = new System.Drawing.Size(264, 21);
+            this.txt_data.TabIndex = 2;
+            this.txt_data.Tag = "结算系数";
+            // 
+            // cmb_scrapName
+            // 
+            this.cmb_scrapName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmb_scrapName.FormattingEnabled = true;
+            this.cmb_scrapName.Location = new System.Drawing.Point(111, 50);
+            this.cmb_scrapName.Name = "cmb_scrapName";
+            this.cmb_scrapName.Size = new System.Drawing.Size(264, 20);
+            this.cmb_scrapName.TabIndex = 1;
+            this.cmb_scrapName.Tag = "废料名称";
             // 
             // toolStrip1
             // 
@@ -374,43 +384,54 @@
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
             // 
-            // label6
+            // VoucherNO
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 95);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 4;
-            this.label6.Tag = "客户名称标签";
-            this.label6.Text = "结算系数：";
+            this.VoucherNO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.VoucherNO.DataPropertyName = "VoucherNO";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.VoucherNO.DefaultCellStyle = dataGridViewCellStyle4;
+            this.VoucherNO.FillWeight = 50.76142F;
+            this.VoucherNO.Frozen = true;
+            this.VoucherNO.HeaderText = "单据编号";
+            this.VoucherNO.Name = "VoucherNO";
+            this.VoucherNO.ReadOnly = true;
             // 
-            // txt_data
+            // cusName
             // 
-            this.txt_data.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_data.Location = new System.Drawing.Point(111, 90);
-            this.txt_data.Name = "txt_data";
-            this.txt_data.Size = new System.Drawing.Size(264, 21);
-            this.txt_data.TabIndex = 5;
-            this.txt_data.Tag = "客户名称";
+            this.cusName.DataPropertyName = "cusName";
+            this.cusName.FillWeight = 149.2386F;
+            this.cusName.HeaderText = "客户名称";
+            this.cusName.Name = "cusName";
+            this.cusName.ReadOnly = true;
             // 
-            // cmb_cusName
+            // scrapName
             // 
-            this.cmb_cusName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmb_cusName.FormattingEnabled = true;
-            this.cmb_cusName.Location = new System.Drawing.Point(111, 10);
-            this.cmb_cusName.Name = "cmb_cusName";
-            this.cmb_cusName.Size = new System.Drawing.Size(264, 20);
-            this.cmb_cusName.TabIndex = 19;
+            this.scrapName.DataPropertyName = "scrapName";
+            this.scrapName.HeaderText = "废料名称";
+            this.scrapName.Name = "scrapName";
+            this.scrapName.ReadOnly = true;
             // 
-            // cmb_scrapName
+            // data
             // 
-            this.cmb_scrapName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmb_scrapName.FormattingEnabled = true;
-            this.cmb_scrapName.Location = new System.Drawing.Point(111, 50);
-            this.cmb_scrapName.Name = "cmb_scrapName";
-            this.cmb_scrapName.Size = new System.Drawing.Size(264, 20);
-            this.cmb_scrapName.TabIndex = 19;
+            this.data.DataPropertyName = "data";
+            this.data.HeaderText = "结算系数";
+            this.data.Name = "data";
+            this.data.ReadOnly = true;
+            // 
+            // effectDate
+            // 
+            this.effectDate.DataPropertyName = "effectDate";
+            this.effectDate.HeaderText = "生效日期";
+            this.effectDate.Name = "effectDate";
+            this.effectDate.ReadOnly = true;
+            // 
+            // FailureDate
+            // 
+            this.FailureDate.DataPropertyName = "FailureDate";
+            this.FailureDate.HeaderText = "失效日期";
+            this.FailureDate.Name = "FailureDate";
+            this.FailureDate.ReadOnly = true;
             // 
             // Frm_coefficient
             // 
@@ -457,10 +478,6 @@
         private System.Windows.Forms.ToolStripButton tsb_delete;
         private System.Windows.Forms.ToolStripButton tsb_abandon;
         private System.Windows.Forms.Label lbl_voucherStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn effectDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn failuerDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbl_vouchNo;
@@ -469,5 +486,11 @@
         private System.Windows.Forms.TextBox txt_data;
         private System.Windows.Forms.ComboBox cmb_cusName;
         private System.Windows.Forms.ComboBox cmb_scrapName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VoucherNO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn scrapName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn effectDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FailureDate;
     }
 }

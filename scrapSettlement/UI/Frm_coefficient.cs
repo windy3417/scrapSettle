@@ -25,12 +25,11 @@ namespace ScrapSettlement.UI
 
         #region 变量
         //新增时,dataGridview绑定的数据源，以体现新增的结果
-        List<Person> archivesList = new List<Person>();
-        //最大客户编号
-        int maxCode;
+        List<Coefficient> archivesList = new List<Coefficient>();
+
+
         //dataGridView控件的数据来源，true为查询时绑定，
         //false为新增档案时的绑定
-
 
         enum saveOrChangeOrQueryMolde
         {
@@ -62,7 +61,7 @@ namespace ScrapSettlement.UI
             lbl_voucherStatus.Visible = false;
             //初始化客户名称数据源
             BindingSource bindingSourceForCusName = new BindingSource();
-            bindingSourceForCusName.DataSource = new CustomerService().getCustomerList().Where<Customer>(c => c.FailuerDate == null).Select((c) => new { c.CusCode,c.CusName  }).ToList();
+            bindingSourceForCusName.DataSource = new CustomerService().getCustomerList().Where<Customer>(c => c.FailuerDate == null).Select((c) => new { c.CusCode, c.CusName }).ToList();
 
             cmb_cusName.DataSource = bindingSourceForCusName;
             cmb_cusName.DisplayMember = "CusName";
@@ -82,7 +81,7 @@ namespace ScrapSettlement.UI
         #region 增删改查
 
         /// <summary>
-        /// 新增档案并自动生成客户编号
+        /// 新增单据并自动生成单据编号
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -90,7 +89,9 @@ namespace ScrapSettlement.UI
         {
 
             this.tableLayoutPanel1.Enabled = true;
-            this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMdd");
+            //按日期单据号会有重复，暂按时间
+            //this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMdd");
+            this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMddHHmmss");
             lbl_voucherStatus.Text = "单据状态：新增";
             lbl_voucherStatus.Visible = true;
 
@@ -110,39 +111,18 @@ namespace ScrapSettlement.UI
             //tsb_query.Enabled = false;
             tsb_modify.Enabled = false;
             this.tableLayoutPanel1.Enabled = true;
-           
-                        
+
+
             //给自定义日期控件赋值，其中的textBox控件为显示值
             //日期控件的文本为将需要存储的值
-            this.tbd_effect.Controls[2].Text = DateTime.Now.ToString().Substring(0,10);
+            this.tbd_effect.Controls[2].Text = DateTime.Now.ToString().Substring(0, 10);
             tbd_effect.Text = DateTime.Now.ToString().Substring(0, 10);
 
-            //取最大编号时速度太慢，三秒左右，同时最大号算法有误，取到第10号则不向上递增了???。
-            using (var db = new ScrapSettleContext())
-            {
-                Person  person = new Person();
 
-                var Query = from s in db.Peple.AsNoTracking()
-
-                                select s.Code;
-                if (Query.Count()==0)
-                {
-                    maxCode = 1;
-                }
-                else
-                {
-                    maxCode = Convert.ToInt32(Query.Max()) + 1;
-                }
-               
-
-
-            }
-           
-            //表明当前dataGridView的数据源是内存集合数据
 
         }
 
-        
+
         /// <summary>
         /// 删除选择定行
         /// </summary>
@@ -153,17 +133,17 @@ namespace ScrapSettlement.UI
 
             if (dataGridView1.Rows.Count > 0)
             {
-                Int32 selected = (Int32)this.dataGridView1.SelectedRows[0].Cells[0].Value;
+                string selected = this.dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
                 if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
 
                     ScrapSettleContext db = new ScrapSettleContext();
 
-                    List<Person> del = (from d in db.Peple
-                                                  where d.Code ==selected
-                                                  select d).ToList<Person>();
+                    List<Coefficient> del = (from d in db.Coefficients
+                                             where d.VoucherNO == selected
+                                             select d).ToList<Coefficient>();
                     //移除数据库的数据
-                    db.Peple.Remove(del[0]);
+                    db.Coefficients.Remove(del[0]);
                     db.SaveChanges();
                     clearDate();
 
@@ -174,9 +154,9 @@ namespace ScrapSettlement.UI
                     if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.save.ToString())
                     {
 
-                        List<Person> person = archivesList.Where(c => c.Code== System.Convert.ToInt32(selected)).ToList<Person>();
-                        archivesList.Remove(person[0]);
-                        
+                        List<Coefficient> coefficients = archivesList.Where(c => c.VoucherNO == selected).ToList<Coefficient>();
+                        archivesList.Remove(coefficients[0]);
+
                     }
                     bind_gv_dateSource();
                 }
@@ -187,7 +167,7 @@ namespace ScrapSettlement.UI
         }
 
         /// <summary>
-        /// 保存客户档案
+        /// 保存单据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -210,29 +190,31 @@ namespace ScrapSettlement.UI
 
             tableLayoutPanel1.Enabled = true;
             //编码不能被修改
-           
+
             tsb_save.Enabled = true;
 
         }
 
         /// <summary>
-        /// 查询客户档案
+        /// 查询单据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void tsb_query_Click(object sender, EventArgs e)
         {
             clearDate();
-            lbl_voucherStatus.Text = "档案状态：查询";
+            lbl_voucherStatus.Text = "单据状态：查询";
             lbl_voucherStatus.Visible = true;
-            
+
             saveOrModifQueryFlag = saveOrChangeOrQueryMolde.query.ToString();
             this.tsb_save.Enabled = false;
+
             this.bind_gv_dateSource();
+
             this.tsb_modify.Enabled = true;
 
             this.tsb_delete.Enabled = true;
-            if (dataGridView1.Rows.Count>0)
+            if (dataGridView1.Rows.Count > 0)
             {
                 this.dataGridView1.Rows[0].Selected = true;
             }
@@ -254,7 +236,7 @@ namespace ScrapSettlement.UI
         {
             string pattern = "^-?[1-9]\\d*$";
             Regex regex = new Regex(pattern);
-          
+
 
         }
 
@@ -286,7 +268,7 @@ namespace ScrapSettlement.UI
         }
         #endregion
 
-               
+
         #region 窗体操作
         /// <summary>
         /// 关闭嵌入式窗体
@@ -318,11 +300,22 @@ namespace ScrapSettlement.UI
         private void bind_gv_dateSource()
         {
             this.dataGridView1.DataSource = null;
-            //使用EF速度很慢,不使用默认的DBContext连接字符串后，效率有提升???
+
             //查询状态的数据源
             if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.query.ToString())
             {
-                this.dataGridView1.DataSource = new ScrapSettleContext().Peple.ToList<Person>();
+                using (var db = new ScrapSettleContext())
+                {
+                    var query = from q in db.Coefficients
+                                join c in db.Customers
+                                on q.CustomerID equals c.CusCode
+                                join s in db.Scraps
+                                on q.ScrapID equals s.ScrapCode
+                                select new { q.VoucherNO, c.CusName, s.ScrapName, q.Data, q.EffectDate, q.FailureDate };
+                    dataGridView1.DataSource = query.ToList();
+                }
+                
+                
             }
             //新增状态的数据源
             else
@@ -331,11 +324,7 @@ namespace ScrapSettlement.UI
             }
 
 
-            //以下为直接使用ADO.NET 连接
-            // CustomerService customerService = new CustomerService();
-            //customerList= customerService.getCustomerList();
-            // this.dataGridView1.DataSource = null;
-            // this.dataGridView1.DataSource = customerList;
+
 
         }
 
@@ -350,7 +339,7 @@ namespace ScrapSettlement.UI
                 //if (item.Name.Substring(0, 3) != "lbl")
                 if (item.GetType() != typeof(Label))
                 {
-                    item.Text ="" ;
+                    item.Text = "";
                 }
 
 
@@ -372,37 +361,43 @@ namespace ScrapSettlement.UI
                     using (var db = new ScrapSettleContext())
                     {
 
-                        Person person = new Person();
-                        person.Code= Convert.ToInt32( cmb_cusName.Text);
-                        person.Name=this.cmb_scrapName.Text;
-                        person.EffectDate= Convert.ToDateTime(this.tbd_effect.Text);
+                        
+                        Coefficient coefficient = new Coefficient();
+                        coefficient.VoucherNO = lbl_vouchNoValue.Text;
+                        //注意组合框中的取值不是text属性，而是selectedValue
+                        coefficient.CustomerID = Convert.ToInt32(cmb_cusName.SelectedValue);
+                        coefficient.ScrapID = Convert.ToInt32(cmb_scrapName.SelectedValue);
+                        coefficient.Data = Convert.ToDouble(txt_data.Text);
+                        coefficient.EffectDate = Convert.ToDateTime(this.tbd_effect.Text);
                         if (this.tbd_failure.Text != null & tbd_failure.Text != "")
                         {
-                            person.FailuerDate= Convert.ToDateTime(this.tbd_failure.Text);
+                            coefficient.FailureDate = Convert.ToDateTime(this.tbd_failure.Text);
                         }
-                      
 
-                        db.Peple.Add(person);
+                        
                         try
                         {
                             db.SaveChanges();
+                            //内存数据源
+                            archivesList.Add(coefficient);
+
+                            var query = from q in archivesList
+                                        join c in db.Customers
+                                        on q.CustomerID equals c.CusCode
+                                        join s in db.Scraps
+                                        on q.ScrapID equals s.ScrapCode
+                                        select new { q.VoucherNO, c.CusName,s.ScrapName,q.Data,q.EffectDate,q.FailureDate };
+                            dataGridView1.DataSource = query.ToList();
                         }
                         catch (Exception e)
                         {
 
-                            MessageBox.Show("数据保存错误:" + e.Message+e.InnerException, "数据保存提示");
+                            MessageBox.Show("数据保存错误:" + e.Message + e.InnerException, "数据保存提示");
                             return;
                         }
-                        
-                        archivesList.Add(person);
-                        //this.dataGridView1.DataSource = null;
-                        //this.dataGridView1.DataSource = customerList;
-                        //MessageBox.Show("数据保存成功", "保存提示");
-                        this.bind_gv_dateSource();
 
-                        //清空填制记录
-                        //this.txt_cusCode.Text = null;
-                        //this.txt_cusName.Text = null;
+                                                                   
+                      
                         clearDate();
 
                         //再次调用新增事件
@@ -416,20 +411,30 @@ namespace ScrapSettlement.UI
                 {
                     using (var db = new ScrapSettleContext())
                     {
-                        Person person = db.Peple.Where(c => c.Code.ToString() ==cmb_cusName.Text).FirstOrDefault();
 
-                        person.Code = System.Convert.ToInt32(cmb_cusName.Text); 
-                            
-                        person.Name = this.cmb_scrapName.Text;
+                        Coefficient coefficient = db.Coefficients.Where(c => c.VoucherNO.ToString() == lbl_vouchNoValue.Text).FirstOrDefault();
 
-                        person.EffectDate= Convert.ToDateTime(this.tbd_effect.Text);
-                        if (this.tbd_failure.Text != null & this.tbd_failure.Text != "")
+                        coefficient.CustomerID = Convert.ToInt32(cmb_cusName.SelectedValue);
+                        coefficient.ScrapID = Convert.ToInt32(cmb_scrapName.SelectedValue);
+                        coefficient.Data = Convert.ToDouble(txt_data.Text);
+                        coefficient.EffectDate = Convert.ToDateTime(this.tbd_effect.Text);
+                        if (this.tbd_failure.Text != null & tbd_failure.Text != "")
                         {
-                            person.FailuerDate = Convert.ToDateTime(this.tbd_failure.Text);
+                            coefficient.FailureDate = Convert.ToDateTime(this.tbd_failure.Text);
                         }
-                        db.SaveChanges();
-                        this.bind_gv_dateSource();
-
+                        try
+                        {
+                            db.SaveChanges();
+                            this.bind_gv_dateSource();
+                        }
+                        catch (Exception e)
+                        {
+                            
+                            MessageBox.Show("数据保存错误:" + e.Message + e.InnerException, "数据保存提示");
+                            return;
+                        }
+                
+                                                
                         //清空修改记录
                         clearDate();
                     }
@@ -452,23 +457,21 @@ namespace ScrapSettlement.UI
             clearDate();
             if (e.RowIndex > -1)
             {
-                this.cmb_cusName.Text = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                this.cmb_scrapName.Text = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                this.tbd_effect.Controls[2].Text = this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                this.tbd_effect.Text = this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                if (this.dataGridView1.Rows[e.RowIndex].Cells[3].Value is null)
+                lbl_vouchNoValue.Text= this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                this.cmb_cusName.Text = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                this.cmb_scrapName.Text = this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txt_data.Text= this.dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+              
+                this.tbd_effect.Text = this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                if (this.dataGridView1.Rows[e.RowIndex].Cells[5].Value is null)
                 {
                     return;
                 }
                 else
                 {
-                    tbd_failure.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                } 
-                //(this.dataGridView1.Rows[e.RowIndex].Cells[3].Value != null & this.dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString() !="")
-                //{
-                //    //this.tbd_failure.Enabled = Enabled;
-                //    tbd_failure.Text = Convert.ToString(this.dataGridView1.Rows[e.RowIndex].Cells[3].Value);
-                //}
+                    tbd_failure.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+                }
+              
 
             }
 
