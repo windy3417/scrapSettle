@@ -12,7 +12,7 @@ namespace ScrapSettlement.DAL
 
 
         public ScrapSettleContext()
-            : base("name=scrapSettlement.Properties.Settings.scrapSettleConnectionString")
+            : base("name=myConcetionForEF")
         {
         }
 

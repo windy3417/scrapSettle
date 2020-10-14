@@ -45,6 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txt_money = new System.Windows.Forms.TextBox();
             this.lbl_customerCode = new System.Windows.Forms.Label();
+            this.cmb_custName = new System.Windows.Forms.ComboBox();
+            this.dtp_income = new System.Windows.Forms.DateTimePicker();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_new = new System.Windows.Forms.ToolStripButton();
             this.tsb_save = new System.Windows.Forms.ToolStripButton();
@@ -53,8 +55,6 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.cmb_custName = new System.Windows.Forms.ComboBox();
-            this.dtp_income = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -227,6 +227,24 @@
             this.lbl_customerCode.TabIndex = 1;
             this.lbl_customerCode.Text = "客户单位:";
             // 
+            // cmb_custName
+            // 
+            this.cmb_custName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmb_custName.FormattingEnabled = true;
+            this.cmb_custName.Location = new System.Drawing.Point(83, 19);
+            this.cmb_custName.Name = "cmb_custName";
+            this.cmb_custName.Size = new System.Drawing.Size(174, 20);
+            this.cmb_custName.TabIndex = 2;
+            // 
+            // dtp_income
+            // 
+            this.dtp_income.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.dtp_income.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtp_income.Location = new System.Drawing.Point(83, 77);
+            this.dtp_income.Name = "dtp_income";
+            this.dtp_income.Size = new System.Drawing.Size(174, 21);
+            this.dtp_income.TabIndex = 3;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -292,24 +310,6 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
-            // cmb_custName
-            // 
-            this.cmb_custName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmb_custName.FormattingEnabled = true;
-            this.cmb_custName.Location = new System.Drawing.Point(83, 19);
-            this.cmb_custName.Name = "cmb_custName";
-            this.cmb_custName.Size = new System.Drawing.Size(174, 20);
-            this.cmb_custName.TabIndex = 2;
-            // 
-            // dtp_income
-            // 
-            this.dtp_income.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtp_income.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_income.Location = new System.Drawing.Point(83, 77);
-            this.dtp_income.Name = "dtp_income";
-            this.dtp_income.Size = new System.Drawing.Size(174, 21);
-            this.dtp_income.TabIndex = 3;
-            // 
             // Frm_income
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -318,7 +318,8 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panel1);
             this.Name = "Frm_income";
-            this.Text = "过磅结算单";
+            this.Text = "收款单";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Frm_income_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -38,12 +38,12 @@
             this.数据库设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.收入登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.过磅登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.单据列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.收款单列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.过磅单列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -77,35 +77,35 @@
             // 客户档案ToolStripMenuItem
             // 
             this.客户档案ToolStripMenuItem.Name = "客户档案ToolStripMenuItem";
-            this.客户档案ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.客户档案ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.客户档案ToolStripMenuItem.Text = "客户档案";
             this.客户档案ToolStripMenuItem.Click += new System.EventHandler(this.客户档案ToolStripMenuItem_Click);
             // 
             // 废料档案ToolStripMenuItem
             // 
             this.废料档案ToolStripMenuItem.Name = "废料档案ToolStripMenuItem";
-            this.废料档案ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.废料档案ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.废料档案ToolStripMenuItem.Text = "废料档案";
             this.废料档案ToolStripMenuItem.Click += new System.EventHandler(this.废料档案ToolStripMenuItem_Click);
             // 
             // 经办人档案ToolStripMenuItem
             // 
             this.经办人档案ToolStripMenuItem.Name = "经办人档案ToolStripMenuItem";
-            this.经办人档案ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.经办人档案ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.经办人档案ToolStripMenuItem.Text = "人员档案";
             this.经办人档案ToolStripMenuItem.Click += new System.EventHandler(this.经办人档案ToolStripMenuItem_Click);
             // 
             // 结算系数调整单ToolStripMenuItem
             // 
             this.结算系数调整单ToolStripMenuItem.Name = "结算系数调整单ToolStripMenuItem";
-            this.结算系数调整单ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.结算系数调整单ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.结算系数调整单ToolStripMenuItem.Text = "结算系数调整单";
             this.结算系数调整单ToolStripMenuItem.Click += new System.EventHandler(this.结算系数调整单ToolStripMenuItem_Click);
             // 
             // 数据库设置ToolStripMenuItem
             // 
             this.数据库设置ToolStripMenuItem.Name = "数据库设置ToolStripMenuItem";
-            this.数据库设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.数据库设置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.数据库设置ToolStripMenuItem.Text = "数据库设置";
             this.数据库设置ToolStripMenuItem.Click += new System.EventHandler(this.数据库设置ToolStripMenuItem_Click);
             // 
@@ -122,6 +122,28 @@
             this.过磅登记ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.过磅登记ToolStripMenuItem.Text = "过磅登记";
             this.过磅登记ToolStripMenuItem.Click += new System.EventHandler(this.过磅登记ToolStripMenuItem_Click);
+            // 
+            // 单据列表ToolStripMenuItem
+            // 
+            this.单据列表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.收款单列表ToolStripMenuItem,
+            this.过磅单列表ToolStripMenuItem});
+            this.单据列表ToolStripMenuItem.Name = "单据列表ToolStripMenuItem";
+            this.单据列表ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.单据列表ToolStripMenuItem.Text = "单据列表";
+            // 
+            // 收款单列表ToolStripMenuItem
+            // 
+            this.收款单列表ToolStripMenuItem.Name = "收款单列表ToolStripMenuItem";
+            this.收款单列表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.收款单列表ToolStripMenuItem.Text = "收款单列表";
+            this.收款单列表ToolStripMenuItem.Click += new System.EventHandler(this.收款单列表ToolStripMenuItem_Click);
+            // 
+            // 过磅单列表ToolStripMenuItem
+            // 
+            this.过磅单列表ToolStripMenuItem.Name = "过磅单列表ToolStripMenuItem";
+            this.过磅单列表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.过磅单列表ToolStripMenuItem.Text = "过磅单列表";
             // 
             // 报表ToolStripMenuItem
             // 
@@ -146,27 +168,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(805, 367);
             this.tabControl1.TabIndex = 0;
-            // 
-            // 单据列表ToolStripMenuItem
-            // 
-            this.单据列表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.收款单列表ToolStripMenuItem,
-            this.过磅单列表ToolStripMenuItem});
-            this.单据列表ToolStripMenuItem.Name = "单据列表ToolStripMenuItem";
-            this.单据列表ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.单据列表ToolStripMenuItem.Text = "单据列表";
-            // 
-            // 收款单列表ToolStripMenuItem
-            // 
-            this.收款单列表ToolStripMenuItem.Name = "收款单列表ToolStripMenuItem";
-            this.收款单列表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.收款单列表ToolStripMenuItem.Text = "收款单列表";
-            // 
-            // 过磅单列表ToolStripMenuItem
-            // 
-            this.过磅单列表ToolStripMenuItem.Name = "过磅单列表ToolStripMenuItem";
-            this.过磅单列表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.过磅单列表ToolStripMenuItem.Text = "过磅单列表";
             // 
             // Frm_main
             // 

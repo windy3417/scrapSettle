@@ -29,9 +29,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_coefficient));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_vouchNo = new System.Windows.Forms.Label();
             this.lbl_vouchNoValue = new System.Windows.Forms.Label();
@@ -39,6 +39,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_voucherStatus = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.VoucherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scrapName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.effectDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FailureDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_customer = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cmb_cusName = new System.Windows.Forms.ComboBox();
@@ -59,12 +65,6 @@
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
-            this.VoucherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scrapName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.effectDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FailureDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -140,14 +140,14 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.VoucherNO,
@@ -165,6 +165,55 @@
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
+            // 
+            // VoucherNO
+            // 
+            this.VoucherNO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.VoucherNO.DataPropertyName = "VoucherNO";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.VoucherNO.DefaultCellStyle = dataGridViewCellStyle2;
+            this.VoucherNO.FillWeight = 50.76142F;
+            this.VoucherNO.Frozen = true;
+            this.VoucherNO.HeaderText = "单据编号";
+            this.VoucherNO.Name = "VoucherNO";
+            this.VoucherNO.ReadOnly = true;
+            // 
+            // cusName
+            // 
+            this.cusName.DataPropertyName = "cusName";
+            this.cusName.FillWeight = 149.2386F;
+            this.cusName.HeaderText = "客户名称";
+            this.cusName.Name = "cusName";
+            this.cusName.ReadOnly = true;
+            // 
+            // scrapName
+            // 
+            this.scrapName.DataPropertyName = "scrapName";
+            this.scrapName.HeaderText = "废料名称";
+            this.scrapName.Name = "scrapName";
+            this.scrapName.ReadOnly = true;
+            // 
+            // data
+            // 
+            this.data.DataPropertyName = "data";
+            this.data.HeaderText = "结算系数";
+            this.data.Name = "data";
+            this.data.ReadOnly = true;
+            // 
+            // effectDate
+            // 
+            this.effectDate.DataPropertyName = "effectDate";
+            this.effectDate.HeaderText = "生效日期";
+            this.effectDate.Name = "effectDate";
+            this.effectDate.ReadOnly = true;
+            // 
+            // FailureDate
+            // 
+            this.FailureDate.DataPropertyName = "FailureDate";
+            this.FailureDate.HeaderText = "失效日期";
+            this.FailureDate.Name = "FailureDate";
+            this.FailureDate.ReadOnly = true;
             // 
             // lbl_customer
             // 
@@ -218,10 +267,10 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(3, 95);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.Size = new System.Drawing.Size(83, 12);
             this.label6.TabIndex = 0;
             this.label6.Tag = "客户名称标签";
-            this.label6.Text = "结算系数：";
+            this.label6.Text = "结算系数(%)：";
             // 
             // label1
             // 
@@ -383,55 +432,6 @@
             this.tsb_close.Size = new System.Drawing.Size(52, 22);
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
-            // 
-            // VoucherNO
-            // 
-            this.VoucherNO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.VoucherNO.DataPropertyName = "VoucherNO";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.VoucherNO.DefaultCellStyle = dataGridViewCellStyle4;
-            this.VoucherNO.FillWeight = 50.76142F;
-            this.VoucherNO.Frozen = true;
-            this.VoucherNO.HeaderText = "单据编号";
-            this.VoucherNO.Name = "VoucherNO";
-            this.VoucherNO.ReadOnly = true;
-            // 
-            // cusName
-            // 
-            this.cusName.DataPropertyName = "cusName";
-            this.cusName.FillWeight = 149.2386F;
-            this.cusName.HeaderText = "客户名称";
-            this.cusName.Name = "cusName";
-            this.cusName.ReadOnly = true;
-            // 
-            // scrapName
-            // 
-            this.scrapName.DataPropertyName = "scrapName";
-            this.scrapName.HeaderText = "废料名称";
-            this.scrapName.Name = "scrapName";
-            this.scrapName.ReadOnly = true;
-            // 
-            // data
-            // 
-            this.data.DataPropertyName = "data";
-            this.data.HeaderText = "结算系数";
-            this.data.Name = "data";
-            this.data.ReadOnly = true;
-            // 
-            // effectDate
-            // 
-            this.effectDate.DataPropertyName = "effectDate";
-            this.effectDate.HeaderText = "生效日期";
-            this.effectDate.Name = "effectDate";
-            this.effectDate.ReadOnly = true;
-            // 
-            // FailureDate
-            // 
-            this.FailureDate.DataPropertyName = "FailureDate";
-            this.FailureDate.HeaderText = "失效日期";
-            this.FailureDate.Name = "FailureDate";
-            this.FailureDate.ReadOnly = true;
             // 
             // Frm_coefficient
             // 

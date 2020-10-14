@@ -40,7 +40,6 @@ namespace ScrapSettlement.UI
 
         //修改与新增的dbContext标记,true为新增dbContext，false为修改dbContext
 
-        bool saveOrChangeFlag = true;
         string saveOrModifQueryFlag;
         #endregion
 
@@ -377,6 +376,7 @@ namespace ScrapSettlement.UI
                         
                         try
                         {
+                            db.Coefficients.Add(coefficient);
                             db.SaveChanges();
                             //内存数据源
                             archivesList.Add(coefficient);

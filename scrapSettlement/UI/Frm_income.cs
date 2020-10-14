@@ -104,10 +104,19 @@ namespace ScrapSettlement
            
         }
 
-
-
-
-
+        private void Frm_income_KeyDown(object sender, KeyEventArgs e)
+        {
+           
+            if (e.KeyCode == Keys.S && e.Control)
+            {
+                tsb_save.PerformClick(); //执行单击button1的动作 
+                
+            }
+            //if (e.KeyCode == Keys.Delete)
+            //{
+            //    tsb_delete.PerformClick();
+            //}
+        }
     }
 }
 

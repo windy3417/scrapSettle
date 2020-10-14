@@ -90,5 +90,13 @@ namespace ScrapSettlement
             EmbedForm embedForm = new EmbedForm();
             embedForm.openForm(frm_income, tabPageText, tabControl1, panel1);
         }
+
+        private void 收款单列表ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_incomeList frm_incomeList = new Frm_incomeList();
+            string tabPageText = frm_incomeList.Text;
+            EmbedForm embedForm = new EmbedForm();
+            embedForm.openForm(frm_incomeList, tabPageText, tabControl1, panel1);
+        }
     }
 }

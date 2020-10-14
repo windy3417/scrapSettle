@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 
 namespace ScrapSettlement.DAL.Model
 {
     class WeighingSettlement
     {
-
-        public int Id { get; set; }
+        [Key]
         public string vocherNO { get; set; }
         public string CustmerCode { get; set; }
         public string personCode { get; set; }
@@ -18,8 +19,7 @@ namespace ScrapSettlement.DAL.Model
         public double webUnitPrice { get; set; }
         public double settleUnitPrice { get; set; }
         public double settleAmount { get; set; }
-        public int Customer_Id { get; set; }
+      
 
-        public virtual Customer Customers { get; set; }
     }
 }
