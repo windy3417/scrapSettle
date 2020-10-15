@@ -33,7 +33,7 @@
             this.lbl_vouchNo = new System.Windows.Forms.Label();
             this.horizonLine2 = new Utility.UControl.HorizonLine();
             this.horizonLine1 = new Utility.UControl.HorizonLine();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtp_makeDate = new System.Windows.Forms.DateTimePicker();
             this.lbl_vouchNoValue = new System.Windows.Forms.Label();
             this.lbl_balance = new System.Windows.Forms.Label();
             this.lbl_date = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@
             this.panel1.Controls.Add(this.lbl_vouchNo);
             this.panel1.Controls.Add(this.horizonLine2);
             this.panel1.Controls.Add(this.horizonLine1);
-            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.dtp_makeDate);
             this.panel1.Controls.Add(this.lbl_vouchNoValue);
             this.panel1.Controls.Add(this.lbl_balance);
             this.panel1.Controls.Add(this.lbl_date);
@@ -120,12 +120,12 @@
             this.horizonLine1.Size = new System.Drawing.Size(578, 1);
             this.horizonLine1.TabIndex = 15;
             // 
-            // dateTimePicker1
+            // dtp_makeDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(385, 66);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(124, 21);
-            this.dateTimePicker1.TabIndex = 14;
+            this.dtp_makeDate.Location = new System.Drawing.Point(385, 66);
+            this.dtp_makeDate.Name = "dtp_makeDate";
+            this.dtp_makeDate.Size = new System.Drawing.Size(124, 21);
+            this.dtp_makeDate.TabIndex = 14;
             // 
             // lbl_vouchNoValue
             // 
@@ -402,6 +402,7 @@
             this.txt_coefficient.Name = "txt_coefficient";
             this.txt_coefficient.Size = new System.Drawing.Size(154, 21);
             this.txt_coefficient.TabIndex = 0;
+            this.txt_coefficient.TextChanged += new System.EventHandler(this.txt_coefficient_TextChanged);
             // 
             // toolStrip1
             // 
@@ -434,6 +435,7 @@
             this.tsb_save.Name = "tsb_save";
             this.tsb_save.Size = new System.Drawing.Size(23, 22);
             this.tsb_save.Text = "保存";
+            this.tsb_save.Click += new System.EventHandler(this.tsb_save_Click);
             // 
             // tsb_print
             // 
@@ -490,7 +492,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtp_makeDate;
         private System.Windows.Forms.Label lbl_balance;
         private System.Windows.Forms.Label lbl_date;
         private System.Windows.Forms.Label label7;

@@ -11,6 +11,8 @@ namespace ScrapSettlement.DAL.Model
     {
         [Key]
         public string vocherNO { get; set; }
+        public DateTime MakeDate { get; set; }
+        public DateTime WeighingDate { get; set; }
         public string CustmerCode { get; set; }
         public string personCode { get; set; }
         public string scrapCode { get; set; }

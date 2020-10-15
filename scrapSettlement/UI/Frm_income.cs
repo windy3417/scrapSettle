@@ -79,7 +79,7 @@ namespace ScrapSettlement
                     Income income = new Income();
                     income.CustormerID = Convert.ToInt32(cmb_custName.SelectedValue);
                     income.MakeDte = dtp_make.Value;
-                    income.Money = Convert.ToDecimal(txt_money.Text);
+                    income.Money = Convert.ToDouble(txt_money.Text);
                     income.VoucherNo = lbl_vouchNoValue.Text;
                     income.IncomeDate = dtp_income.Value;
 

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ScrapSettlement.DAL.Model;
 using ScrapSettlement.DAL.Services;
 using System.Drawing.Drawing2D;
+using ScrapSettlement.DAL;
 
 namespace ScrapSettlement
 {
@@ -69,15 +70,64 @@ namespace ScrapSettlement
             this.Parent.Dispose();
         }
 
+
+
+        #region 单据增删改
+
+        /// <summary>
+        /// 新增单据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Tsb_new_Click(object sender, EventArgs e)
         {
             this.tableLayoutPanel1.Enabled = true;
-            this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMdd");
+            tsb_save.Enabled = true;
+            this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMddHHmmss");
             initialize();
 
         }
 
+        /// <summary>
+        /// 保存单据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_save_Click(object sender, EventArgs e)
+        {
+            using (var db = new ScrapSettleContext())
+            {
+                WeighingSettlement w = new WeighingSettlement();
+                w.MakeDate = DateTime.Now;
+                w.WeighingDate = dtp_makeDate.Value;
+                w.CustmerCode = cmb_custName.SelectedValue.ToString();
+                w.netWeight = Convert.ToDouble(txt_netWeight.Text);
+                w.personCode = cmb_person.SelectedValue.ToString();
+                w.proportion = Convert.ToDouble(txt_coefficient.Text);
+                w.scrapCode = cmb_scrapName.SelectedValue.ToString();
+                w.vocherNO = lbl_vouchNoValue.Text;
+                w.webUnitPrice = Convert.ToDouble(txt_webUnitPrice.Text);
+                w.settleUnitPrice = Convert.ToDouble(txt_settleUnitPrice.Text);
+                w.settleAmount = Convert.ToDouble(txt_money.Text);
+                db.WeighingSettlement.Add(w);
 
+                try
+                {
+                    db.SaveChanges();
+                    tsb_save.Enabled = false;
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message + ex.InnerException, "保存错误提示");
+                }
+
+            }
+        }
+
+        #endregion
+
+        #region 界面值变更事件处理方法
 
         /// <summary>
         /// 该事件在绑定数据源时就会发生,也可选择selectdValueCommited事件，该事件在选择
@@ -90,11 +140,68 @@ namespace ScrapSettlement
             getCoefficiet();
         }
 
+        /// <summary>
+        /// 客户变更时，重计获取结算系数与重新计算结余金额
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_custName_SelectedValueChanged(object sender, EventArgs e)
         {
             var i = cmb_custName.SelectedValue;
             getCoefficiet();
+            balance();
         }
+
+        /// <summary>
+        /// 离开焦点时计算结算单价与结算金额
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_webUnitPrice_Leave(object sender, EventArgs e)
+        {
+            caculateSettleUnitPrice();
+            caculateMoney();
+
+        }
+
+        /// <summary>
+        /// 离开焦点时计算结算金额
+        /// 不使用textChanged事件，因为该事件每录入一个字符则会触发
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_netWeight_Leave(object sender, EventArgs e)
+        {
+
+            caculateMoney();
+        }
+
+
+        /// <summary>
+        /// 结算金额一变更，则重新计算结余金额
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_money_TextChanged(object sender, EventArgs e)
+        {
+            balance();
+        }
+
+        /// <summary>
+        /// 结算系数变更后重新计算结算单价与结算金额
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_coefficient_TextChanged(object sender, EventArgs e)
+        {
+            caculateSettleUnitPrice();
+            caculateMoney();
+        }
+
+        #endregion
+
+
+        #region 界面计算逻辑
 
         /// <summary>
         /// 获取结算系数
@@ -118,32 +225,6 @@ namespace ScrapSettlement
 
         }
 
-     
-        /// <summary>
-        /// 离开焦点时计算结算单价与结算金额
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txt_webUnitPrice_Leave(object sender, EventArgs e)
-        {
-            if (txt_coefficient.Text != "" & txt_webUnitPrice.Text != "")
-            {
-                txt_settleUnitPrice.Text = (Convert.ToDouble(txt_coefficient.Text) / 100 * Convert.ToDouble(txt_webUnitPrice.Text)).ToString();
-                caculateMoney();
-            }
-        }
-
-        /// <summary>
-        /// 离开焦点时计算结算金额
-        /// 不使用textChanged事件，因为该事件每录入一个字符则会触发
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txt_netWeight_Leave(object sender, EventArgs e)
-        {
-            caculateMoney();
-        }
-
         /// <summary>
         /// 计算结算金额
         /// </summary>
@@ -155,22 +236,51 @@ namespace ScrapSettlement
             }
         }
 
-        private void txt_money_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// 计算结余金额
+        /// </summary>
         private void balance()
         {
-            
-            if (cmb_custName.Text!="")
+
+            if (cmb_custName.Text != "")
             {
-                var incomeMoney = new IncomeService().incomes().Where(w => w.CustormerID.ToString()==cmb_custName.Text).Sum(i => i.Money);
-                var amountOfPayout = new WeighingRegisterService().weighingSettlements().Where(w => w.CustmerCode.ToString() == cmb_custName.Text).Sum(i => i.settleAmount);
-                //lbl_balance.Text = incomeMoney - amountOfPayout;
+
+                var incomeMoney = new IncomeService().incomes().Where(w => w.CustormerID.ToString() == cmb_custName.SelectedValue.ToString()).Sum(i => i.Money);
+                var amountOfPayout = new WeighingRegisterService().weighingSettlements().Where(w => w.CustmerCode.ToString() == cmb_custName.SelectedValue.ToString()).Sum(i => i.settleAmount);
+
+                //注意判断txt_money.Text==""而不是判断txt_money.Text==null,否则三无运算会报错，
+                //因为无法把""值转为double
+                double settleAount = txt_money.Text == "" ? 0 : Convert.ToDouble(txt_money.Text);
+                lbl_balance.Text = (incomeMoney - amountOfPayout - settleAount).ToString();
+
+
             }
-           
+
         }
+
+        /// <summary>
+        /// 计算结算单价
+        /// </summary>
+        private void caculateSettleUnitPrice()
+        {
+            if (txt_coefficient.Text != "" & txt_webUnitPrice.Text != "")
+            {
+                txt_settleUnitPrice.Text = (Convert.ToDouble(txt_coefficient.Text) / 100 * Convert.ToDouble(txt_webUnitPrice.Text)).ToString();
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+        #endregion
+
+   
     }
     }
 

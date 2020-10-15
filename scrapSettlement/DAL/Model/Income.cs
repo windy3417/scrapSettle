@@ -11,7 +11,7 @@ namespace ScrapSettlement.DAL.Model
         [Key]
         public string VoucherNo { get; set; }
         public int CustormerID { get; set; }
-        public decimal Money { get; set; }
+        public double Money { get; set; }
         public DateTime IncomeDate { get; set; }
         public DateTime MakeDte { get; set; }
 
