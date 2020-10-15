@@ -89,6 +89,12 @@
     <Compile Include="UI\Frm_coefficient.Designer.cs">
       <DependentUpon>Frm_coefficient.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Frm_weighingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_weighingList.Designer.cs">
+      <DependentUpon>Frm_weighingList.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Frm_incomList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_coefficient.resx">
       <DependentUpon>Frm_coefficient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_weighingList.resx">
+      <DependentUpon>Frm_weighingList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_incomList.resx">
       <DependentUpon>Frm_incomList.cs</DependentUpon>

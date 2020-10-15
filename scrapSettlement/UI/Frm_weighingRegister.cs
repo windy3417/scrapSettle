@@ -99,7 +99,11 @@ namespace ScrapSettlement
             {
                 WeighingSettlement w = new WeighingSettlement();
                 w.MakeDate = DateTime.Now;
-                w.WeighingDate = dtp_makeDate.Value;
+                //查询时的过滤条件是日期，所以存储值若含时间信息则条件值与存储值比较产生的
+                //结果非目标数据，如查询当时的数据，因为按日期存储时其默认的时间信息是0时0分0秒
+                //而查询条年是>=当日与<=当时，其查询结果则会为无匹配数据
+                //故只按日期存储
+                w.WeighingDate = dtp_makeDate.Value.Date;
                 w.CustmerCode = cmb_custName.SelectedValue.ToString();
                 w.netWeight = Convert.ToDouble(txt_netWeight.Text);
                 w.personCode = cmb_person.SelectedValue.ToString();

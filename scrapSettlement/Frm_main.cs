@@ -98,5 +98,13 @@ namespace ScrapSettlement
             EmbedForm embedForm = new EmbedForm();
             embedForm.openForm(frm_incomeList, tabPageText, tabControl1, panel1);
         }
+
+        private void 过磅单列表ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_weighingList frm_weighingList = new Frm_weighingList();
+            string tabPageText = frm_weighingList.Text;
+            EmbedForm embedForm = new EmbedForm();
+            embedForm.openForm(frm_weighingList, tabPageText, tabControl1, panel1);
+        }
     }
 }

@@ -144,6 +144,7 @@
             this.过磅单列表ToolStripMenuItem.Name = "过磅单列表ToolStripMenuItem";
             this.过磅单列表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.过磅单列表ToolStripMenuItem.Text = "过磅单列表";
+            this.过磅单列表ToolStripMenuItem.Click += new System.EventHandler(this.过磅单列表ToolStripMenuItem_Click);
             // 
             // 报表ToolStripMenuItem
             // 

@@ -14,9 +14,9 @@ using ScrapSettlement.DAL.Services;
 
 namespace ScrapSettlement.UI
 {
-    public partial class Frm_incomeList : Form
+    public partial class Frm_weighingList : Form
     {
-        public Frm_incomeList()
+        public Frm_weighingList()
         {
             InitializeComponent();
             this.initialize();
@@ -67,17 +67,19 @@ namespace ScrapSettlement.UI
                                                
                 try
                 {
-                    var query = from q in db.Incomes
+                    var query = from q in db.WeighingSettlement
                                 join c in db.Customers
-                                on q.CustormerID equals c.CusCode
-                                where q.IncomeDate>=dtp_incomeDateStart.Value.Date 
-                                where q.IncomeDate<=dtp_incomeDateEnd.Value.Date
-                                where q.CustormerID.ToString() == cmb_custName.SelectedValue.ToString()
+                                on q.CustmerCode equals c.CusCode.ToString()
+                                join p in db.Peple on q.personCode equals p.Code.ToString()
+                                join s in db.Scraps on q.scrapCode equals s.ScrapCode.ToString()
+                                where q.WeighingDate>=dtp_incomeDateStart.Value.Date 
+                                where q.WeighingDate<=dtp_incomeDateEnd.Value.Date
+                                where q.CustmerCode.ToString() == cmb_custName.SelectedValue.ToString()
                              
-                                select new { c.CusName, q.IncomeDate, q.VoucherNo,  q.Money };
-                    dataGridView1.DataSource = query.ToList();
+                                select new { q.WeighingDate, q.vocherNO, c.CusName, s.ScrapName,q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight, q.settleAmount };
+                                dataGridView1.DataSource = query.ToList();
                     //处理数据为空示和时的数据转换错误，可先转成泛型再求和
-                    lbl_money.Text = query.ToList().Sum(s =>s.Money).ToString();
+                    lbl_money.Text = query.ToList().Sum(s =>s.settleAmount).ToString("C");
                 }
                 catch (Exception ex)
                 {
