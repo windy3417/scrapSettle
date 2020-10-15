@@ -36,7 +36,7 @@
             this.经办人档案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.结算系数调整单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.收入登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_incom = new System.Windows.Forms.ToolStripMenuItem();
             this.过磅登记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.单据列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.收款单列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +52,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.基础设置ToolStripMenuItem,
-            this.收入登记ToolStripMenuItem,
+            this.tsmi_incom,
             this.过磅登记ToolStripMenuItem,
             this.单据列表ToolStripMenuItem,
             this.报表ToolStripMenuItem});
@@ -109,12 +109,12 @@
             this.数据库设置ToolStripMenuItem.Text = "数据库设置";
             this.数据库设置ToolStripMenuItem.Click += new System.EventHandler(this.数据库设置ToolStripMenuItem_Click);
             // 
-            // 收入登记ToolStripMenuItem
+            // tsmi_incom
             // 
-            this.收入登记ToolStripMenuItem.Name = "收入登记ToolStripMenuItem";
-            this.收入登记ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.收入登记ToolStripMenuItem.Text = "收入登记";
-            this.收入登记ToolStripMenuItem.Click += new System.EventHandler(this.收入登记ToolStripMenuItem_Click);
+            this.tsmi_incom.Name = "tsmi_incom";
+            this.tsmi_incom.Size = new System.Drawing.Size(68, 21);
+            this.tsmi_incom.Text = "收入登记";
+            this.tsmi_incom.Click += new System.EventHandler(this.收入登记ToolStripMenuItem_Click);
             // 
             // 过磅登记ToolStripMenuItem
             // 
@@ -195,7 +195,7 @@
         private System.Windows.Forms.ToolStripMenuItem 基础设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 客户档案ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 废料档案ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 收入登记ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_incom;
         private System.Windows.Forms.ToolStripMenuItem 过磅登记ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 报表ToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;

@@ -105,6 +105,25 @@ namespace ScrapSettlement.UI
         {
             tsb_query.PerformClick();
         }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (e.RowIndex > -1)
+            {
+                
+                var voucherNo = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Frm_income frm_income = new Frm_income();
+                string tabPageText = frm_income.Text;
+                Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
+                //使用母窗体的属性信息，实现动态创建插入面签式窗体
+                embedForm.openForm(frm_income, tabPageText, (TabControl)this.Parent.Parent.Parent.Controls["tabControl1"], (Panel)this.TopLevelControl.Controls["panel1"]);
+                Button btn_query = (Button)frm_income.Controls["ts_income"].Controls["tsb_query"];
+                //btn_query.PerformClick();
+                ((Button)frm_income.Controls["ts_income"].Controls["tsb_query"]).PerformClick();
+
+            }
+        }
     }
 
 

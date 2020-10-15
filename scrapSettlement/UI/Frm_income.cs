@@ -19,15 +19,28 @@ namespace ScrapSettlement
         {
             InitializeComponent();
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
-            this.tableLayoutPanel1.Enabled = false;
+            intiallizeControls();
+            
         }
 
         /// <summary>
-        /// 初始化控件及数据源
+        ///  //初始化控件状态
+        /// </summary>
+        private void intiallizeControls()
+        {
+            tableLayoutPanel1.Enabled = false;
+      
+            txt_voucherNo.Visible = false;
+        }
+
+        /// <summary>
+        /// 初始化控件数据源
         /// </summary>
         private void initiallize()
         {
+                     
             //初始化客户名称数据源
+
 
             cmb_custName.DataSource = new CustomerService().getCustomerList().Where<Customer>(c => c.FailuerDate == null).Select((c) => new { c.CusCode, c.CusName }).ToList();
 
@@ -51,6 +64,7 @@ namespace ScrapSettlement
             this.Parent.Dispose();
         }
 
+        #region 增删改查
         /// <summary>
         /// 新增收款单
         /// </summary>
@@ -71,7 +85,7 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void tsb_save_Click(object sender, EventArgs e)
         {
-            
+
             if (new ValidateClear().inputVlidate(tableLayoutPanel1))
             {
                 using (var db = new ScrapSettleContext())
@@ -101,8 +115,11 @@ namespace ScrapSettlement
 
                 }
             }
-           
+
         }
+        #endregion
+
+
 
         private void Frm_income_KeyDown(object sender, KeyEventArgs e)
         {
@@ -116,6 +133,11 @@ namespace ScrapSettlement
             //{
             //    tsb_delete.PerformClick();
             //}
+        }
+
+        private void tsb_query_Click(object sender, EventArgs e)
+        {
+            txt_voucherNo.Visible = true;
         }
     }
 }

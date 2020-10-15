@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="ts_income.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -157,6 +157,21 @@
         n1qtvl+t1jz0uibdb4G54q8AM5jFTGarwsLCFixd+tHDry5//3F1xBcoON4r4MNp1615Q4/HSZjBLGYy
         W8Umr4WEPLZEHfr0O9rc5mXrU7HsEzc8/cHf5Tu332//JvttlTa/nlnMlP4LqgWqRYsefWTh4icffGLx
         Mw8sfOrZYMIMZjFTZN+b/3dUqn8ATggwxaPW4QkAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="tsb_query.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH/SURBVDhPjZPvS1NRGMf3t/kq6IWQvTCwKCFw4Y/iGuhe
+        1FilGc7ryF+VOiwrtxYYsdyichG5IRfNpLoVmiRiU9O1ubl7r/d+O8/pbHjUqAc+cM7znO+Hw4Hjwr4a
+        jM79k77xGXEakAQ0fD23DMvahWFaKJrOAdgIgceaSOwRUPjl7DJMy+brrbxzKCYT+MPTIiUEFBiemOfh
+        0n4z52Ak/qEM7Ql2MbTfT/JzVK7StUthKuptZO1DMSwHvrtvxUkmuBR8wwUU2stWbgd3ou/LrP2yOSSg
+        TKm4oMiaq5ndA3xZyWIgnIBHDXFond7cRutgQsSZgDY77HV7xmclukIpKJ0PkNLTyLM5QWtPIASlNy7i
+        TNA88AoFNvz+05LoGolhcn4FWQMS1Dt3bVTEmeB83wsUDAf+iFZmacNE3eVb0NctfMtAgnq1nl4RZ4KG
+        m8+RN2wsrhllFhhnWgIYfVdAWIcE9U42d4s4E7i749gu2tINvqYNKG1D8I0lMbYEiSvsbWoUVcSZ4Kx/
+        ggs+rxYlwrEUqps64H2UxPBCjuONJHG8vg2J6U+IxKb+CGo7nyHHBPtZz+QRn5yCcrUf1SxEuD0qjpxo
+        QKO3Hx8Xf3CJ6/SNKP7GqfYnqGoZQuWFHs6xi7dx1H0dFVV1XKIGn8q/8X9K13UE7z1Eq0+Fpmn4DXSK
+        byLdduyKAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tsb_print.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -47,7 +47,7 @@
             this.lbl_customerCode = new System.Windows.Forms.Label();
             this.cmb_custName = new System.Windows.Forms.ComboBox();
             this.dtp_income = new System.Windows.Forms.DateTimePicker();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ts_income = new System.Windows.Forms.ToolStrip();
             this.tsb_new = new System.Windows.Forms.ToolStripButton();
             this.tsb_save = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
@@ -55,9 +55,11 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.tsb_query = new System.Windows.Forms.ToolStripButton();
+            this.txt_voucherNo = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.ts_income.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -65,6 +67,7 @@
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.Controls.Add(this.lbl_vouchNo);
             this.panel1.Controls.Add(this.horizonLine2);
+            this.panel1.Controls.Add(this.txt_voucherNo);
             this.panel1.Controls.Add(this.horizonLine1);
             this.panel1.Controls.Add(this.dtp_make);
             this.panel1.Controls.Add(this.lbl_vouchNoValue);
@@ -81,7 +84,7 @@
             // lbl_vouchNo
             // 
             this.lbl_vouchNo.AutoSize = true;
-            this.lbl_vouchNo.Location = new System.Drawing.Point(162, 141);
+            this.lbl_vouchNo.Location = new System.Drawing.Point(58, 193);
             this.lbl_vouchNo.Name = "lbl_vouchNo";
             this.lbl_vouchNo.Size = new System.Drawing.Size(65, 12);
             this.lbl_vouchNo.TabIndex = 16;
@@ -91,24 +94,24 @@
             // 
             this.horizonLine2.LineColor = System.Drawing.SystemColors.ControlText;
             this.horizonLine2.LineWidth = 1;
-            this.horizonLine2.Location = new System.Drawing.Point(164, 401);
+            this.horizonLine2.Location = new System.Drawing.Point(53, 379);
             this.horizonLine2.Name = "horizonLine2";
-            this.horizonLine2.Size = new System.Drawing.Size(578, 1);
+            this.horizonLine2.Size = new System.Drawing.Size(800, 1);
             this.horizonLine2.TabIndex = 15;
             // 
             // horizonLine1
             // 
             this.horizonLine1.LineColor = System.Drawing.SystemColors.ControlText;
             this.horizonLine1.LineWidth = 1;
-            this.horizonLine1.Location = new System.Drawing.Point(164, 165);
+            this.horizonLine1.Location = new System.Drawing.Point(53, 218);
             this.horizonLine1.Name = "horizonLine1";
-            this.horizonLine1.Size = new System.Drawing.Size(578, 1);
+            this.horizonLine1.Size = new System.Drawing.Size(800, 1);
             this.horizonLine1.TabIndex = 15;
             // 
             // dtp_make
             // 
             this.dtp_make.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_make.Location = new System.Drawing.Point(385, 66);
+            this.dtp_make.Location = new System.Drawing.Point(408, 94);
             this.dtp_make.Name = "dtp_make";
             this.dtp_make.Size = new System.Drawing.Size(124, 21);
             this.dtp_make.TabIndex = 14;
@@ -118,7 +121,7 @@
             this.lbl_vouchNoValue.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbl_vouchNoValue.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_vouchNoValue.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_vouchNoValue.Location = new System.Drawing.Point(229, 141);
+            this.lbl_vouchNoValue.Location = new System.Drawing.Point(121, 193);
             this.lbl_vouchNoValue.Name = "lbl_vouchNoValue";
             this.lbl_vouchNoValue.Size = new System.Drawing.Size(130, 14);
             this.lbl_vouchNoValue.TabIndex = 6;
@@ -126,7 +129,7 @@
             // lbl_date
             // 
             this.lbl_date.AutoSize = true;
-            this.lbl_date.Location = new System.Drawing.Point(322, 70);
+            this.lbl_date.Location = new System.Drawing.Point(345, 98);
             this.lbl_date.Name = "lbl_date";
             this.lbl_date.Size = new System.Drawing.Size(59, 12);
             this.lbl_date.TabIndex = 7;
@@ -136,7 +139,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(617, 141);
+            this.label7.Location = new System.Drawing.Point(692, 193);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 12);
             this.label7.TabIndex = 8;
@@ -146,7 +149,7 @@
             // 
             this.lbl_computeUnit.AutoSize = true;
             this.lbl_computeUnit.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_computeUnit.Location = new System.Drawing.Point(617, 121);
+            this.lbl_computeUnit.Location = new System.Drawing.Point(692, 173);
             this.lbl_computeUnit.Name = "lbl_computeUnit";
             this.lbl_computeUnit.Size = new System.Drawing.Size(71, 12);
             this.lbl_computeUnit.TabIndex = 10;
@@ -156,7 +159,7 @@
             // 
             this.lbl_titel.AutoSize = true;
             this.lbl_titel.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_titel.Location = new System.Drawing.Point(364, 19);
+            this.lbl_titel.Location = new System.Drawing.Point(378, 41);
             this.lbl_titel.Name = "lbl_titel";
             this.lbl_titel.Size = new System.Drawing.Size(135, 29);
             this.lbl_titel.TabIndex = 12;
@@ -167,21 +170,21 @@
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 455F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel1.Controls.Add(this.lbl_personCode, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.txt_money, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_customerCode, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cmb_custName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.dtp_income, 1, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(190, 188);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(53, 240);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(527, 117);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 117);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
             // lbl_personCode
@@ -200,7 +203,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label1.Location = new System.Drawing.Point(263, 23);
+            this.label1.Location = new System.Drawing.Point(538, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 12);
             this.label1.TabIndex = 1;
@@ -209,7 +212,7 @@
             // txt_money
             // 
             this.txt_money.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_money.Location = new System.Drawing.Point(333, 18);
+            this.txt_money.Location = new System.Drawing.Point(607, 18);
             this.txt_money.Name = "txt_money";
             this.txt_money.Size = new System.Drawing.Size(190, 21);
             this.txt_money.TabIndex = 0;
@@ -245,18 +248,19 @@
             this.dtp_income.Size = new System.Drawing.Size(174, 21);
             this.dtp_income.TabIndex = 3;
             // 
-            // toolStrip1
+            // ts_income
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ts_income.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_new,
             this.tsb_save,
+            this.tsb_query,
             this.tsb_print,
             this.tsb_close});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1052, 25);
-            this.toolStrip1.TabIndex = 7;
-            this.toolStrip1.Text = "toolStrip1";
+            this.ts_income.Location = new System.Drawing.Point(0, 0);
+            this.ts_income.Name = "ts_income";
+            this.ts_income.Size = new System.Drawing.Size(1052, 25);
+            this.ts_income.TabIndex = 7;
+            this.ts_income.Text = "toolStrip1";
             // 
             // tsb_new
             // 
@@ -310,12 +314,34 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
+            // tsb_query
+            // 
+            this.tsb_query.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_query.Image = ((System.Drawing.Image)(resources.GetObject("tsb_query.Image")));
+            this.tsb_query.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_query.Name = "tsb_query";
+            this.tsb_query.Size = new System.Drawing.Size(23, 22);
+            this.tsb_query.Text = "查询";
+            this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
+            // 
+            // txt_voucherNo
+            // 
+            this.txt_voucherNo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_voucherNo.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_voucherNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_voucherNo.Enabled = false;
+            this.txt_voucherNo.Location = new System.Drawing.Point(694, 156);
+            this.txt_voucherNo.Name = "txt_voucherNo";
+            this.txt_voucherNo.Size = new System.Drawing.Size(157, 14);
+            this.txt_voucherNo.TabIndex = 0;
+            this.txt_voucherNo.Tag = "收款金额";
+            // 
             // Frm_income
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 493);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.ts_income);
             this.Controls.Add(this.panel1);
             this.Name = "Frm_income";
             this.Text = "收款单";
@@ -324,8 +350,8 @@
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.ts_income.ResumeLayout(false);
+            this.ts_income.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,7 +370,7 @@
         private System.Windows.Forms.Label lbl_personCode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_money;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip ts_income;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
@@ -358,6 +384,8 @@
         private System.Windows.Forms.ToolStripButton tsb_save;
         private System.Windows.Forms.ComboBox cmb_custName;
         private System.Windows.Forms.DateTimePicker dtp_income;
+        private System.Windows.Forms.ToolStripButton tsb_query;
+        private System.Windows.Forms.TextBox txt_voucherNo;
     }
 }
 
