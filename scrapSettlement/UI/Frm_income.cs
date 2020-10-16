@@ -29,8 +29,8 @@ namespace ScrapSettlement
         private void intiallizeControls()
         {
             tableLayoutPanel1.Enabled = false;
-      
-            txt_voucherNo.Visible = false;
+            pnl_query.Visible = false;
+            
         }
 
         /// <summary>
@@ -73,6 +73,7 @@ namespace ScrapSettlement
         private void Tsb_new_Click(object sender, EventArgs e)
         {
             tsb_save.Enabled = true;
+            pnl_query.Visible = false;
             this.tableLayoutPanel1.Enabled = true;
             this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMddHHmmss");
             initiallize();
@@ -137,7 +138,32 @@ namespace ScrapSettlement
 
         private void tsb_query_Click(object sender, EventArgs e)
         {
-            txt_voucherNo.Visible = true;
+            pnl_query.Visible = true;
+        }
+
+        private void btn_query_Click(object sender, EventArgs e)
+        {
+            using (var db =new ScrapSettleContext())
+            {
+                
+                var v = from i in db.Incomes
+                        join c in db.Customers on i.CustormerID equals c.CusCode
+                        where i.VoucherNo == rtxt_voucherNO.Text
+                        select new { i.VoucherNo, c.CusName, i.Money };
+                foreach (var item in v)
+                {
+                    lbl_vouchNoValue.Text = item.VoucherNo;
+                    cmb_custName.Text = item.CusName;
+                    txt_money.Text = item.Money.ToString();
+                       
+                }
+                
+            }
+        }
+
+        private void tsb_modify_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

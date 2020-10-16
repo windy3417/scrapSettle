@@ -20,6 +20,7 @@ namespace ScrapSettlement.UI
         {
             InitializeComponent();
             this.initialize();
+            initializeDatasource();
 
         }
 
@@ -40,20 +41,23 @@ namespace ScrapSettlement.UI
 
             this.dataGridView1.AutoGenerateColumns = false;
       
+                                   
 
-            //初始化客户名称数据源
+        }
 
+        /// <summary>
+        /// 初始化控件数据源
+        /// </summary>
+        private void initializeDatasource()
+        {
             cmb_custName.DataSource = new CustomerService().getCustomerList().Where<Customer>(c => c.FailuerDate == null).Select((c) => new { c.CusCode, c.CusName }).ToList();
 
             cmb_custName.DisplayMember = "CusName";
             cmb_custName.ValueMember = "CusCode";
 
-
-
-        }
-
-     
-                                                                 
+            dtp_incomeDateStart.Value = DateTime.Now.AddDays(-DateTime.Now.Day+1);
+        } 
+        
         /// <summary>
         /// 查询收款单列表
         /// </summary>
@@ -106,6 +110,11 @@ namespace ScrapSettlement.UI
             tsb_query.PerformClick();
         }
 
+        /// <summary>
+        /// 双击表格行穿透查询到单据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             
@@ -116,11 +125,13 @@ namespace ScrapSettlement.UI
                 Frm_income frm_income = new Frm_income();
                 string tabPageText = frm_income.Text;
                 Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
-                //使用母窗体的属性信息，实现动态创建插入面签式窗体
+                //使用母窗体的属性信息，实现动态创建插入页签式窗体
                 embedForm.openForm(frm_income, tabPageText, (TabControl)this.Parent.Parent.Parent.Controls["tabControl1"], (Panel)this.TopLevelControl.Controls["panel1"]);
-                Button btn_query = (Button)frm_income.Controls["ts_income"].Controls["tsb_query"];
-                //btn_query.PerformClick();
-                ((Button)frm_income.Controls["ts_income"].Controls["tsb_query"]).PerformClick();
+                ToolStrip t = (ToolStrip)frm_income.Controls["ts_income"];
+            
+                frm_income.tsb_query.PerformClick();
+                frm_income.rtxt_voucherNO.Text = voucherNo;
+                frm_income.btn_query.PerformClick();
 
             }
         }

@@ -47,27 +47,31 @@
             this.lbl_customerCode = new System.Windows.Forms.Label();
             this.cmb_custName = new System.Windows.Forms.ComboBox();
             this.dtp_income = new System.Windows.Forms.DateTimePicker();
+            this.pnl_query = new System.Windows.Forms.Panel();
+            this.btn_query = new System.Windows.Forms.Button();
+            this.rtxt_voucherNO = new System.Windows.Forms.RichTextBox();
             this.ts_income = new System.Windows.Forms.ToolStrip();
             this.tsb_new = new System.Windows.Forms.ToolStripButton();
             this.tsb_save = new System.Windows.Forms.ToolStripButton();
+            this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
+            this.tsb_modify = new System.Windows.Forms.ToolStripButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.tsb_query = new System.Windows.Forms.ToolStripButton();
-            this.txt_voucherNo = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.pnl_query.SuspendLayout();
             this.ts_income.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.lbl_vouchNo);
             this.panel1.Controls.Add(this.horizonLine2);
-            this.panel1.Controls.Add(this.txt_voucherNo);
             this.panel1.Controls.Add(this.horizonLine1);
             this.panel1.Controls.Add(this.dtp_make);
             this.panel1.Controls.Add(this.lbl_vouchNoValue);
@@ -76,6 +80,7 @@
             this.panel1.Controls.Add(this.lbl_computeUnit);
             this.panel1.Controls.Add(this.lbl_titel);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Controls.Add(this.pnl_query);
             this.panel1.Location = new System.Drawing.Point(81, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(931, 462);
@@ -149,7 +154,7 @@
             // 
             this.lbl_computeUnit.AutoSize = true;
             this.lbl_computeUnit.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_computeUnit.Location = new System.Drawing.Point(692, 173);
+            this.lbl_computeUnit.Location = new System.Drawing.Point(693, 173);
             this.lbl_computeUnit.Name = "lbl_computeUnit";
             this.lbl_computeUnit.Size = new System.Drawing.Size(71, 12);
             this.lbl_computeUnit.TabIndex = 10;
@@ -172,7 +177,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 455F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 196F));
             this.tableLayoutPanel1.Controls.Add(this.lbl_personCode, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.txt_money, 3, 0);
@@ -248,12 +253,44 @@
             this.dtp_income.Size = new System.Drawing.Size(174, 21);
             this.dtp_income.TabIndex = 3;
             // 
+            // pnl_query
+            // 
+            this.pnl_query.Controls.Add(this.btn_query);
+            this.pnl_query.Controls.Add(this.rtxt_voucherNO);
+            this.pnl_query.Location = new System.Drawing.Point(649, 124);
+            this.pnl_query.Name = "pnl_query";
+            this.pnl_query.Size = new System.Drawing.Size(200, 46);
+            this.pnl_query.TabIndex = 19;
+            // 
+            // btn_query
+            // 
+            this.btn_query.BackColor = System.Drawing.Color.Transparent;
+            this.btn_query.ForeColor = System.Drawing.Color.Black;
+            this.btn_query.Image = ((System.Drawing.Image)(resources.GetObject("btn_query.Image")));
+            this.btn_query.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btn_query.Location = new System.Drawing.Point(171, 18);
+            this.btn_query.Name = "btn_query";
+            this.btn_query.Size = new System.Drawing.Size(21, 22);
+            this.btn_query.TabIndex = 17;
+            this.btn_query.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btn_query.UseVisualStyleBackColor = false;
+            this.btn_query.Click += new System.EventHandler(this.btn_query_Click);
+            // 
+            // rtxt_voucherNO
+            // 
+            this.rtxt_voucherNO.Location = new System.Drawing.Point(47, 15);
+            this.rtxt_voucherNO.Name = "rtxt_voucherNO";
+            this.rtxt_voucherNO.Size = new System.Drawing.Size(150, 28);
+            this.rtxt_voucherNO.TabIndex = 18;
+            this.rtxt_voucherNO.Text = "";
+            // 
             // ts_income
             // 
             this.ts_income.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_new,
             this.tsb_save,
             this.tsb_query,
+            this.tsb_modify,
             this.tsb_print,
             this.tsb_close});
             this.ts_income.Location = new System.Drawing.Point(0, 0);
@@ -282,6 +319,16 @@
             this.tsb_save.Text = "保存";
             this.tsb_save.Click += new System.EventHandler(this.tsb_save_Click);
             // 
+            // tsb_query
+            // 
+            this.tsb_query.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_query.Image = ((System.Drawing.Image)(resources.GetObject("tsb_query.Image")));
+            this.tsb_query.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_query.Name = "tsb_query";
+            this.tsb_query.Size = new System.Drawing.Size(23, 22);
+            this.tsb_query.Text = "查询";
+            this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
+            // 
             // tsb_print
             // 
             this.tsb_print.Image = ((System.Drawing.Image)(resources.GetObject("tsb_print.Image")));
@@ -300,6 +347,16 @@
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
             // 
+            // tsb_modify
+            // 
+            this.tsb_modify.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_modify.Image = global::scrapSettlement.Properties.Resources.icon_edit2;
+            this.tsb_modify.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_modify.Name = "tsb_modify";
+            this.tsb_modify.Size = new System.Drawing.Size(23, 22);
+            this.tsb_modify.Text = "修改";
+            this.tsb_modify.Click += new System.EventHandler(this.tsb_modify_Click);
+            // 
             // printPreviewDialog1
             // 
             this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
@@ -313,28 +370,6 @@
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
-            // 
-            // tsb_query
-            // 
-            this.tsb_query.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb_query.Image = ((System.Drawing.Image)(resources.GetObject("tsb_query.Image")));
-            this.tsb_query.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_query.Name = "tsb_query";
-            this.tsb_query.Size = new System.Drawing.Size(23, 22);
-            this.tsb_query.Text = "查询";
-            this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
-            // 
-            // txt_voucherNo
-            // 
-            this.txt_voucherNo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_voucherNo.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_voucherNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_voucherNo.Enabled = false;
-            this.txt_voucherNo.Location = new System.Drawing.Point(694, 156);
-            this.txt_voucherNo.Name = "txt_voucherNo";
-            this.txt_voucherNo.Size = new System.Drawing.Size(157, 14);
-            this.txt_voucherNo.TabIndex = 0;
-            this.txt_voucherNo.Tag = "收款金额";
             // 
             // Frm_income
             // 
@@ -350,6 +385,7 @@
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.pnl_query.ResumeLayout(false);
             this.ts_income.ResumeLayout(false);
             this.ts_income.PerformLayout();
             this.ResumeLayout(false);
@@ -384,8 +420,12 @@
         private System.Windows.Forms.ToolStripButton tsb_save;
         private System.Windows.Forms.ComboBox cmb_custName;
         private System.Windows.Forms.DateTimePicker dtp_income;
-        private System.Windows.Forms.ToolStripButton tsb_query;
-        private System.Windows.Forms.TextBox txt_voucherNo;
+        //实现从报表到表单的穿透查询，故把该变量公开
+        public System.Windows.Forms.ToolStripButton tsb_query;
+        public System.Windows.Forms.RichTextBox rtxt_voucherNO;
+        public System.Windows.Forms.Button btn_query;
+        private System.Windows.Forms.Panel pnl_query;
+        private System.Windows.Forms.ToolStripButton tsb_modify;
     }
 }
 
