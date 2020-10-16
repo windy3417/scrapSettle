@@ -10,6 +10,7 @@ using ScrapSettlement.DAL.Model;
 using ScrapSettlement.DAL.Services;
 using System.Drawing.Drawing2D;
 using ScrapSettlement.DAL;
+using System.Drawing.Printing;
 
 namespace ScrapSettlement
 {
@@ -54,11 +55,7 @@ namespace ScrapSettlement
 
        
         }
-        private void Tsb_print_Click(object sender, EventArgs e)
-        {
-
-            this.printPreviewDialog1.Show();
-        }
+       
 
         private void Tsb_close_Click(object sender, EventArgs e)
         {
@@ -83,6 +80,10 @@ namespace ScrapSettlement
         {
             this.tableLayoutPanel1.Enabled = true;
             tsb_save.Enabled = true;
+            txt_webUnitPrice.Text = "";
+            txt_netWeight.Text = "";
+            txt_settleUnitPrice.Text = "";
+            txt_money.Text = "";
             this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMddHHmmss");
             initialize();
 
@@ -255,7 +256,7 @@ namespace ScrapSettlement
                 //注意判断txt_money.Text==""而不是判断txt_money.Text==null,否则三无运算会报错，
                 //因为无法把""值转为double
                 double settleAount = txt_money.Text == "" ? 0 : Convert.ToDouble(txt_money.Text);
-                lbl_balance.Text = (incomeMoney - amountOfPayout - settleAount).ToString();
+                lbl_balance.Text = (incomeMoney - amountOfPayout - settleAount).ToString("C");
 
 
             }
@@ -282,10 +283,71 @@ namespace ScrapSettlement
 
 
 
+
         #endregion
 
-   
+        #region 打印
+
+
+        private void tsb_previewPrint_Click(object sender, EventArgs e)
+        {
+
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void Tsb_print_Click(object sender, EventArgs e)
+        {
+
+            this.printPreviewDialog1.Show();
+        }
+
+        /// <summary>
+        /// 传递打印数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new PointF(15.0F, 15.0F));
+            // Create pen.
+            Pen blackPen = new Pen(Color.Black, 3);
+
+            // Create points that define line.
+            PointF point1 = new PointF(100.0F, 100.0F);
+            PointF point2 = new PointF(500.0F, 100.0F);
+
+            // Draw line to screen.
+            e.Graphics.DrawLine(blackPen, point1, point2);
+            int r = 40;//初始X坐标
+            int c = 40;//初始Y坐标
+            e.Graphics.DrawString(txt_netWeight.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
+            r = 40;// 每读取一行完毕，X坐标回到原处
+            c += 20;//每读取一行完毕，Y坐标下移20后再写第二行数据
+
+            //for (int i = 0; i < dataGridView_inspect.Rows.Count; i++)
+            //{
+
+            //    for (int j = 0; j < dataGridView_inspect.Columns.Count; j++)
+            //    {
+            //        //使用事件数据类PrintPageEventArgs中的Graphics属性获取打印数据
+            //        e.Graphics.DrawString(dataGridView_inspect.Rows[i].Cells[j].Value.ToString(), new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
+            //        r = r + 300;//每读取一行中的一个单元格数据，X坐标右移300后再写第二个单元格
+
+            //    }
+            //    r = 40;// 每读取一行完毕，X坐标回到原处
+            //    c += 20;//每读取一行完毕，Y坐标下移20后再写第二行数据
+
+
+            //}
+        }
+        #endregion
+
+        private void tsb_query_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-    }
+}
 
 

@@ -20,6 +20,7 @@ namespace ScrapSettlement.UI
         {
             InitializeComponent();
             this.initialize();
+            initiallizeDateSource();
 
         }
 
@@ -32,7 +33,7 @@ namespace ScrapSettlement.UI
 
 
         /// <summary>
-        /// 初始化控件
+        /// 初始化控件状态
         /// </summary>
         private void initialize()
         {
@@ -41,6 +42,17 @@ namespace ScrapSettlement.UI
             this.dataGridView1.AutoGenerateColumns = false;
       
 
+          
+
+
+
+        }
+
+        /// <summary>
+        /// 初始化控件数据源
+        /// </summary>
+        private void initiallizeDateSource()
+        {
             //初始化客户名称数据源
 
             cmb_custName.DataSource = new CustomerService().getCustomerList().Where<Customer>(c => c.FailuerDate == null).Select((c) => new { c.CusCode, c.CusName }).ToList();
@@ -48,10 +60,8 @@ namespace ScrapSettlement.UI
             cmb_custName.DisplayMember = "CusName";
             cmb_custName.ValueMember = "CusCode";
 
-
-
+            dtp_incomeDateStart.Value = DateTime.Now.AddDays(-DateTime.Now.Day + 1);
         }
-
      
                                                                  
         /// <summary>
@@ -106,6 +116,33 @@ namespace ScrapSettlement.UI
         private void Btn_query_Click(object sender, EventArgs e)
         {
             tsb_query.PerformClick();
+        }
+
+        /// <summary>
+        /// 穿透查询到单据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex > -1)
+            {
+
+                var voucherNo = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Frm_weighingSettltement f = new Frm_weighingSettltement();
+                string tabPageText = f.Text;
+                Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
+                //使用母窗体的属性信息，实现动态创建插入页签式窗体
+                
+                embedForm.openForm(f, tabPageText, (TabControl)this.Parent.Parent.Parent.Controls["tabControl1"], (Panel)this.TopLevelControl.Controls["panel1"]);
+                //ToolStrip t = (ToolStrip)f.Controls["ts_income"];
+
+                f.tsb_query.PerformClick();
+                f.rtxt_voucherNO.Text = voucherNo;
+                f.btn_query.PerformClick();
+
+            }
         }
     }
 

@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_weighingSettltement));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnl_query = new System.Windows.Forms.Panel();
+            this.btn_query = new System.Windows.Forms.Button();
+            this.rtxt_voucherNO = new System.Windows.Forms.RichTextBox();
             this.lbl_vouchNo = new System.Windows.Forms.Label();
             this.horizonLine2 = new Utility.UControl.HorizonLine();
             this.horizonLine1 = new Utility.UControl.HorizonLine();
@@ -62,12 +65,15 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_new = new System.Windows.Forms.ToolStripButton();
             this.tsb_save = new System.Windows.Forms.ToolStripButton();
+            this.tsb_query = new System.Windows.Forms.ToolStripButton();
+            this.tsb_previewPrint = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.panel1.SuspendLayout();
+            this.pnl_query.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +81,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.Controls.Add(this.pnl_query);
             this.panel1.Controls.Add(this.lbl_vouchNo);
             this.panel1.Controls.Add(this.horizonLine2);
             this.panel1.Controls.Add(this.horizonLine1);
@@ -88,10 +95,40 @@
             this.panel1.Controls.Add(this.lbl);
             this.panel1.Controls.Add(this.lbl_titel);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Location = new System.Drawing.Point(81, 28);
+            this.panel1.Location = new System.Drawing.Point(77, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(931, 462);
             this.panel1.TabIndex = 6;
+            // 
+            // pnl_query
+            // 
+            this.pnl_query.Controls.Add(this.btn_query);
+            this.pnl_query.Controls.Add(this.rtxt_voucherNO);
+            this.pnl_query.Location = new System.Drawing.Point(573, 51);
+            this.pnl_query.Name = "pnl_query";
+            this.pnl_query.Size = new System.Drawing.Size(200, 46);
+            this.pnl_query.TabIndex = 20;
+            // 
+            // btn_query
+            // 
+            this.btn_query.BackColor = System.Drawing.Color.Transparent;
+            this.btn_query.ForeColor = System.Drawing.Color.Black;
+            this.btn_query.Image = ((System.Drawing.Image)(resources.GetObject("btn_query.Image")));
+            this.btn_query.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btn_query.Location = new System.Drawing.Point(171, 18);
+            this.btn_query.Name = "btn_query";
+            this.btn_query.Size = new System.Drawing.Size(21, 22);
+            this.btn_query.TabIndex = 17;
+            this.btn_query.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btn_query.UseVisualStyleBackColor = false;
+            // 
+            // rtxt_voucherNO
+            // 
+            this.rtxt_voucherNO.Location = new System.Drawing.Point(47, 15);
+            this.rtxt_voucherNO.Name = "rtxt_voucherNO";
+            this.rtxt_voucherNO.Size = new System.Drawing.Size(150, 28);
+            this.rtxt_voucherNO.TabIndex = 18;
+            this.rtxt_voucherNO.Text = "";
             // 
             // lbl_vouchNo
             // 
@@ -142,10 +179,12 @@
             this.lbl_balance.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbl_balance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_balance.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_balance.Location = new System.Drawing.Point(555, 415);
+            this.lbl_balance.Location = new System.Drawing.Point(555, 411);
             this.lbl_balance.Name = "lbl_balance";
-            this.lbl_balance.Size = new System.Drawing.Size(130, 14);
+            this.lbl_balance.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_balance.Size = new System.Drawing.Size(162, 24);
             this.lbl_balance.TabIndex = 6;
+            this.lbl_balance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbl_date
             // 
@@ -409,6 +448,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_new,
             this.tsb_save,
+            this.tsb_query,
+            this.tsb_previewPrint,
             this.tsb_print,
             this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -436,6 +477,24 @@
             this.tsb_save.Size = new System.Drawing.Size(23, 22);
             this.tsb_save.Text = "保存";
             this.tsb_save.Click += new System.EventHandler(this.tsb_save_Click);
+            // 
+            // tsb_query
+            // 
+            this.tsb_query.Image = global::scrapSettlement.Properties.Resources.nav_serch_icon;
+            this.tsb_query.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_query.Name = "tsb_query";
+            this.tsb_query.Size = new System.Drawing.Size(52, 22);
+            this.tsb_query.Text = "查询";
+            this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
+            // 
+            // tsb_previewPrint
+            // 
+            this.tsb_previewPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsb_previewPrint.Image")));
+            this.tsb_previewPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_previewPrint.Name = "tsb_previewPrint";
+            this.tsb_previewPrint.Size = new System.Drawing.Size(52, 22);
+            this.tsb_previewPrint.Text = "预览";
+            this.tsb_previewPrint.Click += new System.EventHandler(this.tsb_previewPrint_Click);
             // 
             // tsb_print
             // 
@@ -469,6 +528,10 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
             // Frm_weighingSettltement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -480,6 +543,7 @@
             this.Text = "过磅结算单";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnl_query.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -529,6 +593,12 @@
         private System.Windows.Forms.ComboBox cmb_scrapName;
         private System.Windows.Forms.ComboBox cmb_person;
         private System.Windows.Forms.TextBox txt_coefficient;
+        private System.Windows.Forms.ToolStripButton tsb_previewPrint;
+        private System.Windows.Forms.Panel pnl_query;
+        //穿透查询功能开放访问
+        public System.Windows.Forms.Button btn_query;
+        public System.Windows.Forms.RichTextBox rtxt_voucherNO;
+        public System.Windows.Forms.ToolStripButton tsb_query;
     }
 }
 

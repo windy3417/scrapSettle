@@ -198,6 +198,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_incom;
         private System.Windows.Forms.ToolStripMenuItem 过磅登记ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 报表ToolStripMenuItem;
+        
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem 经办人档案ToolStripMenuItem;
