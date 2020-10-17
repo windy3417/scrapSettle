@@ -65,7 +65,7 @@ namespace ScrapSettlement.UI
      
                                                                  
         /// <summary>
-        /// 查询收款单列表
+        /// 查询称重单列表
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

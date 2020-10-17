@@ -20,15 +20,14 @@ namespace ScrapSettlement
         {
             InitializeComponent();
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
-            this.tableLayoutPanel1.Enabled = false;
-            txt_money.Enabled = false;
-            txt_settleUnitPrice.Enabled = false;
+            initalizeControlState();
+            
         }
 
         /// <summary>
-        /// 初始化数据源
+        /// 初始化控件数据源
         /// </summary>
-        private void initialize()
+        private void initializeDatasource()
         {
             //初始化客户数据源
             //绑定数据源时，其初始selectedValue为实体对象的所有值，需要执行
@@ -56,6 +55,16 @@ namespace ScrapSettlement
        
         }
        
+        /// <summary>
+        /// 初始化控件状态
+        /// </summary>
+        private void initalizeControlState()
+        {
+            pnl_query.Visible = false;
+            this.tableLayoutPanel1.Enabled = false;
+            txt_money.Enabled = false;
+            txt_settleUnitPrice.Enabled = false;
+        }
 
         private void Tsb_close_Click(object sender, EventArgs e)
         {
@@ -85,7 +94,7 @@ namespace ScrapSettlement
             txt_settleUnitPrice.Text = "";
             txt_money.Text = "";
             this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMddHHmmss");
-            initialize();
+            initializeDatasource();
 
         }
 
@@ -130,6 +139,32 @@ namespace ScrapSettlement
             }
         }
 
+        /// <summary>
+        /// 单据查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_query_Click(object sender, EventArgs e)
+        {
+            pnl_query.Visible = true;
+            using (var db=new ScrapSettleContext())
+            {
+                var query = from q in db.WeighingSettlement
+                            join c in db.Customers
+                            on q.CustmerCode equals c.CusCode.ToString()
+                            join p in db.Peple on q.personCode equals p.Code.ToString()
+                            join s in db.Scraps on q.scrapCode equals s.ScrapCode.ToString()
+
+                            where q.vocherNO == rtxt_voucherNO.Text
+
+                            select new { q.WeighingDate, q.vocherNO, c.CusName, s.ScrapName, q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight, q.settleAmount };
+                foreach (var item in query)
+                {
+                    lbl_vouchNoValue.Text = item.vocherNO;
+                    cmb_custName.Text = item.CusName;
+                }
+            }
+        }
         #endregion
 
         #region 界面值变更事件处理方法
@@ -343,10 +378,7 @@ namespace ScrapSettlement
         }
         #endregion
 
-        private void tsb_query_Click(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }
 
