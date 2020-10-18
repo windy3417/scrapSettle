@@ -121,6 +121,7 @@
             this.btn_query.TabIndex = 17;
             this.btn_query.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btn_query.UseVisualStyleBackColor = false;
+            this.btn_query.Click += new System.EventHandler(this.btn_query_Click);
             // 
             // rtxt_voucherNO
             // 
@@ -541,6 +542,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Frm_weighingSettltement";
             this.Text = "过磅结算单";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Frm_weighingSettltement_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnl_query.ResumeLayout(false);

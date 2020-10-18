@@ -59,6 +59,9 @@
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.flp_foot.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -330,7 +333,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_query,
             this.tsb_close,
-            this.tsb_export});
+            this.tsb_export,
+            this.tsb_print});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(995, 25);
@@ -362,6 +366,30 @@
             this.tsb_export.Name = "tsb_export";
             this.tsb_export.Size = new System.Drawing.Size(52, 22);
             this.tsb_export.Text = "导出";
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // tsb_print
+            // 
+            this.tsb_print.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_print.Image = ((System.Drawing.Image)(resources.GetObject("tsb_print.Image")));
+            this.tsb_print.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_print.Name = "tsb_print";
+            this.tsb_print.Size = new System.Drawing.Size(23, 22);
+            this.tsb_print.Text = "打印";
+            this.tsb_print.Click += new System.EventHandler(this.tsb_print_Click);
             // 
             // Frm_weighingList
             // 
@@ -418,5 +446,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn settleUnitPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn netWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn settleAmount;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.ToolStripButton tsb_print;
     }
 }

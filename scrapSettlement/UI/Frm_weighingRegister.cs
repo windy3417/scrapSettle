@@ -21,7 +21,7 @@ namespace ScrapSettlement
             InitializeComponent();
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
             initalizeControlState();
-            
+
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace ScrapSettlement
             cmb_person.DisplayMember = "Name";
             cmb_person.ValueMember = "Code";
 
-       
+
         }
-       
+
         /// <summary>
         /// 初始化控件状态
         /// </summary>
@@ -88,6 +88,7 @@ namespace ScrapSettlement
         private void Tsb_new_Click(object sender, EventArgs e)
         {
             this.tableLayoutPanel1.Enabled = true;
+            pnl_query.Visible = false;
             tsb_save.Enabled = true;
             txt_webUnitPrice.Text = "";
             txt_netWeight.Text = "";
@@ -147,23 +148,17 @@ namespace ScrapSettlement
         private void tsb_query_Click(object sender, EventArgs e)
         {
             pnl_query.Visible = true;
-            using (var db=new ScrapSettleContext())
+            using (var db = new ScrapSettleContext())
             {
-                var query = from q in db.WeighingSettlement
-                            join c in db.Customers
-                            on q.CustmerCode equals c.CusCode.ToString()
-                            join p in db.Peple on q.personCode equals p.Code.ToString()
-                            join s in db.Scraps on q.scrapCode equals s.ScrapCode.ToString()
-
-                            where q.vocherNO == rtxt_voucherNO.Text
-
-                            select new { q.WeighingDate, q.vocherNO, c.CusName, s.ScrapName, q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight, q.settleAmount };
-                foreach (var item in query)
-                {
-                    lbl_vouchNoValue.Text = item.vocherNO;
-                    cmb_custName.Text = item.CusName;
-                }
+                var q = from w in db.WeighingSettlement
+                            //where(w.vocherNO=="")
+                        select new { w.vocherNO };
+                //赋值时注意对类型q进行转换， 不能直接写成rtxt_voucherNO.Text = q
+                rtxt_voucherNO.Text = q.FirstOrDefault().vocherNO;
+                btn_query.PerformClick();
             }
+
+
         }
         #endregion
 
@@ -329,6 +324,7 @@ namespace ScrapSettlement
 
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.ShowDialog();
+            
         }
 
         private void Tsb_print_Click(object sender, EventArgs e)
@@ -344,41 +340,129 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new PointF(15.0F, 15.0F));
-            // Create pen.
-            Pen blackPen = new Pen(Color.Black, 3);
+            int r = 40;//初始X坐标
+            int c = 40;//初始Y坐标
 
-            // Create points that define line.
-            PointF point1 = new PointF(100.0F, 100.0F);
-            PointF point2 = new PointF(500.0F, 100.0F);
+            //Array array = new Array();
+
+            Pen blackPen = new Pen(Color.Black, 3);
+            for (int i = 0; i < 5; i++)
+            {
+
+                for (int j = 2; j < 5; j++)
+                {
+                    //使用事件数据类PrintPageEventArgs中的Graphics属性获取打印数据
+                    Rectangle rectangle = new Rectangle(100 + i * 100, 100, 100, 50);
+
+                    e.Graphics.DrawRectangle(blackPen, rectangle);
+                    r = r + 300;//每读取一行中的一个单元格数据，X坐标右移300后再写第二个单元格
+
+                }
+                r = 40;// 每读取一行完毕，X坐标回到原处
+                c += 20;//每读取一行完毕，Y坐标下移20后再写第二行数据
+
+
+            }
+            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new PointF(200.0F, 15.0F));
+            PointF point1 = new PointF(100.0F, 50.0F);
+            PointF point2 = new PointF(500.0F, 50.0F);
 
             // Draw line to screen.
             e.Graphics.DrawLine(blackPen, point1, point2);
-            int r = 40;//初始X坐标
-            int c = 40;//初始Y坐标
-            e.Graphics.DrawString(txt_netWeight.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
+
+
+            float x1 = 100.0F;
+            float y1 = 100.0F;
+            float x2 = 500.0F;
+            float y2 = 100.0F;
+
+            // Draw line to screen.
+            e.Graphics.DrawLine(blackPen, x1, y1, x2, y2);
+            e.Graphics.DrawString(txt_netWeight.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c+40);
+            r+=300    ; c += 40;
+            e.Graphics.DrawString(txt_money.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
+            r += 300; c += 40;
+            e.Graphics.DrawString(txt_coefficient.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
+            r += 300; c += 40;
+            e.Graphics.DrawString(cmb_custName.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
+            r += 300; c += 40;
+            e.Graphics.DrawString(cmb_scrapName.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
+            r += 300;
             r = 40;// 每读取一行完毕，X坐标回到原处
             c += 20;//每读取一行完毕，Y坐标下移20后再写第二行数据
 
-            //for (int i = 0; i < dataGridView_inspect.Rows.Count; i++)
-            //{
+          
 
-            //    for (int j = 0; j < dataGridView_inspect.Columns.Count; j++)
-            //    {
-            //        //使用事件数据类PrintPageEventArgs中的Graphics属性获取打印数据
-            //        e.Graphics.DrawString(dataGridView_inspect.Rows[i].Cells[j].Value.ToString(), new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
-            //        r = r + 300;//每读取一行中的一个单元格数据，X坐标右移300后再写第二个单元格
+            // Draw rectangles to screen.
 
-            //    }
-            //    r = 40;// 每读取一行完毕，X坐标回到原处
-            //    c += 20;//每读取一行完毕，Y坐标下移20后再写第二行数据
+          
 
-
-            //}
+            
         }
+
         #endregion
 
-     
+        #region 快捷键
+
+        /// <summary>
+        /// 回车代替TAB键
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Frm_weighingSettltement_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (System.Convert.ToInt32(e.KeyChar) == 13)
+            {
+                System.Windows.Forms.SendKeys.Send("{tab}");
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 一张单据查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_query_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Enabled = false;
+            lbl_balance.Text = "";
+            using (var db = new ScrapSettleContext())
+            {
+                var query = from q in db.WeighingSettlement
+                            join c in db.Customers
+                            on q.CustmerCode equals c.CusCode.ToString()
+                            join p in db.Peple on q.personCode equals p.Code.ToString()
+                            join s in db.Scraps on q.scrapCode equals s.ScrapCode.ToString()
+
+                            where q.vocherNO == rtxt_voucherNO.Text
+
+                            select new { q.WeighingDate, q.vocherNO, c.CusCode, c.CusName, s.ScrapID, s.ScrapName, q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight, q.settleAmount };
+                foreach (var item in query)
+                {
+                    lbl_vouchNoValue.Text = item.vocherNO;
+                    cmb_custName.SelectedValue = item.CusCode;
+                    cmb_custName.Text = item.CusName;
+
+                    cmb_scrapName.SelectedValue = item.ScrapID;
+                    cmb_scrapName.Text = item.ScrapName;
+                    txt_coefficient.Text = item.proportion.ToString();
+                    txt_netWeight.Text = item.netWeight.ToString();
+                    txt_webUnitPrice.Text = item.webUnitPrice.ToString();
+                    txt_settleUnitPrice.Text = item.settleUnitPrice.ToString();
+                    //因为结算金额文本框定义了textChanged事件，所以定义查询时也触发该事件
+                    //而去计算余额，虽然禁止了tableLayoutPanel,但无法禁止该事件，所以需要对
+                    //事件委托解绑
+                    txt_money.TextChanged -= this.txt_money_TextChanged;
+                    // 
+                    txt_money.Text = item.settleAmount.ToString();
+
+                }
+            }
+        }
+
+
     }
 }
 
