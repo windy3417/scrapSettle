@@ -106,5 +106,13 @@ namespace ScrapSettlement
             EmbedForm embedForm = new EmbedForm();
             embedForm.openForm(frm_weighingList, tabPageText, tabControl1, panel1);
         }
+
+        private void 车牌档案ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_vehicleBrand v = new Frm_vehicleBrand();
+            string tabPageText = v.Text;
+            EmbedForm embedForm = new EmbedForm();
+            embedForm.openForm(v, tabPageText, tabControl1, panel1);
+        }
     }
 }

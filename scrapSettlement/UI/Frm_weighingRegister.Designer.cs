@@ -46,22 +46,28 @@
             this.lbl = new System.Windows.Forms.Label();
             this.lbl_titel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbl_settleCoefficient = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lbl_settleUnitPrice = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txt_webUnitPrice = new System.Windows.Forms.TextBox();
-            this.txt_settleUnitPrice = new System.Windows.Forms.TextBox();
-            this.txt_money = new System.Windows.Forms.TextBox();
-            this.txt_netWeight = new System.Windows.Forms.TextBox();
             this.lbl_customerCode = new System.Windows.Forms.Label();
             this.cmb_custName = new System.Windows.Forms.ComboBox();
             this.cmb_person = new System.Windows.Forms.ComboBox();
             this.lbl_personCode = new System.Windows.Forms.Label();
             this.lbl_scrapCode = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.cmb_scrapName = new System.Windows.Forms.ComboBox();
+            this.txt_grossWeight = new System.Windows.Forms.TextBox();
+            this.lbl_grossWeght = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_money = new System.Windows.Forms.TextBox();
+            this.lbl_tare = new System.Windows.Forms.Label();
+            this.lbl_netWeight = new System.Windows.Forms.Label();
+            this.txt_tare = new System.Windows.Forms.TextBox();
+            this.txt_netWeight = new System.Windows.Forms.TextBox();
+            this.lbl_vechiclBrand = new System.Windows.Forms.Label();
+            this.cmb_vehicleBrand = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txt_coefficient = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_webUnitPrice = new System.Windows.Forms.TextBox();
+            this.lbl_settleUnitPrice = new System.Windows.Forms.Label();
+            this.txt_settleUnitPrice = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_new = new System.Windows.Forms.ToolStripButton();
             this.tsb_save = new System.Windows.Forms.ToolStripButton();
@@ -95,9 +101,9 @@
             this.panel1.Controls.Add(this.lbl);
             this.panel1.Controls.Add(this.lbl_titel);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Location = new System.Drawing.Point(77, 28);
+            this.panel1.Location = new System.Drawing.Point(79, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(931, 462);
+            this.panel1.Size = new System.Drawing.Size(931, 574);
             this.panel1.TabIndex = 6;
             // 
             // pnl_query
@@ -144,7 +150,7 @@
             // 
             this.horizonLine2.LineColor = System.Drawing.SystemColors.ControlText;
             this.horizonLine2.LineWidth = 1;
-            this.horizonLine2.Location = new System.Drawing.Point(164, 401);
+            this.horizonLine2.Location = new System.Drawing.Point(164, 496);
             this.horizonLine2.Name = "horizonLine2";
             this.horizonLine2.Size = new System.Drawing.Size(578, 1);
             this.horizonLine2.TabIndex = 15;
@@ -180,7 +186,7 @@
             this.lbl_balance.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbl_balance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_balance.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_balance.Location = new System.Drawing.Point(555, 411);
+            this.lbl_balance.Location = new System.Drawing.Point(555, 506);
             this.lbl_balance.Name = "lbl_balance";
             this.lbl_balance.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lbl_balance.Size = new System.Drawing.Size(162, 24);
@@ -231,7 +237,7 @@
             this.lbl.AutoSize = true;
             this.lbl.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbl.Location = new System.Drawing.Point(459, 415);
+            this.lbl.Location = new System.Drawing.Point(459, 510);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(90, 14);
             this.lbl.TabIndex = 11;
@@ -255,110 +261,39 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 189F));
-            this.tableLayoutPanel1.Controls.Add(this.lbl_settleCoefficient, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lbl_settleUnitPrice, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txt_webUnitPrice, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txt_settleUnitPrice, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txt_money, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txt_netWeight, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lbl_customerCode, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cmb_custName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.cmb_person, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_personCode, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_scrapCode, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.cmb_scrapName, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txt_coefficient, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txt_grossWeight, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_grossWeght, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txt_money, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_tare, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_netWeight, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.txt_tare, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txt_netWeight, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_vechiclBrand, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cmb_vehicleBrand, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txt_coefficient, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txt_webUnitPrice, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_settleUnitPrice, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.txt_settleUnitPrice, 3, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(190, 188);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(527, 193);
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(527, 234);
             this.tableLayoutPanel1.TabIndex = 13;
-            // 
-            // lbl_settleCoefficient
-            // 
-            this.lbl_settleCoefficient.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbl_settleCoefficient.AutoSize = true;
-            this.lbl_settleCoefficient.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_settleCoefficient.Location = new System.Drawing.Point(3, 162);
-            this.lbl_settleCoefficient.Name = "lbl_settleCoefficient";
-            this.lbl_settleCoefficient.Size = new System.Drawing.Size(59, 12);
-            this.lbl_settleCoefficient.TabIndex = 1;
-            this.lbl_settleCoefficient.Text = "净重(KG):";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label2.Location = new System.Drawing.Point(252, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "网价(RMB/吨):";
-            // 
-            // lbl_settleUnitPrice
-            // 
-            this.lbl_settleUnitPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbl_settleUnitPrice.AutoSize = true;
-            this.lbl_settleUnitPrice.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_settleUnitPrice.Location = new System.Drawing.Point(252, 114);
-            this.lbl_settleUnitPrice.Name = "lbl_settleUnitPrice";
-            this.lbl_settleUnitPrice.Size = new System.Drawing.Size(59, 12);
-            this.lbl_settleUnitPrice.TabIndex = 1;
-            this.lbl_settleUnitPrice.Text = "结算单价:";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label4.Location = new System.Drawing.Point(252, 162);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "结算金额:";
-            // 
-            // txt_webUnitPrice
-            // 
-            this.txt_webUnitPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_webUnitPrice.Location = new System.Drawing.Point(341, 61);
-            this.txt_webUnitPrice.Name = "txt_webUnitPrice";
-            this.txt_webUnitPrice.Size = new System.Drawing.Size(157, 21);
-            this.txt_webUnitPrice.TabIndex = 5;
-            this.txt_webUnitPrice.Leave += new System.EventHandler(this.txt_webUnitPrice_Leave);
-            // 
-            // txt_settleUnitPrice
-            // 
-            this.txt_settleUnitPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_settleUnitPrice.Location = new System.Drawing.Point(341, 109);
-            this.txt_settleUnitPrice.Name = "txt_settleUnitPrice";
-            this.txt_settleUnitPrice.Size = new System.Drawing.Size(157, 21);
-            this.txt_settleUnitPrice.TabIndex = 6;
-            // 
-            // txt_money
-            // 
-            this.txt_money.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_money.Location = new System.Drawing.Point(341, 158);
-            this.txt_money.Name = "txt_money";
-            this.txt_money.Size = new System.Drawing.Size(157, 21);
-            this.txt_money.TabIndex = 0;
-            this.txt_money.TextChanged += new System.EventHandler(this.txt_money_TextChanged);
-            // 
-            // txt_netWeight
-            // 
-            this.txt_netWeight.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_netWeight.Location = new System.Drawing.Point(83, 158);
-            this.txt_netWeight.Name = "txt_netWeight";
-            this.txt_netWeight.Size = new System.Drawing.Size(154, 21);
-            this.txt_netWeight.TabIndex = 3;
-            this.txt_netWeight.Leave += new System.EventHandler(this.txt_netWeight_Leave);
             // 
             // lbl_customerCode
             // 
@@ -366,7 +301,7 @@
             this.lbl_customerCode.AutoSize = true;
             this.lbl_customerCode.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_customerCode.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_customerCode.Location = new System.Drawing.Point(3, 18);
+            this.lbl_customerCode.Location = new System.Drawing.Point(3, 13);
             this.lbl_customerCode.Name = "lbl_customerCode";
             this.lbl_customerCode.Size = new System.Drawing.Size(59, 12);
             this.lbl_customerCode.TabIndex = 1;
@@ -376,7 +311,7 @@
             // 
             this.cmb_custName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmb_custName.FormattingEnabled = true;
-            this.cmb_custName.Location = new System.Drawing.Point(83, 14);
+            this.cmb_custName.Location = new System.Drawing.Point(83, 9);
             this.cmb_custName.Name = "cmb_custName";
             this.cmb_custName.Size = new System.Drawing.Size(154, 20);
             this.cmb_custName.TabIndex = 1;
@@ -386,17 +321,17 @@
             // 
             this.cmb_person.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmb_person.FormattingEnabled = true;
-            this.cmb_person.Location = new System.Drawing.Point(341, 14);
+            this.cmb_person.Location = new System.Drawing.Point(341, 9);
             this.cmb_person.Name = "cmb_person";
             this.cmb_person.Size = new System.Drawing.Size(157, 20);
-            this.cmb_person.TabIndex = 4;
+            this.cmb_person.TabIndex = 7;
             // 
             // lbl_personCode
             // 
             this.lbl_personCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_personCode.AutoSize = true;
             this.lbl_personCode.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_personCode.Location = new System.Drawing.Point(252, 18);
+            this.lbl_personCode.Location = new System.Drawing.Point(252, 13);
             this.lbl_personCode.Name = "lbl_personCode";
             this.lbl_personCode.Size = new System.Drawing.Size(71, 12);
             this.lbl_personCode.TabIndex = 1;
@@ -407,42 +342,183 @@
             this.lbl_scrapCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_scrapCode.AutoSize = true;
             this.lbl_scrapCode.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_scrapCode.Location = new System.Drawing.Point(3, 66);
+            this.lbl_scrapCode.Location = new System.Drawing.Point(3, 51);
             this.lbl_scrapCode.Name = "lbl_scrapCode";
             this.lbl_scrapCode.Size = new System.Drawing.Size(59, 12);
             this.lbl_scrapCode.TabIndex = 1;
             this.lbl_scrapCode.Text = "废料名称:";
+            // 
+            // cmb_scrapName
+            // 
+            this.cmb_scrapName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmb_scrapName.FormattingEnabled = true;
+            this.cmb_scrapName.Location = new System.Drawing.Point(83, 47);
+            this.cmb_scrapName.Name = "cmb_scrapName";
+            this.cmb_scrapName.Size = new System.Drawing.Size(154, 20);
+            this.cmb_scrapName.TabIndex = 2;
+            this.cmb_scrapName.SelectedValueChanged += new System.EventHandler(this.cmb_scrapName_SelectedValueChanged);
+            // 
+            // txt_grossWeight
+            // 
+            this.txt_grossWeight.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_grossWeight.Location = new System.Drawing.Point(83, 122);
+            this.txt_grossWeight.Name = "txt_grossWeight";
+            this.txt_grossWeight.Size = new System.Drawing.Size(154, 21);
+            this.txt_grossWeight.TabIndex = 4;
+            this.txt_grossWeight.Leave += new System.EventHandler(this.txt_grossWeight_Leave);
+            // 
+            // lbl_grossWeght
+            // 
+            this.lbl_grossWeght.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_grossWeght.AutoSize = true;
+            this.lbl_grossWeght.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_grossWeght.Location = new System.Drawing.Point(3, 127);
+            this.lbl_grossWeght.Name = "lbl_grossWeght";
+            this.lbl_grossWeght.Size = new System.Drawing.Size(59, 12);
+            this.lbl_grossWeght.TabIndex = 1;
+            this.lbl_grossWeght.Text = "毛重(KG):";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label4.Location = new System.Drawing.Point(252, 165);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "结算金额:";
+            // 
+            // txt_money
+            // 
+            this.txt_money.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_money.Location = new System.Drawing.Point(341, 160);
+            this.txt_money.Name = "txt_money";
+            this.txt_money.Size = new System.Drawing.Size(157, 21);
+            this.txt_money.TabIndex = 0;
+            this.txt_money.TextChanged += new System.EventHandler(this.txt_money_TextChanged);
+            // 
+            // lbl_tare
+            // 
+            this.lbl_tare.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_tare.AutoSize = true;
+            this.lbl_tare.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_tare.Location = new System.Drawing.Point(3, 165);
+            this.lbl_tare.Name = "lbl_tare";
+            this.lbl_tare.Size = new System.Drawing.Size(59, 12);
+            this.lbl_tare.TabIndex = 9;
+            this.lbl_tare.Text = "皮重(KG):";
+            // 
+            // lbl_netWeight
+            // 
+            this.lbl_netWeight.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_netWeight.AutoSize = true;
+            this.lbl_netWeight.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_netWeight.Location = new System.Drawing.Point(3, 206);
+            this.lbl_netWeight.Name = "lbl_netWeight";
+            this.lbl_netWeight.Size = new System.Drawing.Size(59, 12);
+            this.lbl_netWeight.TabIndex = 7;
+            this.lbl_netWeight.Text = "净重(KG):";
+            // 
+            // txt_tare
+            // 
+            this.txt_tare.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_tare.Location = new System.Drawing.Point(83, 160);
+            this.txt_tare.Name = "txt_tare";
+            this.txt_tare.Size = new System.Drawing.Size(154, 21);
+            this.txt_tare.TabIndex = 5;
+            this.txt_tare.Leave += new System.EventHandler(this.txt_tare_Leave);
+            // 
+            // txt_netWeight
+            // 
+            this.txt_netWeight.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_netWeight.Enabled = false;
+            this.txt_netWeight.Location = new System.Drawing.Point(83, 201);
+            this.txt_netWeight.Name = "txt_netWeight";
+            this.txt_netWeight.Size = new System.Drawing.Size(154, 21);
+            this.txt_netWeight.TabIndex = 6;
+            this.txt_netWeight.Leave += new System.EventHandler(this.txt_netWeight_Leave);
+            // 
+            // lbl_vechiclBrand
+            // 
+            this.lbl_vechiclBrand.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_vechiclBrand.AutoSize = true;
+            this.lbl_vechiclBrand.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_vechiclBrand.Location = new System.Drawing.Point(3, 89);
+            this.lbl_vechiclBrand.Name = "lbl_vechiclBrand";
+            this.lbl_vechiclBrand.Size = new System.Drawing.Size(35, 12);
+            this.lbl_vechiclBrand.TabIndex = 1;
+            this.lbl_vechiclBrand.Text = "车牌:";
+            // 
+            // cmb_vehicleBrand
+            // 
+            this.cmb_vehicleBrand.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmb_vehicleBrand.FormattingEnabled = true;
+            this.cmb_vehicleBrand.Location = new System.Drawing.Point(83, 85);
+            this.cmb_vehicleBrand.Name = "cmb_vehicleBrand";
+            this.cmb_vehicleBrand.Size = new System.Drawing.Size(154, 20);
+            this.cmb_vehicleBrand.TabIndex = 3;
+            this.cmb_vehicleBrand.SelectedValueChanged += new System.EventHandler(this.cmb_scrapName_SelectedValueChanged);
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label1.Location = new System.Drawing.Point(3, 114);
+            this.label1.Location = new System.Drawing.Point(252, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "结算系数:";
             // 
-            // cmb_scrapName
-            // 
-            this.cmb_scrapName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmb_scrapName.FormattingEnabled = true;
-            this.cmb_scrapName.Location = new System.Drawing.Point(83, 62);
-            this.cmb_scrapName.Name = "cmb_scrapName";
-            this.cmb_scrapName.Size = new System.Drawing.Size(154, 20);
-            this.cmb_scrapName.TabIndex = 2;
-            this.cmb_scrapName.SelectedValueChanged += new System.EventHandler(this.cmb_scrapName_SelectedValueChanged);
-            // 
             // txt_coefficient
             // 
             this.txt_coefficient.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txt_coefficient.Enabled = false;
-            this.txt_coefficient.Location = new System.Drawing.Point(83, 109);
+            this.txt_coefficient.Location = new System.Drawing.Point(341, 46);
             this.txt_coefficient.Name = "txt_coefficient";
             this.txt_coefficient.Size = new System.Drawing.Size(154, 21);
             this.txt_coefficient.TabIndex = 0;
             this.txt_coefficient.TextChanged += new System.EventHandler(this.txt_coefficient_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label2.Location = new System.Drawing.Point(252, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "网价(RMB/吨):";
+            // 
+            // txt_webUnitPrice
+            // 
+            this.txt_webUnitPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_webUnitPrice.Location = new System.Drawing.Point(341, 84);
+            this.txt_webUnitPrice.Name = "txt_webUnitPrice";
+            this.txt_webUnitPrice.Size = new System.Drawing.Size(157, 21);
+            this.txt_webUnitPrice.TabIndex = 8;
+            this.txt_webUnitPrice.Leave += new System.EventHandler(this.txt_webUnitPrice_Leave);
+            // 
+            // lbl_settleUnitPrice
+            // 
+            this.lbl_settleUnitPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_settleUnitPrice.AutoSize = true;
+            this.lbl_settleUnitPrice.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_settleUnitPrice.Location = new System.Drawing.Point(252, 127);
+            this.lbl_settleUnitPrice.Name = "lbl_settleUnitPrice";
+            this.lbl_settleUnitPrice.Size = new System.Drawing.Size(59, 12);
+            this.lbl_settleUnitPrice.TabIndex = 1;
+            this.lbl_settleUnitPrice.Text = "结算单价:";
+            // 
+            // txt_settleUnitPrice
+            // 
+            this.txt_settleUnitPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_settleUnitPrice.Location = new System.Drawing.Point(341, 122);
+            this.txt_settleUnitPrice.Name = "txt_settleUnitPrice";
+            this.txt_settleUnitPrice.Size = new System.Drawing.Size(157, 21);
+            this.txt_settleUnitPrice.TabIndex = 6;
             // 
             // toolStrip1
             // 
@@ -455,7 +531,7 @@
             this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1052, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1056, 25);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -481,7 +557,7 @@
             // 
             // tsb_query
             // 
-            this.tsb_query.Image = global::scrapSettlement.Properties.Resources.nav_serch_icon;
+            this.tsb_query.Image = ((System.Drawing.Image)(resources.GetObject("tsb_query.Image")));
             this.tsb_query.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_query.Name = "tsb_query";
             this.tsb_query.Size = new System.Drawing.Size(52, 22);
@@ -537,11 +613,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 493);
+            this.ClientSize = new System.Drawing.Size(1056, 625);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panel1);
+            this.KeyPreview = true;
             this.Name = "Frm_weighingSettltement";
             this.Text = "过磅结算单";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Frm_weighingSettltement_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Frm_weighingSettltement_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -570,7 +648,7 @@
         private System.Windows.Forms.Label lbl_customerCode;
         private System.Windows.Forms.Label lbl_personCode;
         private System.Windows.Forms.Label lbl_scrapCode;
-        private System.Windows.Forms.Label lbl_settleCoefficient;
+        private System.Windows.Forms.Label lbl_grossWeght;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_settleUnitPrice;
@@ -578,7 +656,7 @@
         private System.Windows.Forms.TextBox txt_webUnitPrice;
         private System.Windows.Forms.TextBox txt_settleUnitPrice;
         private System.Windows.Forms.TextBox txt_money;
-        private System.Windows.Forms.TextBox txt_netWeight;
+        private System.Windows.Forms.TextBox txt_grossWeight;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.PrintDialog printDialog1;
@@ -601,6 +679,12 @@
         public System.Windows.Forms.Button btn_query;
         public System.Windows.Forms.RichTextBox rtxt_voucherNO;
         public System.Windows.Forms.ToolStripButton tsb_query;
+        private System.Windows.Forms.Label lbl_netWeight;
+        private System.Windows.Forms.TextBox txt_netWeight;
+        private System.Windows.Forms.Label lbl_tare;
+        private System.Windows.Forms.TextBox txt_tare;
+        private System.Windows.Forms.Label lbl_vechiclBrand;
+        private System.Windows.Forms.ComboBox cmb_vehicleBrand;
     }
 }
 

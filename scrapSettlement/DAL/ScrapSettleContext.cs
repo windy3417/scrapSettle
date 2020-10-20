@@ -12,7 +12,7 @@ namespace ScrapSettlement.DAL
 
 
         public ScrapSettleContext()
-            : base("name=scrapSettlement.Properties.Settings.scrapSettleConnectionString")
+            : base("name=myConcetionForEF")
         {
         }
 
@@ -27,6 +27,7 @@ namespace ScrapSettlement.DAL
         public virtual DbSet<Coefficient> Coefficients{get;set;}
         public virtual DbSet<Person> Peple { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
+        public virtual DbSet<VehicleBrand> VehicleBrands { get; set; }
     }
 }
 

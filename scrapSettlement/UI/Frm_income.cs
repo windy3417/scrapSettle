@@ -19,6 +19,7 @@ namespace ScrapSettlement
         {
             InitializeComponent();
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
+           
             intiallizeControls();
             
         }
@@ -29,6 +30,7 @@ namespace ScrapSettlement
         private void intiallizeControls()
         {
             tableLayoutPanel1.Enabled = false;
+            tsb_modify.Enabled = false;
             pnl_query.Visible = false;
             
         }
@@ -121,7 +123,11 @@ namespace ScrapSettlement
         #endregion
 
 
-
+        /// <summary>
+        /// 快捷键
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_income_KeyDown(object sender, KeyEventArgs e)
         {
            
@@ -132,7 +138,7 @@ namespace ScrapSettlement
             }
             //if (e.KeyCode == Keys.Delete)
             //{
-            //    tsb_delete.PerformClick();
+            //    .PerformClick();
             //}
         }
 

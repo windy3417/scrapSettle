@@ -165,6 +165,7 @@ namespace ScrapSettlement.UI
         //否则不能实现打印。
         private void tsb_print_Click(object sender, EventArgs e)
         {
+            
             this.printPreviewDialog1.ShowDialog();
         }
     }

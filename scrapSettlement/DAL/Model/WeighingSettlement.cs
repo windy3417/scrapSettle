@@ -16,6 +16,9 @@ namespace ScrapSettlement.DAL.Model
         public string CustmerCode { get; set; }
         public string personCode { get; set; }
         public string scrapCode { get; set; }
+        public double GrossWeght { get; set; }
+        public double Tare { get; set; }
+        public String VehicleBrand { get; set; }
         public double netWeight { get; set; }
         public double proportion { get; set; }
         public double webUnitPrice { get; set; }

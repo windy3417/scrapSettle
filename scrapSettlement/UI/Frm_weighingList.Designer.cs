@@ -59,9 +59,9 @@
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
+            this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.flp_foot.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -367,6 +367,16 @@
             this.tsb_export.Size = new System.Drawing.Size(52, 22);
             this.tsb_export.Text = "导出";
             // 
+            // tsb_print
+            // 
+            this.tsb_print.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_print.Image = ((System.Drawing.Image)(resources.GetObject("tsb_print.Image")));
+            this.tsb_print.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_print.Name = "tsb_print";
+            this.tsb_print.Size = new System.Drawing.Size(23, 22);
+            this.tsb_print.Text = "打印";
+            this.tsb_print.Click += new System.EventHandler(this.tsb_print_Click);
+            // 
             // printDocument1
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument_PrintPage);
@@ -380,16 +390,6 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            // 
-            // tsb_print
-            // 
-            this.tsb_print.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb_print.Image = ((System.Drawing.Image)(resources.GetObject("tsb_print.Image")));
-            this.tsb_print.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_print.Name = "tsb_print";
-            this.tsb_print.Size = new System.Drawing.Size(23, 22);
-            this.tsb_print.Text = "打印";
-            this.tsb_print.Click += new System.EventHandler(this.tsb_print_Click);
             // 
             // Frm_weighingList
             // 

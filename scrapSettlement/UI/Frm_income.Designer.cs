@@ -54,9 +54,9 @@
             this.tsb_new = new System.Windows.Forms.ToolStripButton();
             this.tsb_save = new System.Windows.Forms.ToolStripButton();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
+            this.tsb_modify = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
-            this.tsb_modify = new System.Windows.Forms.ToolStripButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
@@ -329,6 +329,15 @@
             this.tsb_query.Text = "查询";
             this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
             // 
+            // tsb_modify
+            // 
+            this.tsb_modify.Image = ((System.Drawing.Image)(resources.GetObject("tsb_modify.Image")));
+            this.tsb_modify.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_modify.Name = "tsb_modify";
+            this.tsb_modify.Size = new System.Drawing.Size(52, 22);
+            this.tsb_modify.Text = "修改";
+            this.tsb_modify.Click += new System.EventHandler(this.tsb_modify_Click);
+            // 
             // tsb_print
             // 
             this.tsb_print.Image = ((System.Drawing.Image)(resources.GetObject("tsb_print.Image")));
@@ -346,16 +355,6 @@
             this.tsb_close.Size = new System.Drawing.Size(52, 22);
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
-            // 
-            // tsb_modify
-            // 
-            this.tsb_modify.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb_modify.Image = global::scrapSettlement.Properties.Resources.icon_edit2;
-            this.tsb_modify.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_modify.Name = "tsb_modify";
-            this.tsb_modify.Size = new System.Drawing.Size(23, 22);
-            this.tsb_modify.Text = "修改";
-            this.tsb_modify.Click += new System.EventHandler(this.tsb_modify_Click);
             // 
             // printPreviewDialog1
             // 
@@ -378,6 +377,7 @@
             this.ClientSize = new System.Drawing.Size(1052, 493);
             this.Controls.Add(this.ts_income);
             this.Controls.Add(this.panel1);
+            this.KeyPreview = true;
             this.Name = "Frm_income";
             this.Text = "收款单";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Frm_income_KeyDown);

@@ -11,7 +11,7 @@ using ScrapSettlement.DAL.Services;
 using System.Drawing.Drawing2D;
 using ScrapSettlement.DAL;
 using System.Drawing.Printing;
-
+using ScrapSettlement.Common;
 namespace ScrapSettlement
 {
     public partial class Frm_weighingSettltement : Form
@@ -52,6 +52,10 @@ namespace ScrapSettlement
             cmb_person.DisplayMember = "Name";
             cmb_person.ValueMember = "Code";
 
+            //初始化车牌号档案
+            cmb_vehicleBrand.DataSource = new VehicleBrandService().vehicleBrands().Where(w => w.CustomerID == Convert.ToInt32(cmb_custName.SelectedValue))
+                                                .Select(s => s.VehicleBrandValue).ToList();
+
 
         }
 
@@ -91,9 +95,10 @@ namespace ScrapSettlement
             pnl_query.Visible = false;
             tsb_save.Enabled = true;
             txt_webUnitPrice.Text = "";
-            txt_netWeight.Text = "";
+            txt_grossWeight.Text = "";
             txt_settleUnitPrice.Text = "";
             txt_money.Text = "";
+            txt_tare.Text = "";
             this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMddHHmmss");
             initializeDatasource();
 
@@ -116,7 +121,10 @@ namespace ScrapSettlement
                 //故只按日期存储
                 w.WeighingDate = dtp_makeDate.Value.Date;
                 w.CustmerCode = cmb_custName.SelectedValue.ToString();
-                w.netWeight = Convert.ToDouble(txt_netWeight.Text);
+                w.GrossWeght = Convert.ToDouble(txt_grossWeight.Text);
+                    w.Tare = Convert.ToDouble(txt_tare.Text);
+                w.netWeight = Convert.ToDouble(txt_grossWeight.Text);
+                w.VehicleBrand = cmb_vehicleBrand.Text;
                 w.personCode = cmb_person.SelectedValue.ToString();
                 w.proportion = Convert.ToDouble(txt_coefficient.Text);
                 w.scrapCode = cmb_scrapName.SelectedValue.ToString();
@@ -163,6 +171,18 @@ namespace ScrapSettlement
         #endregion
 
         #region 界面值变更事件处理方法
+        /// <summary>
+        /// 皮重变更后离开焦点计算净重
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_tare_Leave(object sender, EventArgs e)
+        {
+            if (txt_grossWeight.Text != "")
+            {
+                caculateNetWeight();
+            }
+        }
 
         /// <summary>
         /// 该事件在绑定数据源时就会发生,也可选择selectdValueCommited事件，该事件在选择
@@ -188,7 +208,7 @@ namespace ScrapSettlement
         }
 
         /// <summary>
-        /// 离开焦点时计算结算单价与结算金额
+        /// 网络价格变更离开焦点时计算结算单价与结算金额
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -200,7 +220,7 @@ namespace ScrapSettlement
         }
 
         /// <summary>
-        /// 离开焦点时计算结算金额
+        /// 净重变更后离开焦点事件计算结算金额
         /// 不使用textChanged事件，因为该事件每录入一个字符则会触发
         /// </summary>
         /// <param name="sender"></param>
@@ -231,6 +251,19 @@ namespace ScrapSettlement
         {
             caculateSettleUnitPrice();
             caculateMoney();
+        }
+
+        /// <summary>
+        /// 毛重变更事件处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_grossWeight_Leave(object sender, EventArgs e)
+        {
+            if (txt_tare.Text != "")
+            {
+                caculateNetWeight();
+            }
         }
 
         #endregion
@@ -265,9 +298,9 @@ namespace ScrapSettlement
         /// </summary>
         private void caculateMoney()
         {
-            if (txt_settleUnitPrice.Text != "" & txt_netWeight.Text != "")
+            if (txt_settleUnitPrice.Text != "" & txt_grossWeight.Text != "")
             {
-                txt_money.Text = (Convert.ToDouble(txt_netWeight.Text) * Convert.ToDouble(txt_settleUnitPrice.Text) / 1000).ToString();
+                txt_money.Text = (Convert.ToDouble(txt_grossWeight.Text) * Convert.ToDouble(txt_settleUnitPrice.Text) / 1000).ToString();
             }
         }
 
@@ -305,7 +338,10 @@ namespace ScrapSettlement
             }
         }
 
-
+        private void caculateNetWeight()
+        {
+            txt_netWeight.Text =(Convert.ToInt32( txt_grossWeight.Text) - Convert.ToInt32(txt_tare.Text)).ToString();
+        }
 
 
 
@@ -322,7 +358,9 @@ namespace ScrapSettlement
         private void tsb_previewPrint_Click(object sender, EventArgs e)
         {
 
+            
             printPreviewDialog1.Document = printDocument1;
+            PrintPreviewDialogWindowState.MakePrintPreviewDialogMaximized(printPreviewDialog1);
             printPreviewDialog1.ShowDialog();
             
         }
@@ -378,7 +416,7 @@ namespace ScrapSettlement
 
             // Draw line to screen.
             e.Graphics.DrawLine(blackPen, x1, y1, x2, y2);
-            e.Graphics.DrawString(txt_netWeight.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c+40);
+            e.Graphics.DrawString(txt_grossWeight.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c+40);
             r+=300    ; c += 40;
             e.Graphics.DrawString(txt_money.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
             r += 300; c += 40;
@@ -448,7 +486,7 @@ namespace ScrapSettlement
                     cmb_scrapName.SelectedValue = item.ScrapID;
                     cmb_scrapName.Text = item.ScrapName;
                     txt_coefficient.Text = item.proportion.ToString();
-                    txt_netWeight.Text = item.netWeight.ToString();
+                    txt_grossWeight.Text = item.netWeight.ToString();
                     txt_webUnitPrice.Text = item.webUnitPrice.ToString();
                     txt_settleUnitPrice.Text = item.settleUnitPrice.ToString();
                     //因为结算金额文本框定义了textChanged事件，所以定义查询时也触发该事件
@@ -462,7 +500,13 @@ namespace ScrapSettlement
             }
         }
 
-
+        private void Frm_weighingSettltement_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.S & e.Control)
+            {
+                tsb_save.PerformClick();
+            }
+        }
     }
 }
 
