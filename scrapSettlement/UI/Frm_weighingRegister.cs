@@ -378,65 +378,177 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            int r = 40;//初始X坐标
-            int c = 40;//初始Y坐标
+                      
+            //初始纵向距离后,根据文字占位即时更新
+            int y = 50;
+            StringFormat stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
 
-            //Array array = new Array();
+            //标题
+            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(300, y));
+            //单据编号
+            e.Graphics.DrawString("单据编号：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 525, y + 50);
+            e.Graphics.DrawString(lbl_vouchNoValue.Text, new Font("Arial", 8, FontStyle.Bold), Brushes.Black, new Point(600, y+50));
+            
+           
+            //单据联次
+            Rectangle rectangleCopy = new Rectangle(720, y+135, 20, 100);
+            e.Graphics.DrawString("第一联：记账联", new Font(DefaultFont, FontStyle.Bold), Brushes.Black, rectangleCopy, stringFormat);
 
-            Pen blackPen = new Pen(Color.Black, 3);
-            for (int i = 0; i < 5; i++)
+            //更新纵坐标
+            y = y + 10;
+            Pen blackpenContent = new Pen(Color.Black, 1);
+
+                                  
+
+            //待打印数据集
+            String[] head= new string[7] { "过磅日期", "时间", "客户名称", "车牌号码", "毛重(KG)", "皮重(GK)", "净重(KG)" };
+            string[] content = new string[7] {  dtp_makeDate.Value.Date.ToString("yyyy-MM-dd"),dtp_makeDate.Value.ToLongTimeString(), 
+                                                cmb_custName.Text, cmb_vehicleBrand.Text, txt_grossWeight.Text, txt_tare.Text, txt_netWeight.Text };
+
+                        
+            for (int i = 0; i < head.Count(); i++)
             {
 
-                for (int j = 2; j < 5; j++)
-                {
-                    //使用事件数据类PrintPageEventArgs中的Graphics属性获取打印数据
-                    Rectangle rectangle = new Rectangle(100 + i * 100, 100, 100, 50);
+              
+                    //使用事件数据类PrintPageEventArgs中Graphics属性获取打印数据
 
-                    e.Graphics.DrawRectangle(blackPen, rectangle);
-                    r = r + 300;//每读取一行中的一个单元格数据，X坐标右移300后再写第二个单元格
+                    //打印表头
+                   
+                    Rectangle rectangleHead = new Rectangle(100 ,y+70+i*30, 100, 30);
+                    
+                                        
+                    e.Graphics.DrawRectangle(blackpenContent, rectangleHead);
+                    e.Graphics.DrawString(head[i], new Font(DefaultFont,FontStyle.Bold), Brushes.Black, rectangleHead, stringFormat);
 
-                }
-                r = 40;// 每读取一行完毕，X坐标回到原处
-                c += 20;//每读取一行完毕，Y坐标下移20后再写第二行数据
+                    //打印内容
+                    Rectangle rectangleContent = new Rectangle(200 ,y+70+ i * 30, 500, 30);
+                    e.Graphics.DrawRectangle(blackpenContent, rectangleContent);
+                    e.Graphics.DrawString(content[i], DefaultFont, Brushes.Black, rectangleContent, stringFormat);
+
+
+                       
+            }
+
+            y = y + 70 + head.Count() * 30;
+
+            //打印签名
+            e.Graphics.DrawString("监磅人：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 120, y + 30);
+            e.Graphics.DrawString("经办人：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 120, y + 60);
+            e.Graphics.DrawString("预付款余额：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 520, y + 30);
+            e.Graphics.DrawString("销售单位盖章：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 520, y + 60);
+            
+            
+            
+            y = y + 300;
+
+            // Draw line to screen.
+            //Pen blackPenLine = new Pen(Color.Black, 1);
+            //Point point1 = new Point(50, y + 100);
+            //Point point2 = new Point(750, y + 100);
+
+            //e.Graphics.DrawLine(blackPenLine, point1, point2);
+
+
+            //重复打印
+            //标题
+            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(300, y));
+            //单据编号
+            e.Graphics.DrawString("单据编号：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 525, y + 50);
+            e.Graphics.DrawString(lbl_vouchNoValue.Text, new Font("Arial", 8, FontStyle.Bold), Brushes.Black, new Point(600, y + 50));
+
+
+            //单据联次
+            Rectangle rectangleCopy2 = new Rectangle(720, y + 135, 20, 100);
+            e.Graphics.DrawString("第二联：结算联", new Font(DefaultFont, FontStyle.Bold), Brushes.Black, rectangleCopy2, stringFormat);
+
+            //更新纵坐标
+            y = y + 10;
+            
+                                              
+            
+            for (int i = 0; i < head.Count(); i++)
+            {
+
+
+                //使用事件数据类PrintPageEventArgs中Graphics属性获取打印数据
+
+                //打印表头
+
+                Rectangle rectangleHead = new Rectangle(100, y + 70 + i * 30, 100, 30);
+
+
+                e.Graphics.DrawRectangle(blackpenContent, rectangleHead);
+                e.Graphics.DrawString(head[i], new Font(DefaultFont, FontStyle.Bold), Brushes.Black, rectangleHead, stringFormat);
+
+                //打印内容
+                Rectangle rectangleContent = new Rectangle(200, y + 70 + i * 30, 500, 30);
+                e.Graphics.DrawRectangle(blackpenContent, rectangleContent);
+                e.Graphics.DrawString(content[i], DefaultFont, Brushes.Black, rectangleContent, stringFormat);
+
 
 
             }
-            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new PointF(200.0F, 15.0F));
-            PointF point1 = new PointF(100.0F, 50.0F);
-            PointF point2 = new PointF(500.0F, 50.0F);
 
-            // Draw line to screen.
-            e.Graphics.DrawLine(blackPen, point1, point2);
+            y = y + 70 + head.Count() * 30;
+
+            //打印签名
+            e.Graphics.DrawString("监磅人：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 120, y + 30);
+            e.Graphics.DrawString("经办人：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 120, y + 60);
+            e.Graphics.DrawString("预付款余额：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 520, y + 30);
+            e.Graphics.DrawString("销售单位盖章：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 520, y + 60);
 
 
-            float x1 = 100.0F;
-            float y1 = 100.0F;
-            float x2 = 500.0F;
-            float y2 = 100.0F;
 
-            // Draw line to screen.
-            e.Graphics.DrawLine(blackPen, x1, y1, x2, y2);
-            e.Graphics.DrawString(txt_grossWeight.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c+40);
-            r+=300    ; c += 40;
-            e.Graphics.DrawString(txt_money.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
-            r += 300; c += 40;
-            e.Graphics.DrawString(txt_coefficient.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
-            r += 300; c += 40;
-            e.Graphics.DrawString(cmb_custName.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
-            r += 300; c += 40;
-            e.Graphics.DrawString(cmb_scrapName.Text, new Font("宋体", 10, FontStyle.Regular), Brushes.Black, r, c);
-            r += 300;
-            r = 40;// 每读取一行完毕，X坐标回到原处
-            c += 20;//每读取一行完毕，Y坐标下移20后再写第二行数据
 
-          
 
-            // Draw rectangles to screen.
 
-          
 
-            
+
+
+
+
+
+
+
         }
+
+        //private void DemonstrateRegionData2(PaintEventArgs e)
+        //{
+
+        //    //Create a simple region.
+        //    Region region1 = new Region(new Rectangle(10, 10, 100, 100));
+
+        //    // Extract the region data.
+        //    System.Drawing.Drawing2D.RegionData region1Data = region1.GetRegionData();
+        //    byte[] data1;
+        //    data1 = region1Data.Data;
+
+        //    // Create a second region.
+        //    Region region2 = new Region();
+
+        //    // Get the region data for the second region.
+        //    System.Drawing.Drawing2D.RegionData region2Data = region2.GetRegionData();
+
+        //    // Set the Data property for the second region to the Data from the first region.
+        //    region2Data.Data = data1;
+
+        //    // Construct a third region using the modified RegionData of the second region.
+        //    Region region3 = new Region(region2Data);
+
+        //    // Dispose of the first and second regions.
+        //    region1.Dispose();
+        //    region2.Dispose();
+
+        //    // Call ExcludeClip passing in the third region.
+        //    e.Graphics.ExcludeClip(region3);
+
+        //    // Fill in the client rectangle.
+        //    e.Graphics.FillRectangle(Brushes.Red, this.ClientRectangle);
+
+        //    region3.Dispose();
+        //}
 
         #endregion
 
@@ -476,17 +588,24 @@ namespace ScrapSettlement
 
                             where q.vocherNO == rtxt_voucherNO.Text
 
-                            select new { q.WeighingDate, q.vocherNO, c.CusCode, c.CusName, s.ScrapID, s.ScrapName, q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight, q.settleAmount };
+                            select new { q.WeighingDate, q.vocherNO, c.CusCode, c.CusName, s.ScrapID,
+                                s.ScrapName,p.Code,p.Name, q.VehicleBrand, q.proportion, q.webUnitPrice, q.settleUnitPrice,q.GrossWeght,q.Tare, q.netWeight, q.settleAmount };
                 foreach (var item in query)
                 {
+                    dtp_makeDate.Text = item.WeighingDate.ToString();
                     lbl_vouchNoValue.Text = item.vocherNO;
                     cmb_custName.SelectedValue = item.CusCode;
                     cmb_custName.Text = item.CusName;
 
                     cmb_scrapName.SelectedValue = item.ScrapID;
                     cmb_scrapName.Text = item.ScrapName;
+                    cmb_person.SelectedValue = item.Code;
+                    cmb_person.Text = item.Name;
+                    cmb_vehicleBrand.Text = item.VehicleBrand;
                     txt_coefficient.Text = item.proportion.ToString();
-                    txt_grossWeight.Text = item.netWeight.ToString();
+                    txt_grossWeight.Text = item.GrossWeght.ToString();
+                    txt_tare.Text = item.Tare.ToString();
+                    txt_netWeight.Text = item.netWeight.ToString();
                     txt_webUnitPrice.Text = item.webUnitPrice.ToString();
                     txt_settleUnitPrice.Text = item.settleUnitPrice.ToString();
                     //因为结算金额文本框定义了textChanged事件，所以定义查询时也触发该事件
@@ -495,6 +614,7 @@ namespace ScrapSettlement
                     txt_money.TextChanged -= this.txt_money_TextChanged;
                     // 
                     txt_money.Text = item.settleAmount.ToString();
+
 
                 }
             }
