@@ -31,6 +31,7 @@ namespace ScrapSettlement
         {
             tableLayoutPanel1.Enabled = false;
             tsb_modify.Enabled = false;
+            tsb_save.Enabled = false;
             pnl_query.Visible = false;
             
         }
@@ -98,7 +99,7 @@ namespace ScrapSettlement
                     income.MakeDte = dtp_make.Value;
                     income.Money = Convert.ToDouble(txt_money.Text);
                     income.VoucherNo = lbl_vouchNoValue.Text;
-                    income.IncomeDate = dtp_income.Value;
+                    income.IncomeDate = dtp_income.Value.Date;
 
                     try
                     {

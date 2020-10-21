@@ -78,6 +78,8 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.lbl_weighingTime = new System.Windows.Forms.Label();
+            this.txt_weighingTime = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.pnl_query.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -283,6 +285,8 @@
             this.tableLayoutPanel1.Controls.Add(this.txt_webUnitPrice, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.lbl_settleUnitPrice, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.txt_settleUnitPrice, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_weighingTime, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.txt_weighingTime, 3, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(190, 188);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
@@ -609,6 +613,26 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
+            // lbl_weighingTime
+            // 
+            this.lbl_weighingTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_weighingTime.AutoSize = true;
+            this.lbl_weighingTime.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_weighingTime.Location = new System.Drawing.Point(252, 206);
+            this.lbl_weighingTime.Name = "lbl_weighingTime";
+            this.lbl_weighingTime.Size = new System.Drawing.Size(59, 12);
+            this.lbl_weighingTime.TabIndex = 1;
+            this.lbl_weighingTime.Text = "过磅时间:";
+            // 
+            // txt_weighingTime
+            // 
+            this.txt_weighingTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_weighingTime.Location = new System.Drawing.Point(341, 201);
+            this.txt_weighingTime.Name = "txt_weighingTime";
+            this.txt_weighingTime.Size = new System.Drawing.Size(157, 21);
+            this.txt_weighingTime.TabIndex = 0;
+            this.txt_weighingTime.TextChanged += new System.EventHandler(this.txt_money_TextChanged);
+            // 
             // Frm_weighingSettltement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -685,6 +709,8 @@
         private System.Windows.Forms.TextBox txt_tare;
         private System.Windows.Forms.Label lbl_vechiclBrand;
         private System.Windows.Forms.ComboBox cmb_vehicleBrand;
+        private System.Windows.Forms.Label lbl_weighingTime;
+        private System.Windows.Forms.TextBox txt_weighingTime;
     }
 }
 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_incomeList));
             this.pnl_income = new System.Windows.Forms.Panel();
             this.flp_foot = new System.Windows.Forms.FlowLayoutPanel();
@@ -44,15 +44,16 @@
             this.dtp_incomeDateEnd = new System.Windows.Forms.DateTimePicker();
             this.cmb_custName = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.IncomeDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VoucherNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.money = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_customer = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
-            this.IncomeDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VoucherNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.money = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.pnl_income.SuspendLayout();
             this.flp_foot.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -212,14 +213,14 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IncomeDate,
@@ -235,6 +236,35 @@
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
+            // IncomeDate
+            // 
+            this.IncomeDate.DataPropertyName = "IncomeDate";
+            this.IncomeDate.HeaderText = "收款日期";
+            this.IncomeDate.Name = "IncomeDate";
+            this.IncomeDate.ReadOnly = true;
+            // 
+            // VoucherNo
+            // 
+            this.VoucherNo.DataPropertyName = "VoucherNo";
+            this.VoucherNo.HeaderText = "单据编号";
+            this.VoucherNo.Name = "VoucherNo";
+            this.VoucherNo.ReadOnly = true;
+            // 
+            // cusName
+            // 
+            this.cusName.DataPropertyName = "CusName";
+            this.cusName.FillWeight = 149.2386F;
+            this.cusName.HeaderText = "客户名称";
+            this.cusName.Name = "cusName";
+            this.cusName.ReadOnly = true;
+            // 
+            // money
+            // 
+            this.money.DataPropertyName = "money";
+            this.money.HeaderText = "金额";
+            this.money.Name = "money";
+            this.money.ReadOnly = true;
+            // 
             // lbl_customer
             // 
             this.lbl_customer.AutoSize = true;
@@ -249,6 +279,7 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_query,
+            this.tsb_delete,
             this.tsb_close,
             this.tsb_export});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -283,34 +314,15 @@
             this.tsb_export.Size = new System.Drawing.Size(52, 22);
             this.tsb_export.Text = "导出";
             // 
-            // IncomeDate
+            // tsb_delete
             // 
-            this.IncomeDate.DataPropertyName = "IncomeDate";
-            this.IncomeDate.HeaderText = "收款日期";
-            this.IncomeDate.Name = "IncomeDate";
-            this.IncomeDate.ReadOnly = true;
-            // 
-            // VoucherNo
-            // 
-            this.VoucherNo.DataPropertyName = "VoucherNo";
-            this.VoucherNo.HeaderText = "单据编号";
-            this.VoucherNo.Name = "VoucherNo";
-            this.VoucherNo.ReadOnly = true;
-            // 
-            // cusName
-            // 
-            this.cusName.DataPropertyName = "CusName";
-            this.cusName.FillWeight = 149.2386F;
-            this.cusName.HeaderText = "客户名称";
-            this.cusName.Name = "cusName";
-            this.cusName.ReadOnly = true;
-            // 
-            // money
-            // 
-            this.money.DataPropertyName = "money";
-            this.money.HeaderText = "金额";
-            this.money.Name = "money";
-            this.money.ReadOnly = true;
+            this.tsb_delete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_delete.Image = global::scrapSettlement.Properties.Resources.delete_row;
+            this.tsb_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_delete.Name = "tsb_delete";
+            this.tsb_delete.Size = new System.Drawing.Size(23, 22);
+            this.tsb_delete.Text = "删除";
+            this.tsb_delete.Click += new System.EventHandler(this.tsb_delete_Click);
             // 
             // Frm_incomeList
             // 
@@ -322,6 +334,7 @@
             this.KeyPreview = true;
             this.Name = "Frm_incomeList";
             this.Text = "收款单列表";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Frm_incomeList_KeyDown);
             this.pnl_income.ResumeLayout(false);
             this.pnl_income.PerformLayout();
             this.flp_foot.ResumeLayout(false);
@@ -362,5 +375,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn VoucherNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
         private System.Windows.Forms.DataGridViewTextBoxColumn money;
+        private System.Windows.Forms.ToolStripButton tsb_delete;
     }
 }

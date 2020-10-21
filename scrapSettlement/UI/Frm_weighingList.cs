@@ -43,6 +43,7 @@ namespace ScrapSettlement.UI
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
 
             this.dataGridView1.AutoGenerateColumns = false;
+            tsb_delete.Enabled = false;
 
 
 
@@ -66,7 +67,7 @@ namespace ScrapSettlement.UI
             dtp_incomeDateStart.Value = DateTime.Now.AddDays(-DateTime.Now.Day + 1);
         }
 
-
+        #region 查询功能
         /// <summary>
         /// 查询称重单列表
         /// </summary>
@@ -102,23 +103,11 @@ namespace ScrapSettlement.UI
                 }
 
             }
+            if (dataGridView1.RowCount > 0)
+            {
+                tsb_delete.Enabled = true;
+            }
 
-
-        }
-
-        private void closeParent(object seder, FormClosedEventArgs eventArgs)
-        {
-            this.Parent.Dispose();
-        }
-
-        private void Tsb_close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Btn_query_Click(object sender, EventArgs e)
-        {
-            tsb_query.PerformClick();
         }
 
         /// <summary>
@@ -148,7 +137,50 @@ namespace ScrapSettlement.UI
             }
         }
 
-     
+        /// <summary>
+        /// 查询框快捷按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_query_Click(object sender, EventArgs e)
+        {
+            tsb_query.PerformClick();
+        }
+        #endregion
+
+
+
+        private void closeParent(object seder, FormClosedEventArgs eventArgs)
+        {
+            this.Parent.Dispose();
+        }
+
+        private void Tsb_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+        #region 快捷键
+
+
+        /// <summary>
+        /// 删除功能快捷键
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Frm_weighingList_KeyDown(object sender, KeyEventArgs e)
+        {
+          
+            if (e.KeyCode == Keys.Delete)
+            {
+                tsb_delete.PerformClick();
+            }
+
+        }
+        #endregion
+
+
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             Font font = new Font("宋体", 12);
@@ -165,16 +197,62 @@ namespace ScrapSettlement.UI
         //否则不能实现打印。
         private void tsb_print_Click(object sender, EventArgs e)
         {
-            
+
             this.printPreviewDialog1.ShowDialog();
         }
-    }
-    #region 打印
+
+        private void tsb_delete_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                var selected = dataGridView1.SelectedRows[0].Cells[1].Value;
+                if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+
+                    ScrapSettleContext db = new ScrapSettleContext();
+
+                    List<WeighingSettlement> del = (from d in db.WeighingSettlement
+                                                    where d.vocherNO == selected.ToString()
+                                                    select d).ToList<WeighingSettlement>();
+                    //移除数据库的数据
+                    db.WeighingSettlement.Remove(del[0]);
+                    db.SaveChanges();
+                    tsb_query.PerformClick();
+
+
+                }
+            }
+
+            return;
+
+        }
+
+        private void dataGridView1_CellContentDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex > -1)
+            {
+
+                var voucherNo = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Frm_weighingSettltement f = new Frm_weighingSettltement();
+                string tabPageText = f.Text;
+                Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
+                //使用母窗体的属性信息，实现动态创建插入页签式窗体
+
+                embedForm.openForm(f, tabPageText, (TabControl)this.Parent.Parent.Parent.Controls["tabControl1"], (Panel)this.TopLevelControl.Controls["panel1"]);
+
+
+                f.tsb_query.PerformClick();
+                f.rtxt_voucherNO.Text = voucherNo;
+                f.btn_query.PerformClick();
+            }
+        }
+        #region 打印
 
 
 
 
-    class PrintDataGridView
+        class PrintDataGridView
 
         {
             private static List<DataGridViewCellPrint> CellPrintList = new List<DataGridViewCellPrint>();
@@ -661,38 +739,40 @@ namespace ScrapSettlement.UI
 
         }
 
-          
-            
 
-   // 至此 运行程序点打印就可以出现打印预览
+
+
+        // 至此 运行程序点打印就可以出现打印预览
 
 
         #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

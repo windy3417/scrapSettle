@@ -12,6 +12,9 @@ using System.Drawing.Drawing2D;
 using ScrapSettlement.DAL;
 using System.Drawing.Printing;
 using ScrapSettlement.Common;
+using ScrapSettlement.Properties;
+using scrapSettlement.Properties;
+
 namespace ScrapSettlement
 {
     public partial class Frm_weighingSettltement : Form
@@ -64,6 +67,9 @@ namespace ScrapSettlement
         /// </summary>
         private void initalizeControlState()
         {
+            tsb_save.Enabled = false;
+            tsb_previewPrint.Enabled = false;
+            tsb_print.Enabled = false;
             pnl_query.Visible = false;
             this.tableLayoutPanel1.Enabled = false;
             txt_money.Enabled = false;
@@ -82,7 +88,7 @@ namespace ScrapSettlement
 
 
 
-        #region 单据增删改
+        #region 单据增删改查
 
         /// <summary>
         /// 新增单据
@@ -91,14 +97,21 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void Tsb_new_Click(object sender, EventArgs e)
         {
-            this.tableLayoutPanel1.Enabled = true;
+            //设定控件状态
+            tableLayoutPanel1.Enabled = true;
             pnl_query.Visible = false;
             tsb_save.Enabled = true;
+            tsb_query.Enabled = false;
+            tsb_print.Enabled = false;
+            tsb_previewPrint.Enabled = false;
+            //清空已填制的数据
             txt_webUnitPrice.Text = "";
             txt_grossWeight.Text = "";
             txt_settleUnitPrice.Text = "";
             txt_money.Text = "";
             txt_tare.Text = "";
+            dtp_makeDate.Value = DateTime.Now;
+            txt_weighingTime.Text = DateTime.Now.ToLongTimeString();
             this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMddHHmmss");
             initializeDatasource();
 
@@ -120,6 +133,7 @@ namespace ScrapSettlement
                 //而查询条年是>=当日与<=当时，其查询结果则会为无匹配数据
                 //故只按日期存储
                 w.WeighingDate = dtp_makeDate.Value.Date;
+                w.WeightingTime = dtp_makeDate.Value.ToLongTimeString();
                 w.CustmerCode = cmb_custName.SelectedValue.ToString();
                 w.GrossWeght = Convert.ToDouble(txt_grossWeight.Text);
                     w.Tare = Convert.ToDouble(txt_tare.Text);
@@ -138,6 +152,8 @@ namespace ScrapSettlement
                 {
                     db.SaveChanges();
                     tsb_save.Enabled = false;
+                    tsb_print.Enabled = true;
+                    tsb_previewPrint.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -164,6 +180,8 @@ namespace ScrapSettlement
                 //赋值时注意对类型q进行转换， 不能直接写成rtxt_voucherNO.Text = q
                 rtxt_voucherNO.Text = q.FirstOrDefault().vocherNO;
                 btn_query.PerformClick();
+                tsb_previewPrint.Enabled = true;
+                tsb_print.Enabled = true;
             }
 
 
@@ -310,7 +328,7 @@ namespace ScrapSettlement
         private void balance()
         {
 
-            if (cmb_custName.Text != "")
+            if (cmb_custName.SelectedValue != null & cmb_custName.Text!="" )
             {
 
                 var incomeMoney = new IncomeService().incomes().Where(w => w.CustormerID.ToString() == cmb_custName.SelectedValue.ToString()).Sum(i => i.Money);
@@ -385,8 +403,12 @@ namespace ScrapSettlement
             stringFormat.Alignment = StringAlignment.Center;
             stringFormat.LineAlignment = StringAlignment.Center;
 
+            //logo
+            e.Graphics.DrawImage(Resources.logo, new Rectangle(100,y,150,40));
+
+
             //标题
-            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(300, y));
+            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(330, y));
             //单据编号
             e.Graphics.DrawString("单据编号：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 525, y + 50);
             e.Graphics.DrawString(lbl_vouchNoValue.Text, new Font("Arial", 8, FontStyle.Bold), Brushes.Black, new Point(600, y+50));
@@ -403,9 +425,10 @@ namespace ScrapSettlement
                                   
 
             //待打印数据集
-            String[] head= new string[7] { "过磅日期", "时间", "客户名称", "车牌号码", "毛重(KG)", "皮重(GK)", "净重(KG)" };
-            string[] content = new string[7] {  dtp_makeDate.Value.Date.ToString("yyyy-MM-dd"),dtp_makeDate.Value.ToLongTimeString(), 
-                                                cmb_custName.Text, cmb_vehicleBrand.Text, txt_grossWeight.Text, txt_tare.Text, txt_netWeight.Text };
+            String[] head= new string[8] { "过磅日期", "时间", "客户名称", "车牌号码","货物名称", "毛重(KG)", "皮重(KG)", "净重(KG)" };
+            string[] content = new string[8] {  dtp_makeDate.Value.Date.ToString("yyyy-MM-dd"),txt_weighingTime.Text, 
+                                                cmb_custName.Text, cmb_vehicleBrand.Text,cmb_scrapName.Text, txt_grossWeight.Text, txt_tare.Text,
+                                                txt_netWeight.Text };
 
                         
             for (int i = 0; i < head.Count(); i++)
@@ -452,8 +475,10 @@ namespace ScrapSettlement
 
 
             //重复打印
+            //logo
+            e.Graphics.DrawImage(Resources.logo, new Rectangle(100, y, 150, 40));
             //标题
-            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(300, y));
+            e.Graphics.DrawString(lbl_titel.Text, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(330, y));
             //单据编号
             e.Graphics.DrawString("单据编号：", new Font("宋体", 10, FontStyle.Regular), Brushes.Black, 525, y + 50);
             e.Graphics.DrawString(lbl_vouchNoValue.Text, new Font("Arial", 8, FontStyle.Bold), Brushes.Black, new Point(600, y + 50));
@@ -588,11 +613,13 @@ namespace ScrapSettlement
 
                             where q.vocherNO == rtxt_voucherNO.Text
 
-                            select new { q.WeighingDate, q.vocherNO, c.CusCode, c.CusName, s.ScrapID,
-                                s.ScrapName,p.Code,p.Name, q.VehicleBrand, q.proportion, q.webUnitPrice, q.settleUnitPrice,q.GrossWeght,q.Tare, q.netWeight, q.settleAmount };
+                            select new { q.WeighingDate, q.WeightingTime, q.vocherNO, c.CusCode, c.CusName, s.ScrapID,
+                                s.ScrapName,p.Code,p.Name, q.VehicleBrand, q.proportion, q.webUnitPrice,
+                                q.settleUnitPrice,q.GrossWeght,q.Tare, q.netWeight, q.settleAmount };
                 foreach (var item in query)
                 {
                     dtp_makeDate.Text = item.WeighingDate.ToString();
+                    txt_weighingTime.Text = item.WeightingTime;
                     lbl_vouchNoValue.Text = item.vocherNO;
                     cmb_custName.SelectedValue = item.CusCode;
                     cmb_custName.Text = item.CusName;

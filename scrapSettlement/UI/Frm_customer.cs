@@ -496,7 +496,7 @@ namespace ScrapSettlement.UI
         }
 
         /// <summary>
-        /// 快捷键
+        /// 删除功能快捷键
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

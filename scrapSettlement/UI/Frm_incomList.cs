@@ -56,8 +56,9 @@ namespace ScrapSettlement.UI
             cmb_custName.ValueMember = "CusCode";
 
             dtp_incomeDateStart.Value = DateTime.Now.AddDays(-DateTime.Now.Day+1);
-        } 
-        
+        }
+
+        #region 查询
         /// <summary>
         /// 查询收款单列表
         /// </summary>
@@ -68,20 +69,20 @@ namespace ScrapSettlement.UI
 
             using (var db = new ScrapSettleContext())
             {
-                                               
+
                 try
                 {
                     var query = from q in db.Incomes
                                 join c in db.Customers
                                 on q.CustormerID equals c.CusCode
-                                where q.IncomeDate>=dtp_incomeDateStart.Value.Date 
-                                where q.IncomeDate<=dtp_incomeDateEnd.Value.Date
+                                where q.IncomeDate >= dtp_incomeDateStart.Value.Date
+                                where q.IncomeDate <= dtp_incomeDateEnd.Value.Date
                                 where q.CustormerID.ToString() == cmb_custName.SelectedValue.ToString()
-                             
-                                select new { c.CusName, q.IncomeDate, q.VoucherNo,  q.Money };
+
+                                select new { c.CusName, q.IncomeDate, q.VoucherNo, q.Money };
                     dataGridView1.DataSource = query.ToList();
                     //处理数据为空示和时的数据转换错误，可先转成泛型再求和
-                    lbl_money.Text = query.ToList().Sum(s =>s.Money).ToString();
+                    lbl_money.Text = query.ToList().Sum(s => s.Money).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -94,6 +95,52 @@ namespace ScrapSettlement.UI
 
 
         }
+
+        /// <summary>
+        /// 双击表格行穿透查询到单据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex > -1)
+            {
+
+                var voucherNo = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Frm_income frm_income = new Frm_income();
+                string tabPageText = frm_income.Text;
+                Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
+                //使用母窗体的属性信息，实现动态创建插入页签式窗体
+                embedForm.openForm(frm_income, tabPageText, (TabControl)this.Parent.Parent.Parent.Controls["tabControl1"], (Panel)this.TopLevelControl.Controls["panel1"]);
+                ToolStrip t = (ToolStrip)frm_income.Controls["ts_income"];
+
+                frm_income.tsb_query.PerformClick();
+                frm_income.rtxt_voucherNO.Text = voucherNo;
+                frm_income.btn_query.PerformClick();
+
+            }
+        }
+
+        #endregion
+
+        #region 快捷键
+
+        /// <summary>
+        /// 删除功能快捷键
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Frm_incomeList_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                tsb_delete.PerformClick();
+            }
+
+        }
+        #endregion
 
         private void closeParent(object seder, FormClosedEventArgs eventArgs)
         {
@@ -110,30 +157,31 @@ namespace ScrapSettlement.UI
             tsb_query.PerformClick();
         }
 
-        /// <summary>
-        /// 双击表格行穿透查询到单据
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-            if (e.RowIndex > -1)
-            {
-                
-                var voucherNo = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                Frm_income frm_income = new Frm_income();
-                string tabPageText = frm_income.Text;
-                Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
-                //使用母窗体的属性信息，实现动态创建插入页签式窗体
-                embedForm.openForm(frm_income, tabPageText, (TabControl)this.Parent.Parent.Parent.Controls["tabControl1"], (Panel)this.TopLevelControl.Controls["panel1"]);
-                ToolStrip t = (ToolStrip)frm_income.Controls["ts_income"];
-            
-                frm_income.tsb_query.PerformClick();
-                frm_income.rtxt_voucherNO.Text = voucherNo;
-                frm_income.btn_query.PerformClick();
+       
 
+        private void tsb_delete_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                var selected = dataGridView1.SelectedRows[0].Cells[1].Value;
+                if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+
+                    ScrapSettleContext db = new ScrapSettleContext();
+
+                    List<Income> del = (from d in db.Incomes
+                                                    where d.VoucherNo == selected.ToString()
+                                                    select d).ToList<Income>();
+                    //移除数据库的数据
+                    db.Incomes.Remove(del[0]);
+                    db.SaveChanges();
+                    tsb_query.PerformClick();
+
+
+                }
             }
+
+            return;
         }
     }
 
