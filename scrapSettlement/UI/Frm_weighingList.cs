@@ -742,37 +742,42 @@ namespace ScrapSettlement.UI
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // 至此 运行程序点打印就可以出现打印预览
 
 
         #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void tsb_export_Click(object sender, EventArgs e)
+        {
+            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+            exportExcel.ExportExcelWithNPOI(dataGridView1, "过磅结算单列表");
+        }
     }
 }

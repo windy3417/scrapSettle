@@ -334,9 +334,9 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_query,
             this.tsb_delete,
-            this.tsb_close,
             this.tsb_export,
-            this.tsb_print});
+            this.tsb_print,
+            this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(995, 25);
@@ -378,6 +378,7 @@
             this.tsb_export.Name = "tsb_export";
             this.tsb_export.Size = new System.Drawing.Size(52, 22);
             this.tsb_export.Text = "导出";
+            this.tsb_export.Click += new System.EventHandler(this.tsb_export_Click);
             // 
             // tsb_print
             // 

@@ -85,7 +85,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Utinity\bin\Debug\Utility.dll</HintPath>
+      <HintPath>..\..\Utility\bin\Debug\Utility.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

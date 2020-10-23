@@ -183,6 +183,12 @@ namespace ScrapSettlement.UI
 
             return;
         }
+
+        private void tsb_export_Click(object sender, EventArgs e)
+        {
+            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+            exportExcel.ExportExcelWithNPOI(dataGridView1, "收款列表");
+        }
     }
 
 

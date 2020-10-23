@@ -385,8 +385,8 @@ namespace ScrapSettlement
 
         private void Tsb_print_Click(object sender, EventArgs e)
         {
-
-            this.printPreviewDialog1.Show();
+            printDialog1.ShowDialog();
+            
         }
 
         /// <summary>

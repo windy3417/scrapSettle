@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_incomeList));
             this.pnl_income = new System.Windows.Forms.Panel();
             this.flp_foot = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,9 +51,9 @@
             this.lbl_customer = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
+            this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
-            this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.pnl_income.SuspendLayout();
             this.flp_foot.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -213,14 +213,14 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IncomeDate,
@@ -280,8 +280,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_query,
             this.tsb_delete,
-            this.tsb_close,
-            this.tsb_export});
+            this.tsb_export,
+            this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -296,6 +296,16 @@
             this.tsb_query.Size = new System.Drawing.Size(52, 22);
             this.tsb_query.Text = "查询";
             this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
+            // 
+            // tsb_delete
+            // 
+            this.tsb_delete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_delete.Image = global::scrapSettlement.Properties.Resources.delete_row;
+            this.tsb_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_delete.Name = "tsb_delete";
+            this.tsb_delete.Size = new System.Drawing.Size(23, 22);
+            this.tsb_delete.Text = "删除";
+            this.tsb_delete.Click += new System.EventHandler(this.tsb_delete_Click);
             // 
             // tsb_close
             // 
@@ -313,16 +323,7 @@
             this.tsb_export.Name = "tsb_export";
             this.tsb_export.Size = new System.Drawing.Size(52, 22);
             this.tsb_export.Text = "导出";
-            // 
-            // tsb_delete
-            // 
-            this.tsb_delete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb_delete.Image = global::scrapSettlement.Properties.Resources.delete_row;
-            this.tsb_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_delete.Name = "tsb_delete";
-            this.tsb_delete.Size = new System.Drawing.Size(23, 22);
-            this.tsb_delete.Text = "删除";
-            this.tsb_delete.Click += new System.EventHandler(this.tsb_delete_Click);
+            this.tsb_export.Click += new System.EventHandler(this.tsb_export_Click);
             // 
             // Frm_incomeList
             // 
