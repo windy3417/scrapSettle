@@ -137,7 +137,7 @@ namespace ScrapSettlement
                 w.CustmerCode = cmb_custName.SelectedValue.ToString();
                 w.GrossWeght = Convert.ToDouble(txt_grossWeight.Text);
                     w.Tare = Convert.ToDouble(txt_tare.Text);
-                w.netWeight = Convert.ToDouble(txt_grossWeight.Text);
+                w.netWeight = Convert.ToDouble(txt_netWeight.Text);
                 w.VehicleBrand = cmb_vehicleBrand.Text;
                 w.personCode = cmb_person.SelectedValue.ToString();
                 w.proportion = Convert.ToDouble(txt_coefficient.Text);
@@ -385,8 +385,19 @@ namespace ScrapSettlement
 
         private void Tsb_print_Click(object sender, EventArgs e)
         {
-            printDialog1.ShowDialog();
+            printDialog1.Document = printDocument1;
+            printDialog1.AllowSomePages = true;
             
+            DialogResult result = printDialog1.ShowDialog();
+
+            // If the result is OK then print the document.
+            //打印预览时只要printPreviewDialog1.Document = printDocument1关联后就可的打印
+            //直接打印则需要调用PrintDocumnt.Print()方可打印，否按在对话框中点【打印】但不会有反应
+            if (result == DialogResult.OK)
+            {
+                printDocument1.Print();
+            }
+
         }
 
         /// <summary>
@@ -539,41 +550,7 @@ namespace ScrapSettlement
 
         }
 
-        //private void DemonstrateRegionData2(PaintEventArgs e)
-        //{
-
-        //    //Create a simple region.
-        //    Region region1 = new Region(new Rectangle(10, 10, 100, 100));
-
-        //    // Extract the region data.
-        //    System.Drawing.Drawing2D.RegionData region1Data = region1.GetRegionData();
-        //    byte[] data1;
-        //    data1 = region1Data.Data;
-
-        //    // Create a second region.
-        //    Region region2 = new Region();
-
-        //    // Get the region data for the second region.
-        //    System.Drawing.Drawing2D.RegionData region2Data = region2.GetRegionData();
-
-        //    // Set the Data property for the second region to the Data from the first region.
-        //    region2Data.Data = data1;
-
-        //    // Construct a third region using the modified RegionData of the second region.
-        //    Region region3 = new Region(region2Data);
-
-        //    // Dispose of the first and second regions.
-        //    region1.Dispose();
-        //    region2.Dispose();
-
-        //    // Call ExcludeClip passing in the third region.
-        //    e.Graphics.ExcludeClip(region3);
-
-        //    // Fill in the client rectangle.
-        //    e.Graphics.FillRectangle(Brushes.Red, this.ClientRectangle);
-
-        //    region3.Dispose();
-        //}
+        
 
         #endregion
 

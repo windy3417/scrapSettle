@@ -703,6 +703,8 @@
         public System.Windows.Forms.Button btn_query;
         public System.Windows.Forms.RichTextBox rtxt_voucherNO;
         public System.Windows.Forms.ToolStripButton tsb_query;
+
+
         private System.Windows.Forms.Label lbl_netWeight;
         private System.Windows.Forms.TextBox txt_netWeight;
         private System.Windows.Forms.Label lbl_tare;
