@@ -68,18 +68,21 @@
             this.txt_webUnitPrice = new System.Windows.Forms.TextBox();
             this.lbl_settleUnitPrice = new System.Windows.Forms.Label();
             this.txt_settleUnitPrice = new System.Windows.Forms.TextBox();
+            this.lbl_weighingTime = new System.Windows.Forms.Label();
+            this.txt_weighingTime = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_new = new System.Windows.Forms.ToolStripButton();
             this.tsb_save = new System.Windows.Forms.ToolStripButton();
+            this.tsb_abandon = new System.Windows.Forms.ToolStripButton();
+            this.tsb_modify = new System.Windows.Forms.ToolStripButton();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_previewPrint = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
+            this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.lbl_weighingTime = new System.Windows.Forms.Label();
-            this.txt_weighingTime = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.pnl_query.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -524,14 +527,37 @@
             this.txt_settleUnitPrice.Size = new System.Drawing.Size(157, 21);
             this.txt_settleUnitPrice.TabIndex = 6;
             // 
+            // lbl_weighingTime
+            // 
+            this.lbl_weighingTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_weighingTime.AutoSize = true;
+            this.lbl_weighingTime.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_weighingTime.Location = new System.Drawing.Point(252, 206);
+            this.lbl_weighingTime.Name = "lbl_weighingTime";
+            this.lbl_weighingTime.Size = new System.Drawing.Size(59, 12);
+            this.lbl_weighingTime.TabIndex = 1;
+            this.lbl_weighingTime.Text = "过磅时间:";
+            // 
+            // txt_weighingTime
+            // 
+            this.txt_weighingTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_weighingTime.Location = new System.Drawing.Point(341, 201);
+            this.txt_weighingTime.Name = "txt_weighingTime";
+            this.txt_weighingTime.Size = new System.Drawing.Size(157, 21);
+            this.txt_weighingTime.TabIndex = 0;
+            this.txt_weighingTime.TextChanged += new System.EventHandler(this.txt_money_TextChanged);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_new,
             this.tsb_save,
+            this.tsb_abandon,
+            this.tsb_modify,
             this.tsb_query,
             this.tsb_previewPrint,
             this.tsb_print,
+            this.tsb_delete,
             this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -558,6 +584,23 @@
             this.tsb_save.Size = new System.Drawing.Size(23, 22);
             this.tsb_save.Text = "保存";
             this.tsb_save.Click += new System.EventHandler(this.tsb_save_Click);
+            // 
+            // tsb_abandon
+            // 
+            this.tsb_abandon.Image = ((System.Drawing.Image)(resources.GetObject("tsb_abandon.Image")));
+            this.tsb_abandon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_abandon.Name = "tsb_abandon";
+            this.tsb_abandon.Size = new System.Drawing.Size(52, 22);
+            this.tsb_abandon.Text = "放弃";
+            // 
+            // tsb_modify
+            // 
+            this.tsb_modify.Image = ((System.Drawing.Image)(resources.GetObject("tsb_modify.Image")));
+            this.tsb_modify.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_modify.Name = "tsb_modify";
+            this.tsb_modify.Size = new System.Drawing.Size(52, 22);
+            this.tsb_modify.Text = "修改";
+            this.tsb_modify.Click += new System.EventHandler(this.tsb_modify_Click);
             // 
             // tsb_query
             // 
@@ -588,12 +631,21 @@
             // 
             // tsb_close
             // 
-            this.tsb_close.Image = ((System.Drawing.Image)(resources.GetObject("tsb_close.Image")));
+            this.tsb_close.Image = global::scrapSettlement.Properties.Resources.exit;
             this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_close.Name = "tsb_close";
             this.tsb_close.Size = new System.Drawing.Size(52, 22);
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
+            // 
+            // tsb_delete
+            // 
+            this.tsb_delete.Image = ((System.Drawing.Image)(resources.GetObject("tsb_delete.Image")));
+            this.tsb_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_delete.Name = "tsb_delete";
+            this.tsb_delete.Size = new System.Drawing.Size(52, 22);
+            this.tsb_delete.Text = "删除";
+            this.tsb_delete.Click += new System.EventHandler(this.tsb_delete_Click);
             // 
             // printPreviewDialog1
             // 
@@ -612,26 +664,6 @@
             // printDocument1
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
-            // lbl_weighingTime
-            // 
-            this.lbl_weighingTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbl_weighingTime.AutoSize = true;
-            this.lbl_weighingTime.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_weighingTime.Location = new System.Drawing.Point(252, 206);
-            this.lbl_weighingTime.Name = "lbl_weighingTime";
-            this.lbl_weighingTime.Size = new System.Drawing.Size(59, 12);
-            this.lbl_weighingTime.TabIndex = 1;
-            this.lbl_weighingTime.Text = "过磅时间:";
-            // 
-            // txt_weighingTime
-            // 
-            this.txt_weighingTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_weighingTime.Location = new System.Drawing.Point(341, 201);
-            this.txt_weighingTime.Name = "txt_weighingTime";
-            this.txt_weighingTime.Size = new System.Drawing.Size(157, 21);
-            this.txt_weighingTime.TabIndex = 0;
-            this.txt_weighingTime.TextChanged += new System.EventHandler(this.txt_money_TextChanged);
             // 
             // Frm_weighingSettltement
             // 
@@ -713,6 +745,9 @@
         private System.Windows.Forms.ComboBox cmb_vehicleBrand;
         private System.Windows.Forms.Label lbl_weighingTime;
         private System.Windows.Forms.TextBox txt_weighingTime;
+        private System.Windows.Forms.ToolStripButton tsb_modify;
+        private System.Windows.Forms.ToolStripButton tsb_abandon;
+        private System.Windows.Forms.ToolStripButton tsb_delete;
     }
 }
 

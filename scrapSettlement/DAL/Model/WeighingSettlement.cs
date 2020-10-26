@@ -22,7 +22,7 @@ namespace ScrapSettlement.DAL.Model
         public String VehicleBrand { get; set; }
         public double netWeight { get; set; }
         public double proportion { get; set; }
-        public double webUnitPrice { get; set; }
+        public double  webUnitPrice { get; set; }
         public double settleUnitPrice { get; set; }
         public double settleAmount { get; set; }
       

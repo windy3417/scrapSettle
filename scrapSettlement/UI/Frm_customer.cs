@@ -40,18 +40,18 @@ namespace ScrapSettlement.UI
 
         //修改与新增的dbContext标记,true为新增dbContext，false为修改dbContext
 
-        bool saveOrChangeFlag = true;
+        //bool saveOrChangeFlag = true;
         string saveOrModifQueryFlag;
         #endregion
 
 
         /// <summary>
-        /// 初始化控件
+        /// 初始化控件状态
         /// </summary>
         private void initialize()
         {
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
-
+            tsb_modify.Enabled = false;
             this.tsb_save.Enabled = false;
             this.tsb_modify.Enabled = false;
             this.tsb_delete.Enabled = false;
@@ -179,6 +179,89 @@ namespace ScrapSettlement.UI
         {
 
             saveOrChang();
+
+        }
+
+        /// <summary>
+        /// 数据保存与修改
+        /// </summary>
+        private void saveOrChang()
+        {
+
+            if (inputVlidate())
+            {
+                //新增后保存
+                if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.save.ToString())
+                {
+                    using (var db = new ScrapSettleContext())
+                    {
+
+                        Customer customer = new Customer();
+                        customer.CusCode = Convert.ToInt32(txt_cusCode.Text);
+                        customer.CusName = this.txt_cusName.Text;
+                        customer.EffectDate = Convert.ToDateTime(this.tbd_effect.Text);
+                        if (this.tbd_failure.Text != null & tbd_failure.Text != "")
+                        {
+                            customer.FailuerDate = Convert.ToDateTime(this.tbd_failure.Text);
+                        }
+
+
+                        db.Customers.Add(customer);
+                        try
+                        {
+                            db.SaveChanges();
+                        }
+                        catch (Exception e)
+                        {
+
+                            MessageBox.Show("数据保存错误:" + e.Message + e.InnerException, "数据保存提示");
+                            return;
+                        }
+
+                        customerList.Add(customer);
+                        //this.dataGridView1.DataSource = null;
+                        //this.dataGridView1.DataSource = customerList;
+                        //MessageBox.Show("数据保存成功", "保存提示");
+                        this.bind_gv_dateSource();
+
+                        //清空填制记录
+                        //this.txt_cusCode.Text = null;
+                        //this.txt_cusName.Text = null;
+                        clearDate();
+
+                        //再次调用新增事件
+
+                        this.tsb_add.PerformClick();
+                    }
+                }
+
+                //查询之后修改并保存
+                if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.query.ToString())
+                {
+                    using (var db = new ScrapSettleContext())
+                    {
+                        Customer customer = db.Customers.Where(c => c.CusCode.ToString() == txt_cusCode.Text).FirstOrDefault();
+
+                        customer.CusCode = System.Convert.ToInt32(txt_cusCode.Text);
+
+                        customer.CusName = this.txt_cusName.Text;
+
+                        customer.EffectDate = Convert.ToDateTime(this.tbd_effect.Text);
+                        if (this.tbd_failure.Text != null & this.tbd_failure.Text != "")
+                        {
+                            customer.FailuerDate = Convert.ToDateTime(this.tbd_failure.Text);
+                        }
+                        db.SaveChanges();
+                        this.bind_gv_dateSource();
+
+                        //清空修改记录
+                        clearDate();
+                    }
+                }
+            };
+
+
+
 
         }
 
@@ -359,88 +442,7 @@ namespace ScrapSettlement.UI
             }
         }
 
-        /// <summary>
-        /// 数据保存与修改
-        /// </summary>
-        private void saveOrChang()
-        {
-
-            if (inputVlidate())
-            {
-                //新增后保存
-                if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.save.ToString())
-                {
-                    using (var db = new ScrapSettleContext())
-                    {
-
-                        Customer customer = new Customer();
-                        customer.CusCode= Convert.ToInt32( txt_cusCode.Text);
-                        customer.CusName=this.txt_cusName.Text;
-                        customer.EffectDate= Convert.ToDateTime(this.tbd_effect.Text);
-                        if (this.tbd_failure.Text != null & tbd_failure.Text != "")
-                        {
-                            customer.FailuerDate= Convert.ToDateTime(this.tbd_failure.Text);
-                        }
-                      
-
-                        db.Customers.Add(customer);
-                        try
-                        {
-                            db.SaveChanges();
-                        }
-                        catch (Exception e)
-                        {
-
-                            MessageBox.Show("数据保存错误:" + e.Message+e.InnerException, "数据保存提示");
-                            return;
-                        }
-                        
-                        customerList.Add(customer);
-                        //this.dataGridView1.DataSource = null;
-                        //this.dataGridView1.DataSource = customerList;
-                        //MessageBox.Show("数据保存成功", "保存提示");
-                        this.bind_gv_dateSource();
-
-                        //清空填制记录
-                        //this.txt_cusCode.Text = null;
-                        //this.txt_cusName.Text = null;
-                        clearDate();
-
-                        //再次调用新增事件
-
-                        this.tsb_add.PerformClick();
-                    }
-                }
-
-                //查询之后修改并保存
-                if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.query.ToString())
-                {
-                    using (var db = new ScrapSettleContext())
-                    {
-                        Customer customer = db.Customers.Where(c => c.CusCode.ToString() ==txt_cusCode.Text).FirstOrDefault();
-
-                        customer.CusCode = System.Convert.ToInt32(txt_cusCode.Text); 
-                            
-                        customer.CusName = this.txt_cusName.Text;
-
-                        customer.EffectDate= Convert.ToDateTime(this.tbd_effect.Text);
-                        if (this.tbd_failure.Text != null & this.tbd_failure.Text != "")
-                        {
-                            customer.FailuerDate = Convert.ToDateTime(this.tbd_failure.Text);
-                        }
-                        db.SaveChanges();
-                        this.bind_gv_dateSource();
-
-                        //清空修改记录
-                        clearDate();
-                    }
-                }
-            };
-
-
-
-
-        }
+     
 
         /// <summary>
         /// 选择当前行数据进行处理

@@ -27,6 +27,24 @@ namespace ScrapSettlement
 
         }
 
+        #region 变量或枚举
+
+        //新增后保存与修改后保存枚举值
+        enum addOrChangeMolde
+        {
+            add,
+            change
+            
+        }
+
+        //新增修改标记
+
+        string addOrChangeFlag;
+
+        #endregion
+
+        #region 初始化操作
+
         /// <summary>
         /// 初始化控件数据源
         /// </summary>
@@ -41,6 +59,8 @@ namespace ScrapSettlement
 
             cmb_custName.DisplayMember = "CusName";
             cmb_custName.ValueMember = "CusCode";
+
+            string test = cmb_custName.SelectedValue.ToString();
 
 
             //初始化废料档案数据源
@@ -68,13 +88,20 @@ namespace ScrapSettlement
         private void initalizeControlState()
         {
             tsb_save.Enabled = false;
+            tsb_modify.Enabled = false;
+            tsb_delete.Enabled = false;
+            tsb_abandon.Enabled = false;
             tsb_previewPrint.Enabled = false;
             tsb_print.Enabled = false;
+
             pnl_query.Visible = false;
             this.tableLayoutPanel1.Enabled = false;
             txt_money.Enabled = false;
             txt_settleUnitPrice.Enabled = false;
         }
+        #endregion
+
+        #region 窗体操作
 
         private void Tsb_close_Click(object sender, EventArgs e)
         {
@@ -86,7 +113,23 @@ namespace ScrapSettlement
             this.Parent.Dispose();
         }
 
+        private void clearDate()
+        {
+            foreach (Control item in this.tableLayoutPanel1.Controls)
+            {
 
+                //if (item.Name.Substring(0, 3) != "lbl")
+                if (item.GetType() != typeof(Label))
+                {
+                    item.Text = "";
+                }
+
+
+
+            }
+        }
+
+        #endregion
 
         #region 单据增删改查
 
@@ -97,13 +140,29 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void Tsb_new_Click(object sender, EventArgs e)
         {
-            //设定控件状态
+            //设定控件与变量状态
             tableLayoutPanel1.Enabled = true;
             pnl_query.Visible = false;
             tsb_save.Enabled = true;
             tsb_query.Enabled = false;
             tsb_print.Enabled = false;
             tsb_previewPrint.Enabled = false;
+            tsb_modify.Enabled = false;
+            //调整单据修改时的控件状态
+            if (addOrChangeFlag==addOrChangeMolde.change.ToString())
+            {
+                dtp_makeDate.Enabled = true;
+                cmb_custName.Enabled = true;
+                cmb_scrapName.Enabled = true;
+                cmb_person.Enabled = true;
+                cmb_vehicleBrand.Enabled = true;
+                txt_grossWeight.Enabled = true;
+                txt_tare.Enabled = true;
+                txt_weighingTime.Enabled = true;
+                
+            }
+            addOrChangeFlag = addOrChangeMolde.add.ToString();
+
             //清空已填制的数据
             txt_webUnitPrice.Text = "";
             txt_grossWeight.Text = "";
@@ -113,6 +172,7 @@ namespace ScrapSettlement
             dtp_makeDate.Value = DateTime.Now;
             txt_weighingTime.Text = DateTime.Now.ToLongTimeString();
             this.lbl_vouchNoValue.Text = DateTime.Now.ToString("yyyyMMddHHmmss");
+
             initializeDatasource();
 
         }
@@ -124,44 +184,124 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void tsb_save_Click(object sender, EventArgs e)
         {
-            using (var db = new ScrapSettleContext())
+            if (addOrChangeFlag==addOrChangeMolde.add.ToString())
             {
-                WeighingSettlement w = new WeighingSettlement();
+                using (var db = new ScrapSettleContext())
+                {
+                    WeighingSettlement w = new WeighingSettlement();
+                    saveData(db, w);
+
+                }
+            }
+            if (addOrChangeFlag==addOrChangeMolde.change.ToString())
+            {
+                using (var db=new ScrapSettleContext())
+                {
+                    WeighingSettlement w = db.WeighingSettlement.Where(s => s.vocherNO == lbl_vouchNoValue.Text).FirstOrDefault();
+                    saveData(db, w);
+                }
+            }
+           
+        }
+
+        /// <summary>
+        /// 保存数据
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="w"></param>
+        private void saveData(ScrapSettleContext db, WeighingSettlement w)
+        {
+
+            //查询时的过滤条件是日期，所以存储值若含时间信息则条件值与存储值比较产生的
+            //结果非目标数据，如查询当时的数据，因为按日期存储时其默认的时间信息是0时0分0秒
+            //而查询条年是>=当日与<=当时，其查询结果则会为无匹配数据
+            //故只按日期存储
+            
+
+            //修改数据保存准备
+            if (addOrChangeFlag==addOrChangeMolde.change.ToString())
+            {
+                w.webUnitPrice = Convert.ToDouble(txt_webUnitPrice.Text);
+                w.settleUnitPrice = Convert.ToDouble(txt_settleUnitPrice.Text);
+                w.settleAmount = Convert.ToDouble(txt_money.Text);
+            }
+           
+            //新增数据保存准备
+            if (addOrChangeFlag==addOrChangeMolde.add.ToString())
+            {
+                
                 w.MakeDate = DateTime.Now;
-                //查询时的过滤条件是日期，所以存储值若含时间信息则条件值与存储值比较产生的
-                //结果非目标数据，如查询当时的数据，因为按日期存储时其默认的时间信息是0时0分0秒
-                //而查询条年是>=当日与<=当时，其查询结果则会为无匹配数据
-                //故只按日期存储
                 w.WeighingDate = dtp_makeDate.Value.Date;
                 w.WeightingTime = dtp_makeDate.Value.ToLongTimeString();
                 w.CustmerCode = cmb_custName.SelectedValue.ToString();
                 w.GrossWeght = Convert.ToDouble(txt_grossWeight.Text);
-                    w.Tare = Convert.ToDouble(txt_tare.Text);
+                w.Tare = Convert.ToDouble(txt_tare.Text);
                 w.netWeight = Convert.ToDouble(txt_netWeight.Text);
                 w.VehicleBrand = cmb_vehicleBrand.Text;
                 w.personCode = cmb_person.SelectedValue.ToString();
                 w.proportion = Convert.ToDouble(txt_coefficient.Text);
                 w.scrapCode = cmb_scrapName.SelectedValue.ToString();
                 w.vocherNO = lbl_vouchNoValue.Text;
-                w.webUnitPrice = Convert.ToDouble(txt_webUnitPrice.Text);
-                w.settleUnitPrice = Convert.ToDouble(txt_settleUnitPrice.Text);
-                w.settleAmount = Convert.ToDouble(txt_money.Text);
+                //考虑到价格信息由业务经办人填写，而非由过磅人填写，故可为空
+                //w.webUnitPrice = Convert.ToDouble(txt_webUnitPrice.Text);
+                //w.settleUnitPrice = Convert.ToDouble(txt_settleUnitPrice.Text);
+                //w.settleAmount = Convert.ToDouble(txt_money.Text);
+                w.webUnitPrice = txt_webUnitPrice.Text=="" ? 0 : Convert.ToDouble(txt_webUnitPrice.Text);
+                w.settleUnitPrice = txt_settleUnitPrice.Text=="" ? 0 : Convert.ToDouble(txt_settleUnitPrice.Text);
+                w.settleAmount = txt_money.Text=="" ? 0 : Convert.ToDouble(txt_money.Text);
                 db.WeighingSettlement.Add(w);
-
-                try
-                {
-                    db.SaveChanges();
-                    tsb_save.Enabled = false;
-                    tsb_print.Enabled = true;
-                    tsb_previewPrint.Enabled = true;
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message + ex.InnerException, "保存错误提示");
-                }
-
             }
+            
+                      
+            //数据保存
+            try
+            {
+                db.SaveChanges();
+                tsb_save.Enabled = false;
+                tsb_print.Enabled = true;
+                tsb_previewPrint.Enabled = true;
+                tableLayoutPanel1.Enabled = false;
+                if (addOrChangeFlag==addOrChangeMolde.change.ToString())
+                {
+                    tsb_new.Enabled = true;
+                    
+                }
+                if (addOrChangeFlag==addOrChangeMolde.add.ToString())
+                {
+                    tsb_modify.Enabled = true;
+                    tsb_delete.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message + ex.InnerException, "保存错误提示");
+            }
+        }
+
+        /// <summary>
+        /// 单据修改
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_modify_Click(object sender, EventArgs e)
+        {
+            
+            addOrChangeFlag = addOrChangeMolde.change.ToString();
+            tsb_new.Enabled = false;
+            tsb_save.Enabled = true;
+            tableLayoutPanel1.Enabled = true;
+            //限定可修改范围，只能修改价格信息
+            dtp_makeDate.Enabled = false;
+            cmb_custName.Enabled = false;
+            cmb_scrapName.Enabled = false;
+            cmb_person.Enabled = false;
+            cmb_vehicleBrand.Enabled = false;
+            txt_grossWeight.Enabled = false;
+            txt_tare.Enabled = false;
+            txt_weighingTime.Enabled = false;
+
+
         }
 
         /// <summary>
@@ -185,6 +325,132 @@ namespace ScrapSettlement
             }
 
 
+        }
+
+        /// <summary>
+        /// 一张单据查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_query_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Enabled = false;
+            lbl_balance.Text = "";
+            using (var db = new ScrapSettleContext())
+            {
+                var query = from q in db.WeighingSettlement
+                            join c in db.Customers
+                            on q.CustmerCode equals c.CusCode.ToString()
+                            join p in db.Peple on q.personCode equals p.Code.ToString()
+                            join s in db.Scraps on q.scrapCode equals s.ScrapCode.ToString()
+
+                            where q.vocherNO == rtxt_voucherNO.Text
+
+                            select new
+                            {
+                                q.WeighingDate,
+                                q.WeightingTime,
+                                q.vocherNO,
+                                c.CusCode,
+                                c.CusName,
+                                s.ScrapID,
+                                s.ScrapName,
+                                p.Code,
+                                p.Name,
+                                q.VehicleBrand,
+                                q.proportion,
+                                q.webUnitPrice,
+                                q.settleUnitPrice,
+                                q.GrossWeght,
+                                q.Tare,
+                                q.netWeight,
+                                q.settleAmount
+                            };
+                foreach (var item in query)
+                {
+                    lbl_vouchNoValue.Text = item.vocherNO;
+                    //如果查询有结果，则启用修改菜单与删除菜单
+                    if (lbl_vouchNoValue.Text!="" & lbl_vouchNoValue.Text!=null )
+                    {
+                        tsb_modify.Enabled = Enabled;
+                        tsb_delete.Enabled = Enabled;
+                    }
+                    
+                    dtp_makeDate.Text = item.WeighingDate.ToString();
+                    txt_weighingTime.Text = item.WeightingTime;
+
+                    //cmb_custName.SelectedValue = item.CusCode;
+                    cmb_custName.ValueMember = item.CusCode.ToString();
+                    cmb_custName.Text = item.CusName;
+
+                    cmb_scrapName.SelectedValue = item.ScrapID;
+                    cmb_scrapName.Text = item.ScrapName;
+                    cmb_person.SelectedValue = item.Code;
+                    cmb_person.Text = item.Name;
+                    cmb_vehicleBrand.Text = item.VehicleBrand;
+                    txt_coefficient.Text = item.proportion.ToString();
+                    txt_grossWeight.Text = item.GrossWeght.ToString();
+                    txt_tare.Text = item.Tare.ToString();
+                    txt_netWeight.Text = item.netWeight.ToString();
+                    txt_webUnitPrice.Text = item.webUnitPrice.ToString();
+                    txt_settleUnitPrice.Text = item.settleUnitPrice.ToString();
+                    //因为结算金额文本框定义了textChanged事件，所以定义查询时也触发该事件
+                    //而去计算余额，虽然禁止了tableLayoutPanel,但无法禁止该事件，所以需要对
+                    //事件委托解绑
+                    //txt_money.TextChanged -= this.txt_money_TextChanged;
+                    // 
+                    txt_money.Text = item.settleAmount.ToString();
+
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// 删除单据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_delete_Click(object sender, EventArgs e)
+        {
+            if (lbl_vouchNoValue.Text!="" & lbl_vouchNoValue.Text!=null)
+            {
+                if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    try
+                    {
+                        using (var db = new ScrapSettleContext())
+                        {
+                            var del = (from d in db.WeighingSettlement
+                                       where (d.vocherNO == lbl_vouchNoValue.Text)
+                                       select d).ToList(); ;
+                            //移除数据库的数据
+                            db.WeighingSettlement.Remove(del[0]);
+                            db.SaveChanges();
+                            clearDate();
+                            lbl_vouchNoValue.Text = "";
+                            dtp_makeDate.Text = "";
+                            rtxt_voucherNO.Text = "";
+                            tsb_delete.Enabled = false;
+                            tsb_modify.Enabled = false;
+                            
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("数据删除出错" + ex.Message + ex.InnerException, "数据删除提示");
+                    }
+                }
+                
+            }
+            
+     
+            
+            
+
+            
+            
         }
         #endregion
 
@@ -569,68 +835,22 @@ namespace ScrapSettlement
             }
         }
 
-        #endregion
-
-        /// <summary>
-        /// 一张单据查询
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_query_Click(object sender, EventArgs e)
-        {
-            tableLayoutPanel1.Enabled = false;
-            lbl_balance.Text = "";
-            using (var db = new ScrapSettleContext())
-            {
-                var query = from q in db.WeighingSettlement
-                            join c in db.Customers
-                            on q.CustmerCode equals c.CusCode.ToString()
-                            join p in db.Peple on q.personCode equals p.Code.ToString()
-                            join s in db.Scraps on q.scrapCode equals s.ScrapCode.ToString()
-
-                            where q.vocherNO == rtxt_voucherNO.Text
-
-                            select new { q.WeighingDate, q.WeightingTime, q.vocherNO, c.CusCode, c.CusName, s.ScrapID,
-                                s.ScrapName,p.Code,p.Name, q.VehicleBrand, q.proportion, q.webUnitPrice,
-                                q.settleUnitPrice,q.GrossWeght,q.Tare, q.netWeight, q.settleAmount };
-                foreach (var item in query)
-                {
-                    dtp_makeDate.Text = item.WeighingDate.ToString();
-                    txt_weighingTime.Text = item.WeightingTime;
-                    lbl_vouchNoValue.Text = item.vocherNO;
-                    cmb_custName.SelectedValue = item.CusCode;
-                    cmb_custName.Text = item.CusName;
-
-                    cmb_scrapName.SelectedValue = item.ScrapID;
-                    cmb_scrapName.Text = item.ScrapName;
-                    cmb_person.SelectedValue = item.Code;
-                    cmb_person.Text = item.Name;
-                    cmb_vehicleBrand.Text = item.VehicleBrand;
-                    txt_coefficient.Text = item.proportion.ToString();
-                    txt_grossWeight.Text = item.GrossWeght.ToString();
-                    txt_tare.Text = item.Tare.ToString();
-                    txt_netWeight.Text = item.netWeight.ToString();
-                    txt_webUnitPrice.Text = item.webUnitPrice.ToString();
-                    txt_settleUnitPrice.Text = item.settleUnitPrice.ToString();
-                    //因为结算金额文本框定义了textChanged事件，所以定义查询时也触发该事件
-                    //而去计算余额，虽然禁止了tableLayoutPanel,但无法禁止该事件，所以需要对
-                    //事件委托解绑
-                    txt_money.TextChanged -= this.txt_money_TextChanged;
-                    // 
-                    txt_money.Text = item.settleAmount.ToString();
-
-
-                }
-            }
-        }
 
         private void Frm_weighingSettltement_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode==Keys.S & e.Control)
+            if (e.KeyCode == Keys.S & e.Control)
             {
                 tsb_save.PerformClick();
             }
         }
+
+
+
+
+
+        #endregion
+
+       
     }
 }
 

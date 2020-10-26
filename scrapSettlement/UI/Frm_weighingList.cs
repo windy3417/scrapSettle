@@ -148,6 +148,7 @@ namespace ScrapSettlement.UI
         }
         #endregion
 
+        #region 窗体操作
 
 
         private void closeParent(object seder, FormClosedEventArgs eventArgs)
@@ -159,6 +160,9 @@ namespace ScrapSettlement.UI
         {
             this.Close();
         }
+
+        #endregion
+
 
 
         #region 快捷键
