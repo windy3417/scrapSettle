@@ -24,7 +24,7 @@ namespace ScrapSettlement
 
         private void initialize()
         {
-            if (ConfigurationManager.ConnectionStrings["myConcetion"] == null)
+            if (ConfigurationManager.ConnectionStrings["myConection"] == null)
             {
                 Frm_config frm_Config = new Frm_config();
                 string tabPageText = frm_Config.Text;
