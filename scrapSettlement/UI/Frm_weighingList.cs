@@ -91,7 +91,7 @@ namespace ScrapSettlement.UI
                                 where q.CustmerCode.ToString() == cmb_custName.SelectedValue.ToString()
 
                                 select new { q.WeighingDate, q.vocherNO, c.CusName, s.ScrapName, q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight, q.settleAmount };
-                    dataGridView1.DataSource = query.ToList();
+                    dataGridView1.DataSource = query.OrderBy(o =>o.WeighingDate).ToList();
                     //处理数据为空示和时的数据转换错误，可先转成泛型再求和
                     lbl_money.Text = query.ToList().Sum(s => s.settleAmount).ToString("C");
                 }

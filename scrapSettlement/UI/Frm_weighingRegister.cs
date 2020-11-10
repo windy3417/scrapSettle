@@ -638,9 +638,9 @@ namespace ScrapSettlement
         /// </summary>
         private void caculateMoney()
         {
-            if (txt_settleUnitPrice.Text != "" & txt_grossWeight.Text != "")
+            if (txt_settleUnitPrice.Text != "" & txt_netWeight.Text != "")
             {
-                txt_money.Text = (Convert.ToDouble(txt_grossWeight.Text) * Convert.ToDouble(txt_settleUnitPrice.Text) / 1000).ToString();
+                txt_money.Text = (Convert.ToDouble(txt_netWeight.Text) * Convert.ToDouble(txt_settleUnitPrice.Text) / 1000).ToString();
             }
         }
 
