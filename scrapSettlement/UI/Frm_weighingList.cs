@@ -220,7 +220,7 @@ namespace ScrapSettlement.UI
                                                 select d).ToList<WeighingSettlement>();
                 foreach (var item in del)
                 {
-                    if (item.auditFlag==2)
+                    if (item.auditFlag!=2)
                     {
                         if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒",
                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
