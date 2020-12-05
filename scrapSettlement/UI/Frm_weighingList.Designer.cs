@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_weighingList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.flp_foot = new System.Windows.Forms.FlowLayoutPanel();
@@ -44,7 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtp_incomeDateEnd = new System.Windows.Forms.DateTimePicker();
             this.cmb_custName = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv_content = new System.Windows.Forms.DataGridView();
             this.IncomeDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vocherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,20 +54,21 @@
             this.settleUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.netWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.settleAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.audit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_customer = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
-            this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
+            this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.flp_foot.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_content)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,12 +77,13 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel1.Controls.Add(this.flp_foot);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.dgv_content);
             this.panel1.Controls.Add(this.lbl_customer);
             this.panel1.Location = new System.Drawing.Point(39, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(926, 410);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // flp_foot
             // 
@@ -218,22 +220,22 @@
             this.cmb_custName.Size = new System.Drawing.Size(198, 20);
             this.cmb_custName.TabIndex = 3;
             // 
-            // dataGridView1
+            // dgv_content
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv_content.AllowUserToAddRows = false;
+            this.dgv_content.AllowUserToDeleteRows = false;
+            this.dgv_content.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dgv_content.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_content.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_content.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_content.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IncomeDate,
             this.vocherNO,
             this.cusName,
@@ -242,15 +244,17 @@
             this.webUnitPrice,
             this.settleUnitPrice,
             this.netWeight,
-            this.settleAmount});
-            this.dataGridView1.Location = new System.Drawing.Point(3, 163);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(920, 182);
-            this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick_1);
+            this.settleAmount,
+            this.audit});
+            this.dgv_content.Location = new System.Drawing.Point(3, 163);
+            this.dgv_content.Name = "dgv_content";
+            this.dgv_content.ReadOnly = true;
+            this.dgv_content.RowTemplate.Height = 23;
+            this.dgv_content.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_content.Size = new System.Drawing.Size(920, 182);
+            this.dgv_content.TabIndex = 2;
+            this.dgv_content.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick_1);
+            this.dgv_content.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
             // IncomeDate
             // 
@@ -312,12 +316,19 @@
             // settleAmount
             // 
             this.settleAmount.DataPropertyName = "settleAmount";
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.settleAmount.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.settleAmount.DefaultCellStyle = dataGridViewCellStyle2;
             this.settleAmount.HeaderText = "结算金额";
             this.settleAmount.Name = "settleAmount";
             this.settleAmount.ReadOnly = true;
+            // 
+            // audit
+            // 
+            this.audit.DataPropertyName = "value";
+            this.audit.HeaderText = "状态";
+            this.audit.Name = "audit";
+            this.audit.ReadOnly = true;
             // 
             // lbl_customer
             // 
@@ -362,15 +373,6 @@
             this.tsb_delete.Text = "删除";
             this.tsb_delete.Click += new System.EventHandler(this.tsb_delete_Click);
             // 
-            // tsb_close
-            // 
-            this.tsb_close.Image = ((System.Drawing.Image)(resources.GetObject("tsb_close.Image")));
-            this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_close.Name = "tsb_close";
-            this.tsb_close.Size = new System.Drawing.Size(52, 22);
-            this.tsb_close.Text = "关闭";
-            this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
-            // 
             // tsb_export
             // 
             this.tsb_export.Image = ((System.Drawing.Image)(resources.GetObject("tsb_export.Image")));
@@ -389,6 +391,15 @@
             this.tsb_print.Size = new System.Drawing.Size(23, 22);
             this.tsb_print.Text = "打印";
             this.tsb_print.Click += new System.EventHandler(this.tsb_print_Click);
+            // 
+            // tsb_close
+            // 
+            this.tsb_close.Image = ((System.Drawing.Image)(resources.GetObject("tsb_close.Image")));
+            this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_close.Name = "tsb_close";
+            this.tsb_close.Size = new System.Drawing.Size(52, 22);
+            this.tsb_close.Text = "关闭";
+            this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
             // 
             // printDocument1
             // 
@@ -422,7 +433,7 @@
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_content)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -439,7 +450,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsb_close;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv_content;
         private System.Windows.Forms.ToolStripButton tsb_query;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_query;
@@ -451,6 +462,10 @@
         private System.Windows.Forms.Label lbl_money;
         private System.Windows.Forms.Label lbl_amount;
         private System.Windows.Forms.FlowLayoutPanel flp_foot;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.ToolStripButton tsb_print;
+        private System.Windows.Forms.ToolStripButton tsb_delete;
         private System.Windows.Forms.DataGridViewTextBoxColumn IncomeDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn vocherNO;
         private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
@@ -460,9 +475,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn settleUnitPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn netWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn settleAmount;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.ToolStripButton tsb_print;
-        private System.Windows.Forms.ToolStripButton tsb_delete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn audit;
     }
 }

@@ -13,7 +13,7 @@ using System.Drawing;
 using Utility;
 using ScrapSettlement.DAL.Model;
 using ScrapSettlement.DAL.Services;
-
+using Utility.Style;
 
 namespace ScrapSettlement.UI
 {
@@ -42,7 +42,7 @@ namespace ScrapSettlement.UI
         {
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
 
-            this.dataGridView1.AutoGenerateColumns = false;
+            this.dgv_content.AutoGenerateColumns = false;
             tsb_delete.Enabled = false;
 
 
@@ -86,12 +86,15 @@ namespace ScrapSettlement.UI
                                 on q.CustmerCode equals c.CusCode.ToString()
                                 join p in db.Peple on q.personCode equals p.Code.ToString()
                                 join s in db.Scraps on q.scrapCode equals s.ScrapCode.ToString()
+                                //join d in new EnumService().GetVoucherState() on q.auditFlag equals d.Key
                                 where q.WeighingDate >= dtp_incomeDateStart.Value.Date
                                 where q.WeighingDate <= dtp_incomeDateEnd.Value.Date
                                 where q.CustmerCode.ToString() == cmb_custName.SelectedValue.ToString()
 
-                                select new { q.WeighingDate, q.vocherNO, c.CusName, s.ScrapName, q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight, q.settleAmount };
-                    dataGridView1.DataSource = query.OrderBy(o =>o.WeighingDate).ToList();
+                                select new { q.WeighingDate, q.vocherNO, c.CusName, s.ScrapName,
+                                    q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight,
+                                    q.settleAmount };
+                    dgv_content.DataSource = query.OrderBy(o =>o.WeighingDate).ToList();
                     //处理数据为空示和时的数据转换错误，可先转成泛型再求和
                     lbl_money.Text = query.ToList().Sum(s => s.settleAmount).ToString("C");
                 }
@@ -103,7 +106,7 @@ namespace ScrapSettlement.UI
                 }
 
             }
-            if (dataGridView1.RowCount > 0)
+            if (dgv_content.RowCount > 0)
             {
                 tsb_delete.Enabled = true;
             }
@@ -121,7 +124,7 @@ namespace ScrapSettlement.UI
             if (e.RowIndex > -1)
             {
 
-                var voucherNo = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                var voucherNo = this.dgv_content.Rows[e.RowIndex].Cells[1].Value.ToString();
                 Frm_weighingSettltement f = new Frm_weighingSettltement();
                 string tabPageText = f.Text;
                 Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
@@ -207,24 +210,40 @@ namespace ScrapSettlement.UI
 
         private void tsb_delete_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count > 0)
+            if (dgv_content.Rows.Count > 0)
             {
-                var selected = dataGridView1.SelectedRows[0].Cells[1].Value;
-                if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                var selected = dgv_content.SelectedRows[0].Cells[1].Value;
+                ScrapSettleContext db = new ScrapSettleContext();
+
+                List<WeighingSettlement> del = (from d in db.WeighingSettlement
+                                                where d.vocherNO == selected.ToString()
+                                                select d).ToList<WeighingSettlement>();
+                foreach (var item in del)
                 {
+                    if (item.auditFlag==2)
+                    {
+                        if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒",
+                       MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                        {
 
-                    ScrapSettleContext db = new ScrapSettleContext();
-
-                    List<WeighingSettlement> del = (from d in db.WeighingSettlement
-                                                    where d.vocherNO == selected.ToString()
-                                                    select d).ToList<WeighingSettlement>();
-                    //移除数据库的数据
-                    db.WeighingSettlement.Remove(del[0]);
-                    db.SaveChanges();
-                    tsb_query.PerformClick();
+                            //移除数据库的数据
+                            db.WeighingSettlement.Remove(del[0]);
+                            db.SaveChanges();
+                            tsb_query.PerformClick();
 
 
+                        }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("单据已经审核，不能删除", "删除提示");
+                    }
                 }
+
+                
+
+               
             }
 
             return;
@@ -237,7 +256,7 @@ namespace ScrapSettlement.UI
             if (e.RowIndex > -1)
             {
 
-                var voucherNo = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                var voucherNo = this.dgv_content.Rows[e.RowIndex].Cells[1].Value.ToString();
                 Frm_weighingSettltement f = new Frm_weighingSettltement();
                 string tabPageText = f.Text;
                 Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
@@ -781,7 +800,19 @@ namespace ScrapSettlement.UI
         private void tsb_export_Click(object sender, EventArgs e)
         {
             Excel.ExportExcel exportExcel = new Excel.ExportExcel();
-            exportExcel.ExportExcelWithNPOI(dataGridView1, "过磅结算单列表");
+            exportExcel.ExportExcelWithNPOI(dgv_content, "过磅结算单列表");
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        //显示行标
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            StyleDataGridView styleDataGridView = new StyleDataGridView();
+            styleDataGridView.DisplayRowHeader(e, dgv_content);
         }
     }
 }

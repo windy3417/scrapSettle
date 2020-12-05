@@ -43,11 +43,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtp_incomeDateEnd = new System.Windows.Forms.DateTimePicker();
             this.cmb_custName = new System.Windows.Forms.ComboBox();
+
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.IncomeDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VoucherNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.money = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
             this.lbl_customer = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
@@ -222,11 +224,13 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IncomeDate,
             this.VoucherNo,
             this.cusName,
             this.money});
+
             this.dataGridView1.Location = new System.Drawing.Point(3, 163);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;

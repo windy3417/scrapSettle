@@ -19,7 +19,7 @@ namespace ScrapSettlement.DAL.Services
                 new SqlParameter("@queryAll",1 )
             };
 
-            SqlDataReader sqlDataReader = Utility.Sql.Sqlhelper.GetSqlDataReader(sql, sqlParameters);
+            SqlDataReader sqlDataReader = Utility.Sql.Sqlhelper.GetSqlDataReader(sql,Utility.Sql.Sqlhelper.DataSourceType.business, sqlParameters);
             while (sqlDataReader.Read())
             {
                 Customer customer = new Customer();

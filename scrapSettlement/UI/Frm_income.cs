@@ -45,7 +45,8 @@ namespace ScrapSettlement
             //初始化客户名称数据源
 
 
-            cmb_custName.DataSource = new CustomerService().getCustomerList().Where<Customer>(c => c.FailuerDate == null).Select((c) => new { c.CusCode, c.CusName }).ToList();
+            cmb_custName.DataSource = new CustomerService().getCustomerList().Where<Customer>
+                (c => c.FailuerDate == null).Select((c) => new { c.CusCode, c.CusName }).ToList();
 
             cmb_custName.DisplayMember = "CusName";
             cmb_custName.ValueMember = "CusCode";

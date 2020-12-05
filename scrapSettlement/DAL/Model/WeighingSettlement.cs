@@ -25,6 +25,7 @@ namespace ScrapSettlement.DAL.Model
         public double  webUnitPrice { get; set; }
         public double settleUnitPrice { get; set; }
         public double settleAmount { get; set; }
+        public int auditFlag { get; set; }
       
 
     }

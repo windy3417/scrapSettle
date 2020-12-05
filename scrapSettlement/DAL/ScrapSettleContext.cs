@@ -12,7 +12,7 @@ namespace ScrapSettlement.DAL
 
 
         public ScrapSettleContext()
-            : base("name=myConectionForEF")
+            : base(Utility.Sql.Sqlhelper.sqlConnection(Utility.Sql.Sqlhelper.DataSourceType.business), true)
         {
         }
 

@@ -24,7 +24,7 @@ namespace ScrapSettlement
 
         private void initialize()
         {
-            if (ConfigurationManager.ConnectionStrings["myConection"] == null)
+            if (ConfigurationManager.ConnectionStrings["businessConection"] == null)
             {
                 Frm_config frm_Config = new Frm_config();
                 string tabPageText = frm_Config.Text;
@@ -61,10 +61,10 @@ namespace ScrapSettlement
 
         private void 数据库设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_config frm_Scrap = new Frm_config();
-            string tabPageText = frm_Scrap.Text;
+            Frm_config f = new Frm_config();
+            string tabPageText = f.Text;
             EmbedForm embedForm = new EmbedForm();
-            embedForm.openForm(frm_Scrap, tabPageText, tabControl1, panel1);
+            embedForm.openForm(f, tabPageText, tabControl1, panel1);
         }
 
         private void 经办人档案ToolStripMenuItem_Click(object sender, EventArgs e)

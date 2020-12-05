@@ -14,6 +14,7 @@ using System.Drawing.Printing;
 using ScrapSettlement.Common;
 using ScrapSettlement.Properties;
 using scrapSettlement.Properties;
+using ScrapSettlement.DAL.Modle;
 
 namespace ScrapSettlement
 {
@@ -94,6 +95,7 @@ namespace ScrapSettlement
             tsb_abandon.Enabled = false;
             tsb_previewPrint.Enabled = false;
             tsb_print.Enabled = false;
+            tsb_audit.Enabled = false;
 
             pnl_query.Visible = false;
             this.tableLayoutPanel1.Enabled = false;
@@ -132,7 +134,7 @@ namespace ScrapSettlement
 
         #endregion
 
-        #region 单据增删改查
+        #region 单据增删改查审
 
         /// <summary>
         /// 新增单据
@@ -152,6 +154,9 @@ namespace ScrapSettlement
             //设定控件与变量状态
             tableLayoutPanel1.Enabled = true;
             pnl_query.Visible = false;
+
+            lbl_voucherStateValue.Text = EnumModle.voucherStatus.开立.ToString();
+
             tsb_save.Enabled = true;
             tsb_abandon.Enabled = true;
             tsb_query.Enabled = false;
@@ -217,7 +222,35 @@ namespace ScrapSettlement
         }
 
         /// <summary>
-        /// 保存数据
+        /// 审核单据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_audit_Click(object sender, EventArgs e)
+        {
+            if (lbl_vouchNoValue.Text!="")
+            {
+                try
+                {
+                    using (var db =new ScrapSettleContext())
+                    {
+                        WeighingSettlement w = db.WeighingSettlement.Where(s => s.vocherNO == lbl_vouchNoValue.Text).FirstOrDefault();
+                        w.auditFlag = (int)EnumModle.voucherStatus.审核;
+                        db.SaveChanges();
+                        MessageBox.Show("单据审核成功", "审核提示");
+                        lbl_voucherStateValue.Text = EnumModle.voucherStatus.审核.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message + ex.InnerException, "审核错误提示");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 数据保存算法
         /// </summary>
         /// <param name="db"></param>
         /// <param name="w"></param>
@@ -254,6 +287,7 @@ namespace ScrapSettlement
                 w.proportion = Convert.ToDouble(txt_coefficient.Text);
                 w.scrapCode = cmb_scrapName.SelectedValue.ToString();
                 w.vocherNO = lbl_vouchNoValue.Text;
+                w.auditFlag = (int)EnumModle.voucherStatus.开立;
                 //考虑到价格信息由业务经办人填写，而非由过磅人填写，故可为空
                 //w.webUnitPrice = Convert.ToDouble(txt_webUnitPrice.Text);
                 //w.settleUnitPrice = Convert.ToDouble(txt_settleUnitPrice.Text);
@@ -276,12 +310,14 @@ namespace ScrapSettlement
                 if (addOrChangeFlag == addOrChangeMolde.change.ToString())
                 {
                     tsb_new.Enabled = true;
+                    tsb_audit.Enabled = true;
 
                 }
                 if (addOrChangeFlag == addOrChangeMolde.add.ToString())
                 {
                     tsb_modify.Enabled = true;
                     tsb_delete.Enabled = true;
+                    tsb_audit.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -338,6 +374,7 @@ namespace ScrapSettlement
                 btn_query.PerformClick();
                 tsb_previewPrint.Enabled = true;
                 tsb_print.Enabled = true;
+                tsb_audit.Enabled = true;
             }
 
 
@@ -388,7 +425,8 @@ namespace ScrapSettlement
                                 q.GrossWeght,
                                 q.Tare,
                                 q.netWeight,
-                                q.settleAmount
+                                q.settleAmount,
+                                q.auditFlag
                             };
                 foreach (var item in query)
                 {
@@ -427,6 +465,17 @@ namespace ScrapSettlement
                     txt_settleUnitPrice.Text = item.settleUnitPrice.ToString();
                     txt_money.Text = item.settleAmount.ToString();
 
+                    if (item.auditFlag==0)
+                    {
+                        lbl_voucherStateValue.Text = EnumModle.voucherStatus.开立.ToString();
+
+                    }
+                    else
+                    {
+                        lbl_voucherStateValue.Text = EnumModle.voucherStatus.审核.ToString();
+                        tsb_audit.Enabled = false;
+                    }
+
                                      
 
 
@@ -442,7 +491,8 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void tsb_delete_Click(object sender, EventArgs e)
         {
-            if (lbl_vouchNoValue.Text != "" & lbl_vouchNoValue.Text != null)
+            if (lbl_vouchNoValue.Text != "" & lbl_vouchNoValue.Text != null 
+                & lbl_voucherStateValue.Text==EnumModle.voucherStatus.开立.ToString())
             {
                 if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
@@ -477,7 +527,10 @@ namespace ScrapSettlement
 
             }
 
-
+            else
+            {
+                MessageBox.Show("你所删除的单据不存在或单据已经审核", "删除提示");
+            }
 
 
 
@@ -905,9 +958,10 @@ namespace ScrapSettlement
 
 
 
+
         #endregion
 
-    
+
     }
 }
 

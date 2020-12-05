@@ -12,6 +12,7 @@ namespace ScrapSettlement.DAL.Services
         {
             using (var db=new ScrapSettleContext())
             {
+
                 return db.WeighingSettlement.ToList();
             }
         }
