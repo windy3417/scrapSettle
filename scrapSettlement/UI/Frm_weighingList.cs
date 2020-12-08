@@ -81,19 +81,20 @@ namespace ScrapSettlement.UI
 
                 try
                 {
-                    var query = from q in db.WeighingSettlement
-                                join c in db.Customers
+                    var query =from d in new EnumService().GetVoucherState() 
+                                join q in db.WeighingSettlement on d.Key equals q.auditFlag
+                               join c in db.Customers
                                 on q.CustmerCode equals c.CusCode.ToString()
                                 join p in db.Peple on q.personCode equals p.Code.ToString()
                                 join s in db.Scraps on q.scrapCode equals s.ScrapCode.ToString()
-                                //join d in new EnumService().GetVoucherState() on q.auditFlag equals d.Key
+                               
                                 where q.WeighingDate >= dtp_incomeDateStart.Value.Date
                                 where q.WeighingDate <= dtp_incomeDateEnd.Value.Date
                                 where q.CustmerCode.ToString() == cmb_custName.SelectedValue.ToString()
 
                                 select new { q.WeighingDate, q.vocherNO, c.CusName, s.ScrapName,
                                     q.proportion, q.webUnitPrice, q.settleUnitPrice, q.netWeight,
-                                    q.settleAmount };
+                                    q.settleAmount,voucherState=d.Value };
                     dgv_content.DataSource = query.OrderBy(o =>o.WeighingDate).ToList();
                     //处理数据为空示和时的数据转换错误，可先转成泛型再求和
                     lbl_money.Text = query.ToList().Sum(s => s.settleAmount).ToString("C");
@@ -166,8 +167,7 @@ namespace ScrapSettlement.UI
 
         #endregion
 
-
-
+        
         #region 快捷键
 
 

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_weighingList));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flp_foot = new System.Windows.Forms.FlowLayoutPanel();
             this.lbl_money = new System.Windows.Forms.Label();
@@ -45,6 +45,15 @@
             this.dtp_incomeDateEnd = new System.Windows.Forms.DateTimePicker();
             this.cmb_custName = new System.Windows.Forms.ComboBox();
             this.dgv_content = new System.Windows.Forms.DataGridView();
+            this.lbl_customer = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsb_query = new System.Windows.Forms.ToolStripButton();
+            this.tsb_delete = new System.Windows.Forms.ToolStripButton();
+            this.tsb_export = new System.Windows.Forms.ToolStripButton();
+            this.tsb_print = new System.Windows.Forms.ToolStripButton();
+            this.tsb_close = new System.Windows.Forms.ToolStripButton();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.IncomeDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vocherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,15 +64,6 @@
             this.netWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.settleAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.audit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbl_customer = new System.Windows.Forms.Label();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsb_query = new System.Windows.Forms.ToolStripButton();
-            this.tsb_delete = new System.Windows.Forms.ToolStripButton();
-            this.tsb_export = new System.Windows.Forms.ToolStripButton();
-            this.tsb_print = new System.Windows.Forms.ToolStripButton();
-            this.tsb_close = new System.Windows.Forms.ToolStripButton();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.flp_foot.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -256,80 +256,6 @@
             this.dgv_content.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick_1);
             this.dgv_content.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
-            // IncomeDate
-            // 
-            this.IncomeDate.DataPropertyName = "WeighingDate";
-            this.IncomeDate.HeaderText = "过磅日期";
-            this.IncomeDate.Name = "IncomeDate";
-            this.IncomeDate.ReadOnly = true;
-            // 
-            // vocherNO
-            // 
-            this.vocherNO.DataPropertyName = "vocherNO";
-            this.vocherNO.HeaderText = "单据编号";
-            this.vocherNO.Name = "vocherNO";
-            this.vocherNO.ReadOnly = true;
-            // 
-            // cusName
-            // 
-            this.cusName.DataPropertyName = "CusName";
-            this.cusName.FillWeight = 149.2386F;
-            this.cusName.HeaderText = "客户名称";
-            this.cusName.Name = "cusName";
-            this.cusName.ReadOnly = true;
-            // 
-            // ScrapName
-            // 
-            this.ScrapName.DataPropertyName = "ScrapName";
-            this.ScrapName.HeaderText = "废料名称";
-            this.ScrapName.Name = "ScrapName";
-            this.ScrapName.ReadOnly = true;
-            // 
-            // proportion
-            // 
-            this.proportion.DataPropertyName = "proportion";
-            this.proportion.HeaderText = "结算系数(%)";
-            this.proportion.Name = "proportion";
-            this.proportion.ReadOnly = true;
-            // 
-            // webUnitPrice
-            // 
-            this.webUnitPrice.DataPropertyName = "webUnitPrice";
-            this.webUnitPrice.HeaderText = "网上报价";
-            this.webUnitPrice.Name = "webUnitPrice";
-            this.webUnitPrice.ReadOnly = true;
-            // 
-            // settleUnitPrice
-            // 
-            this.settleUnitPrice.DataPropertyName = "settleUnitPrice";
-            this.settleUnitPrice.HeaderText = "结算单价";
-            this.settleUnitPrice.Name = "settleUnitPrice";
-            this.settleUnitPrice.ReadOnly = true;
-            // 
-            // netWeight
-            // 
-            this.netWeight.DataPropertyName = "netWeight";
-            this.netWeight.HeaderText = "净重";
-            this.netWeight.Name = "netWeight";
-            this.netWeight.ReadOnly = true;
-            // 
-            // settleAmount
-            // 
-            this.settleAmount.DataPropertyName = "settleAmount";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.settleAmount.DefaultCellStyle = dataGridViewCellStyle2;
-            this.settleAmount.HeaderText = "结算金额";
-            this.settleAmount.Name = "settleAmount";
-            this.settleAmount.ReadOnly = true;
-            // 
-            // audit
-            // 
-            this.audit.DataPropertyName = "value";
-            this.audit.HeaderText = "状态";
-            this.audit.Name = "audit";
-            this.audit.ReadOnly = true;
-            // 
             // lbl_customer
             // 
             this.lbl_customer.AutoSize = true;
@@ -414,6 +340,80 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
+            // 
+            // IncomeDate
+            // 
+            this.IncomeDate.DataPropertyName = "WeighingDate";
+            this.IncomeDate.HeaderText = "过磅日期";
+            this.IncomeDate.Name = "IncomeDate";
+            this.IncomeDate.ReadOnly = true;
+            // 
+            // vocherNO
+            // 
+            this.vocherNO.DataPropertyName = "vocherNO";
+            this.vocherNO.HeaderText = "单据编号";
+            this.vocherNO.Name = "vocherNO";
+            this.vocherNO.ReadOnly = true;
+            // 
+            // cusName
+            // 
+            this.cusName.DataPropertyName = "CusName";
+            this.cusName.FillWeight = 149.2386F;
+            this.cusName.HeaderText = "客户名称";
+            this.cusName.Name = "cusName";
+            this.cusName.ReadOnly = true;
+            // 
+            // ScrapName
+            // 
+            this.ScrapName.DataPropertyName = "ScrapName";
+            this.ScrapName.HeaderText = "废料名称";
+            this.ScrapName.Name = "ScrapName";
+            this.ScrapName.ReadOnly = true;
+            // 
+            // proportion
+            // 
+            this.proportion.DataPropertyName = "proportion";
+            this.proportion.HeaderText = "结算系数(%)";
+            this.proportion.Name = "proportion";
+            this.proportion.ReadOnly = true;
+            // 
+            // webUnitPrice
+            // 
+            this.webUnitPrice.DataPropertyName = "webUnitPrice";
+            this.webUnitPrice.HeaderText = "网上报价";
+            this.webUnitPrice.Name = "webUnitPrice";
+            this.webUnitPrice.ReadOnly = true;
+            // 
+            // settleUnitPrice
+            // 
+            this.settleUnitPrice.DataPropertyName = "settleUnitPrice";
+            this.settleUnitPrice.HeaderText = "结算单价";
+            this.settleUnitPrice.Name = "settleUnitPrice";
+            this.settleUnitPrice.ReadOnly = true;
+            // 
+            // netWeight
+            // 
+            this.netWeight.DataPropertyName = "netWeight";
+            this.netWeight.HeaderText = "净重";
+            this.netWeight.Name = "netWeight";
+            this.netWeight.ReadOnly = true;
+            // 
+            // settleAmount
+            // 
+            this.settleAmount.DataPropertyName = "settleAmount";
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.settleAmount.DefaultCellStyle = dataGridViewCellStyle2;
+            this.settleAmount.HeaderText = "结算金额";
+            this.settleAmount.Name = "settleAmount";
+            this.settleAmount.ReadOnly = true;
+            // 
+            // audit
+            // 
+            this.audit.DataPropertyName = "voucherState";
+            this.audit.HeaderText = "状态";
+            this.audit.Name = "audit";
+            this.audit.ReadOnly = true;
             // 
             // Frm_weighingList
             // 
