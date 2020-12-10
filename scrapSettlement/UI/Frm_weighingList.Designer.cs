@@ -48,14 +48,16 @@
             this.lbl_customer = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
+            this.tsb_batchAudit = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.choose = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IncomeDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vocherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.voucherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ScrapName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proportion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,7 +76,9 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.flp_foot);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.dgv_content);
@@ -83,11 +87,10 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(926, 410);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // flp_foot
             // 
-            this.flp_foot.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.flp_foot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.flp_foot.Controls.Add(this.lbl_money);
             this.flp_foot.Controls.Add(this.lbl_amount);
             this.flp_foot.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
@@ -122,6 +125,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btn_query);
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(3, 57);
@@ -224,7 +229,9 @@
             // 
             this.dgv_content.AllowUserToAddRows = false;
             this.dgv_content.AllowUserToDeleteRows = false;
-            this.dgv_content.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dgv_content.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_content.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -236,8 +243,9 @@
             this.dgv_content.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_content.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_content.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.choose,
             this.IncomeDate,
-            this.vocherNO,
+            this.voucherNO,
             this.cusName,
             this.ScrapName,
             this.proportion,
@@ -253,6 +261,7 @@
             this.dgv_content.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_content.Size = new System.Drawing.Size(920, 182);
             this.dgv_content.TabIndex = 2;
+            this.dgv_content.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_content_CellContentClick);
             this.dgv_content.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick_1);
             this.dgv_content.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
@@ -270,6 +279,7 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_query,
+            this.tsb_batchAudit,
             this.tsb_delete,
             this.tsb_export,
             this.tsb_print,
@@ -288,6 +298,15 @@
             this.tsb_query.Size = new System.Drawing.Size(52, 22);
             this.tsb_query.Text = "查询";
             this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
+            // 
+            // tsb_batchAudit
+            // 
+            this.tsb_batchAudit.Image = global::scrapSettlement.Properties.Resources.Authorization;
+            this.tsb_batchAudit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_batchAudit.Name = "tsb_batchAudit";
+            this.tsb_batchAudit.Size = new System.Drawing.Size(52, 22);
+            this.tsb_batchAudit.Text = "批审";
+            this.tsb_batchAudit.Click += new System.EventHandler(this.tsb_batchAudit_Click);
             // 
             // tsb_delete
             // 
@@ -341,6 +360,14 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // choose
+            // 
+            this.choose.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.choose.HeaderText = "选择";
+            this.choose.Name = "choose";
+            this.choose.ReadOnly = true;
+            this.choose.Width = 37;
+            // 
             // IncomeDate
             // 
             this.IncomeDate.DataPropertyName = "WeighingDate";
@@ -348,12 +375,12 @@
             this.IncomeDate.Name = "IncomeDate";
             this.IncomeDate.ReadOnly = true;
             // 
-            // vocherNO
+            // voucherNO
             // 
-            this.vocherNO.DataPropertyName = "vocherNO";
-            this.vocherNO.HeaderText = "单据编号";
-            this.vocherNO.Name = "vocherNO";
-            this.vocherNO.ReadOnly = true;
+            this.voucherNO.DataPropertyName = "vocherNO";
+            this.voucherNO.HeaderText = "单据编号";
+            this.voucherNO.Name = "voucherNO";
+            this.voucherNO.ReadOnly = true;
             // 
             // cusName
             // 
@@ -466,8 +493,10 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ToolStripButton tsb_print;
         private System.Windows.Forms.ToolStripButton tsb_delete;
+        private System.Windows.Forms.ToolStripButton tsb_batchAudit;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn choose;
         private System.Windows.Forms.DataGridViewTextBoxColumn IncomeDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vocherNO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn voucherNO;
         private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScrapName;
         private System.Windows.Forms.DataGridViewTextBoxColumn proportion;

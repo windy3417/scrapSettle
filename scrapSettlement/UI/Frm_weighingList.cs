@@ -14,6 +14,7 @@ using Utility;
 using ScrapSettlement.DAL.Model;
 using ScrapSettlement.DAL.Services;
 using Utility.Style;
+using ScrapSettlement.DAL.Modle;
 
 namespace ScrapSettlement.UI
 {
@@ -43,6 +44,7 @@ namespace ScrapSettlement.UI
             this.FormClosed += new FormClosedEventHandler(this.closeParent);
 
             this.dgv_content.AutoGenerateColumns = false;
+            
             tsb_delete.Enabled = false;
 
 
@@ -187,6 +189,107 @@ namespace ScrapSettlement.UI
         }
         #endregion
 
+        #region 单据删审
+
+
+        private void tsb_delete_Click(object sender, EventArgs e)
+        {
+            if (dgv_content.Rows.Count > 0)
+            {
+                var selected = dgv_content.SelectedRows[0].Cells[2].Value;
+                ScrapSettleContext db = new ScrapSettleContext();
+
+                List<WeighingSettlement> del = (from d in db.WeighingSettlement
+                                                where d.vocherNO == selected.ToString()
+                                                select d).ToList<WeighingSettlement>();
+                foreach (var item in del)
+                {
+                    if (item.auditFlag != 2)
+                    {
+                        if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒",
+                       MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                        {
+
+                            //移除数据库的数据
+                            db.WeighingSettlement.Remove(del[0]);
+                            db.SaveChanges();
+                            tsb_query.PerformClick();
+
+
+                        }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("单据已经审核，不能删除", "删除提示");
+                    }
+                }
+
+
+
+
+            }
+
+            return;
+
+        }
+
+        /// <summary>
+        /// 单据批审
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_batchAudit_Click(object sender, EventArgs e)
+        {
+
+            
+            if (JudgeDataGridViewCheckBoxState().Count > 0)
+            {
+                try
+                {
+                    using (var db = new ScrapSettleContext())
+
+                    {
+                        foreach (var item in JudgeDataGridViewCheckBoxState())
+                        {
+                            WeighingSettlement w = db.WeighingSettlement.Where(s => s.vocherNO == item).FirstOrDefault();
+                            w.auditFlag = (int)EnumModle.voucherStatus.审核;
+                        }
+                      
+                        db.SaveChanges();
+                        MessageBox.Show("单据审核成功", "审核提示");
+                        tsb_query.PerformClick();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message + ex.InnerException, "审核错误提示");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请选择需要审核的单据", "批审提醒");
+            }
+
+           
+        }
+
+        #endregion
+
+        #region 菜单事件处理
+
+        /// <summary>
+        /// 导出单据列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_export_Click(object sender, EventArgs e)
+        {
+            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+            exportExcel.ExportExcelWithNPOI(dgv_content, "过磅结算单列表");
+        }
+
 
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -208,47 +311,6 @@ namespace ScrapSettlement.UI
             this.printPreviewDialog1.ShowDialog();
         }
 
-        private void tsb_delete_Click(object sender, EventArgs e)
-        {
-            if (dgv_content.Rows.Count > 0)
-            {
-                var selected = dgv_content.SelectedRows[0].Cells[1].Value;
-                ScrapSettleContext db = new ScrapSettleContext();
-
-                List<WeighingSettlement> del = (from d in db.WeighingSettlement
-                                                where d.vocherNO == selected.ToString()
-                                                select d).ToList<WeighingSettlement>();
-                foreach (var item in del)
-                {
-                    if (item.auditFlag!=2)
-                    {
-                        if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒",
-                       MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-                        {
-
-                            //移除数据库的数据
-                            db.WeighingSettlement.Remove(del[0]);
-                            db.SaveChanges();
-                            tsb_query.PerformClick();
-
-
-                        }
-                    }
-
-                    else
-                    {
-                        MessageBox.Show("单据已经审核，不能删除", "删除提示");
-                    }
-                }
-
-                
-
-               
-            }
-
-            return;
-
-        }
 
         private void dataGridView1_CellContentDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -797,22 +859,81 @@ namespace ScrapSettlement.UI
 
         #endregion
 
-        private void tsb_export_Click(object sender, EventArgs e)
-        {
-            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
-            exportExcel.ExportExcelWithNPOI(dgv_content, "过磅结算单列表");
-        }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+        #endregion
 
-        }
 
-        //显示行标
+
+        #region DataGridView事件处理
+
+        
+        /// <summary>
+        /// 显示行标
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             StyleDataGridView styleDataGridView = new StyleDataGridView();
             styleDataGridView.DisplayRowHeader(e, dgv_content);
         }
-    }
+
+
+        /// <summary>
+        /// 一次选择多行
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgv_content_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgv_content.Columns["choose"].Index & dgv_content.SelectedRows[0].Cells[0].Value == null)
+            {
+                dgv_content.SelectedRows[0].Cells[0].Value = true;
+                return;
+
+            }
+            if (e.ColumnIndex == dgv_content.Columns["choose"].Index & dgv_content.SelectedRows[0].Cells[0].Value != null)
+            {
+                if ((bool)dgv_content.SelectedRows[0].Cells[0].Value == false)
+                {
+                    dgv_content.SelectedRows[0].Cells[0].Value = true;
+                }
+                else
+                {
+                    dgv_content.SelectedRows[0].Cells[0].Value = false;
+                }
+            }
+        }
+
+        #endregion
+
+
+
+
+        #region 内部方法
+
+        /// <summary>
+        /// 判断DataGridView中是否有CheckBox选中,如果有,则返回CheckBox所在行的单据号，
+
+        /// </summary>
+        /// <returns>出现选中的次数</returns>
+        private List<string> JudgeDataGridViewCheckBoxState()
+        {
+            List<string> ListVoucherNO = new List<string>();
+            foreach (DataGridViewRow dr in dgv_content.Rows)//要遍历下dataGridView的行
+            {
+                if (dr.Cells["choose"].Value != null)//判断下checkbox的值是否为空，如果没有选中的话（如数据刚刚加载的时候），value是不会有false和true的
+                {
+                    bool b = (bool)dr.Cells["choose"].Value;//value的类型是object的，需要转换下
+                    if (b)
+                    {
+                        ListVoucherNO.Add(dr.Cells["voucherNO"].Value.ToString());
+                    }
+                }
+            }
+            return ListVoucherNO;
+        }
+       
+    #endregion
+}
 }
