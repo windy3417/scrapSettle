@@ -334,24 +334,38 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void tsb_modify_Click(object sender, EventArgs e)
         {
-            //修改时则启用余额计算功能
-            txt_money.TextChanged += this.txt_money_TextChanged;
 
-            addOrChangeFlag = addOrChangeMolde.change.ToString();
-            //改变控件状态
-            tsb_abandon.Enabled = true;
-            tsb_new.Enabled = false;
-            tsb_save.Enabled = true;
-            tableLayoutPanel1.Enabled = true;
-            //限定可修改范围，只能修改价格信息
-            dtp_makeDate.Enabled = false;
-            cmb_custName.Enabled = false;
-            cmb_scrapName.Enabled = false;
-            cmb_person.Enabled = false;
-            cmb_vehicleBrand.Enabled = false;
-            txt_grossWeight.Enabled = false;
-            txt_tare.Enabled = false;
-            txt_weighingTime.Enabled = false;
+            //审核后的单据不能修改
+            if (lbl_vouchNoValue.Text != "" & lbl_vouchNoValue.Text != null
+                & lbl_voucherStateValue.Text == EnumModle.voucherStatus.开立.ToString())
+            {
+                //修改时则启用余额计算功能
+                txt_money.TextChanged += this.txt_money_TextChanged;
+
+                addOrChangeFlag = addOrChangeMolde.change.ToString();
+                //改变控件状态
+                tsb_abandon.Enabled = true;
+                tsb_new.Enabled = false;
+                tsb_save.Enabled = true;
+                tableLayoutPanel1.Enabled = true;
+
+                //限定可修改范围，只能修改价格信息
+                dtp_makeDate.Enabled = false;
+                cmb_custName.Enabled = false;
+                cmb_scrapName.Enabled = false;
+                cmb_person.Enabled = false;
+                cmb_vehicleBrand.Enabled = false;
+                txt_grossWeight.Enabled = false;
+                txt_tare.Enabled = false;
+                txt_weighingTime.Enabled = false;
+
+            }
+
+            else
+            {
+                MessageBox.Show("你所修改的单据不存在或单据已经审核", "修改提示");
+            }
+          
 
 
         }

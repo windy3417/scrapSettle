@@ -311,7 +311,7 @@ namespace ScrapSettlement.UI
             this.printPreviewDialog1.ShowDialog();
         }
 
-
+        //穿透查询到单据
         private void dataGridView1_CellContentDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -907,8 +907,7 @@ namespace ScrapSettlement.UI
 
         #endregion
 
-
-
+        
 
         #region 内部方法
 
