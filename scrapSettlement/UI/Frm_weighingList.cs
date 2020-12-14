@@ -318,13 +318,14 @@ namespace ScrapSettlement.UI
             if (e.RowIndex > -1)
             {
 
-                var voucherNo = this.dgv_content.Rows[e.RowIndex].Cells[1].Value.ToString();
+                var voucherNo = this.dgv_content.Rows[e.RowIndex].Cells[2].Value.ToString();
                 Frm_weighingSettltement f = new Frm_weighingSettltement();
                 string tabPageText = f.Text;
                 Utility.UI.EmbedForm embedForm = new Utility.UI.EmbedForm();
                 //使用母窗体的属性信息，实现动态创建插入页签式窗体
 
-                embedForm.openForm(f, tabPageText, (TabControl)this.Parent.Parent.Parent.Controls["tabControl1"], (Panel)this.TopLevelControl.Controls["panel1"]);
+                embedForm.openForm(f, tabPageText, (TabControl)this.Parent.Parent.Parent.Controls["tabControl1"],
+                    (Panel)this.TopLevelControl.Controls["panel1"]);
 
 
                 f.tsb_query.PerformClick();
