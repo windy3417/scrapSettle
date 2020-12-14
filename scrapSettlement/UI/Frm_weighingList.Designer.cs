@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_weighingList));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flp_foot = new System.Windows.Forms.FlowLayoutPanel();
             this.lbl_money = new System.Windows.Forms.Label();
@@ -45,16 +45,6 @@
             this.dtp_incomeDateEnd = new System.Windows.Forms.DateTimePicker();
             this.cmb_custName = new System.Windows.Forms.ComboBox();
             this.dgv_content = new System.Windows.Forms.DataGridView();
-            this.lbl_customer = new System.Windows.Forms.Label();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsb_query = new System.Windows.Forms.ToolStripButton();
-            this.tsb_batchAudit = new System.Windows.Forms.ToolStripButton();
-            this.tsb_delete = new System.Windows.Forms.ToolStripButton();
-            this.tsb_export = new System.Windows.Forms.ToolStripButton();
-            this.tsb_print = new System.Windows.Forms.ToolStripButton();
-            this.tsb_close = new System.Windows.Forms.ToolStripButton();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.choose = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IncomeDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.voucherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +56,16 @@
             this.netWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.settleAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.audit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_customer = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsb_query = new System.Windows.Forms.ToolStripButton();
+            this.tsb_batchAudit = new System.Windows.Forms.ToolStripButton();
+            this.tsb_delete = new System.Windows.Forms.ToolStripButton();
+            this.tsb_export = new System.Windows.Forms.ToolStripButton();
+            this.tsb_print = new System.Windows.Forms.ToolStripButton();
+            this.tsb_close = new System.Windows.Forms.ToolStripButton();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.flp_foot.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -233,14 +233,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_content.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_content.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_content.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_content.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_content.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.choose,
@@ -265,11 +265,94 @@
             this.dgv_content.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick_1);
             this.dgv_content.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
+            // choose
+            // 
+            this.choose.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.choose.HeaderText = "选择";
+            this.choose.Name = "choose";
+            this.choose.ReadOnly = true;
+            this.choose.Width = 33;
+            // 
+            // IncomeDate
+            // 
+            this.IncomeDate.DataPropertyName = "WeighingDate";
+            this.IncomeDate.HeaderText = "过磅日期";
+            this.IncomeDate.Name = "IncomeDate";
+            this.IncomeDate.ReadOnly = true;
+            // 
+            // voucherNO
+            // 
+            this.voucherNO.DataPropertyName = "vocherNO";
+            this.voucherNO.HeaderText = "单据编号";
+            this.voucherNO.Name = "voucherNO";
+            this.voucherNO.ReadOnly = true;
+            // 
+            // cusName
+            // 
+            this.cusName.DataPropertyName = "CusName";
+            this.cusName.FillWeight = 149.2386F;
+            this.cusName.HeaderText = "客户名称";
+            this.cusName.Name = "cusName";
+            this.cusName.ReadOnly = true;
+            // 
+            // ScrapName
+            // 
+            this.ScrapName.DataPropertyName = "ScrapName";
+            this.ScrapName.HeaderText = "废料名称";
+            this.ScrapName.Name = "ScrapName";
+            this.ScrapName.ReadOnly = true;
+            // 
+            // proportion
+            // 
+            this.proportion.DataPropertyName = "proportion";
+            this.proportion.HeaderText = "结算系数(%)";
+            this.proportion.Name = "proportion";
+            this.proportion.ReadOnly = true;
+            // 
+            // webUnitPrice
+            // 
+            this.webUnitPrice.DataPropertyName = "webUnitPrice";
+            this.webUnitPrice.HeaderText = "网上报价";
+            this.webUnitPrice.Name = "webUnitPrice";
+            this.webUnitPrice.ReadOnly = true;
+            // 
+            // settleUnitPrice
+            // 
+            this.settleUnitPrice.DataPropertyName = "settleUnitPrice";
+            this.settleUnitPrice.HeaderText = "结算单价";
+            this.settleUnitPrice.Name = "settleUnitPrice";
+            this.settleUnitPrice.ReadOnly = true;
+            // 
+            // netWeight
+            // 
+            this.netWeight.DataPropertyName = "netWeight";
+            this.netWeight.HeaderText = "净重";
+            this.netWeight.Name = "netWeight";
+            this.netWeight.ReadOnly = true;
+            // 
+            // settleAmount
+            // 
+            this.settleAmount.DataPropertyName = "settleAmount";
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.settleAmount.DefaultCellStyle = dataGridViewCellStyle4;
+            this.settleAmount.HeaderText = "结算金额";
+            this.settleAmount.Name = "settleAmount";
+            this.settleAmount.ReadOnly = true;
+            // 
+            // audit
+            // 
+            this.audit.DataPropertyName = "voucherState";
+            this.audit.HeaderText = "状态";
+            this.audit.Name = "audit";
+            this.audit.ReadOnly = true;
+            // 
             // lbl_customer
             // 
+            this.lbl_customer.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbl_customer.AutoSize = true;
             this.lbl_customer.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_customer.Location = new System.Drawing.Point(414, 22);
+            this.lbl_customer.Location = new System.Drawing.Point(389, 22);
             this.lbl_customer.Name = "lbl_customer";
             this.lbl_customer.Size = new System.Drawing.Size(164, 21);
             this.lbl_customer.TabIndex = 1;
@@ -359,88 +442,6 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            // 
-            // choose
-            // 
-            this.choose.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.choose.HeaderText = "选择";
-            this.choose.Name = "choose";
-            this.choose.ReadOnly = true;
-            this.choose.Width = 37;
-            // 
-            // IncomeDate
-            // 
-            this.IncomeDate.DataPropertyName = "WeighingDate";
-            this.IncomeDate.HeaderText = "过磅日期";
-            this.IncomeDate.Name = "IncomeDate";
-            this.IncomeDate.ReadOnly = true;
-            // 
-            // voucherNO
-            // 
-            this.voucherNO.DataPropertyName = "vocherNO";
-            this.voucherNO.HeaderText = "单据编号";
-            this.voucherNO.Name = "voucherNO";
-            this.voucherNO.ReadOnly = true;
-            // 
-            // cusName
-            // 
-            this.cusName.DataPropertyName = "CusName";
-            this.cusName.FillWeight = 149.2386F;
-            this.cusName.HeaderText = "客户名称";
-            this.cusName.Name = "cusName";
-            this.cusName.ReadOnly = true;
-            // 
-            // ScrapName
-            // 
-            this.ScrapName.DataPropertyName = "ScrapName";
-            this.ScrapName.HeaderText = "废料名称";
-            this.ScrapName.Name = "ScrapName";
-            this.ScrapName.ReadOnly = true;
-            // 
-            // proportion
-            // 
-            this.proportion.DataPropertyName = "proportion";
-            this.proportion.HeaderText = "结算系数(%)";
-            this.proportion.Name = "proportion";
-            this.proportion.ReadOnly = true;
-            // 
-            // webUnitPrice
-            // 
-            this.webUnitPrice.DataPropertyName = "webUnitPrice";
-            this.webUnitPrice.HeaderText = "网上报价";
-            this.webUnitPrice.Name = "webUnitPrice";
-            this.webUnitPrice.ReadOnly = true;
-            // 
-            // settleUnitPrice
-            // 
-            this.settleUnitPrice.DataPropertyName = "settleUnitPrice";
-            this.settleUnitPrice.HeaderText = "结算单价";
-            this.settleUnitPrice.Name = "settleUnitPrice";
-            this.settleUnitPrice.ReadOnly = true;
-            // 
-            // netWeight
-            // 
-            this.netWeight.DataPropertyName = "netWeight";
-            this.netWeight.HeaderText = "净重";
-            this.netWeight.Name = "netWeight";
-            this.netWeight.ReadOnly = true;
-            // 
-            // settleAmount
-            // 
-            this.settleAmount.DataPropertyName = "settleAmount";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.settleAmount.DefaultCellStyle = dataGridViewCellStyle2;
-            this.settleAmount.HeaderText = "结算金额";
-            this.settleAmount.Name = "settleAmount";
-            this.settleAmount.ReadOnly = true;
-            // 
-            // audit
-            // 
-            this.audit.DataPropertyName = "voucherState";
-            this.audit.HeaderText = "状态";
-            this.audit.Name = "audit";
-            this.audit.ReadOnly = true;
             // 
             // Frm_weighingList
             // 

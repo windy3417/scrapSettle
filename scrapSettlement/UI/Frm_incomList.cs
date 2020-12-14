@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using ScrapSettlement.DAL;
 using System.Collections.Generic;
 using System.Configuration;
-using Utility;
+using Utility.Excel;
 using ScrapSettlement.DAL.Model;
 using ScrapSettlement.DAL.Services;
 
@@ -186,7 +186,7 @@ namespace ScrapSettlement.UI
 
         private void tsb_export_Click(object sender, EventArgs e)
         {
-            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+           ExportExcel exportExcel = new ExportExcel();
             exportExcel.ExportExcelWithNPOI(dataGridView1, "收款列表");
         }
     }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing.Printing;
 using System.Drawing;
-using Utility;
+using Utility.Excel;
 using ScrapSettlement.DAL.Model;
 using ScrapSettlement.DAL.Services;
 using Utility.Style;
@@ -286,7 +286,7 @@ namespace ScrapSettlement.UI
         /// <param name="e"></param>
         private void tsb_export_Click(object sender, EventArgs e)
         {
-            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+            ExportExcel exportExcel = new ExportExcel();
             exportExcel.ExportExcelWithNPOI(dgv_content, "过磅结算单列表");
         }
 

@@ -973,9 +973,19 @@ namespace ScrapSettlement
 
 
 
+
         #endregion
 
 
+        /// <summary>
+        /// 放弃审核
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_giveUpAudit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

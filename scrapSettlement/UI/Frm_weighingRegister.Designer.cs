@@ -33,10 +33,12 @@
             this.pnl_query = new System.Windows.Forms.Panel();
             this.btn_query = new System.Windows.Forms.Button();
             this.rtxt_voucherNO = new System.Windows.Forms.RichTextBox();
+            this.lbl_voucherState = new System.Windows.Forms.Label();
             this.lbl_vouchNo = new System.Windows.Forms.Label();
             this.horizonLine2 = new Utility.UControl.HorizonLine();
             this.horizonLine1 = new Utility.UControl.HorizonLine();
             this.dtp_makeDate = new System.Windows.Forms.DateTimePicker();
+            this.lbl_voucherStateValue = new System.Windows.Forms.Label();
             this.lbl_vouchNoValue = new System.Windows.Forms.Label();
             this.lbl_balance = new System.Windows.Forms.Label();
             this.lbl_date = new System.Windows.Forms.Label();
@@ -73,19 +75,18 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_new = new System.Windows.Forms.ToolStripButton();
             this.tsb_save = new System.Windows.Forms.ToolStripButton();
-            this.tsb_abandon = new System.Windows.Forms.ToolStripButton();
             this.tsb_modify = new System.Windows.Forms.ToolStripButton();
+            this.tsb_abandon = new System.Windows.Forms.ToolStripButton();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
+            this.tsb_audit = new System.Windows.Forms.ToolStripButton();
             this.tsb_previewPrint = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
-            this.tsb_audit = new System.Windows.Forms.ToolStripButton();
+            this.tsb_giveUpAudit = new System.Windows.Forms.ToolStripButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.lbl_voucherState = new System.Windows.Forms.Label();
-            this.lbl_voucherStateValue = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.pnl_query.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -147,6 +148,15 @@
             this.rtxt_voucherNO.TabIndex = 18;
             this.rtxt_voucherNO.Text = "";
             // 
+            // lbl_voucherState
+            // 
+            this.lbl_voucherState.AutoSize = true;
+            this.lbl_voucherState.Location = new System.Drawing.Point(600, 19);
+            this.lbl_voucherState.Name = "lbl_voucherState";
+            this.lbl_voucherState.Size = new System.Drawing.Size(65, 12);
+            this.lbl_voucherState.TabIndex = 16;
+            this.lbl_voucherState.Text = "单据状态：";
+            // 
             // lbl_vouchNo
             // 
             this.lbl_vouchNo.AutoSize = true;
@@ -180,6 +190,16 @@
             this.dtp_makeDate.Name = "dtp_makeDate";
             this.dtp_makeDate.Size = new System.Drawing.Size(124, 21);
             this.dtp_makeDate.TabIndex = 14;
+            // 
+            // lbl_voucherStateValue
+            // 
+            this.lbl_voucherStateValue.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbl_voucherStateValue.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_voucherStateValue.ForeColor = System.Drawing.Color.Red;
+            this.lbl_voucherStateValue.Location = new System.Drawing.Point(671, 17);
+            this.lbl_voucherStateValue.Name = "lbl_voucherStateValue";
+            this.lbl_voucherStateValue.Size = new System.Drawing.Size(71, 14);
+            this.lbl_voucherStateValue.TabIndex = 6;
             // 
             // lbl_vouchNoValue
             // 
@@ -556,13 +576,14 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_new,
             this.tsb_save,
-            this.tsb_audit,
-            this.tsb_abandon,
             this.tsb_modify,
+            this.tsb_abandon,
             this.tsb_query,
+            this.tsb_audit,
             this.tsb_previewPrint,
             this.tsb_print,
             this.tsb_delete,
+            this.tsb_giveUpAudit,
             this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -588,15 +609,6 @@
             this.tsb_save.Text = "保存";
             this.tsb_save.Click += new System.EventHandler(this.tsb_save_Click);
             // 
-            // tsb_abandon
-            // 
-            this.tsb_abandon.Image = ((System.Drawing.Image)(resources.GetObject("tsb_abandon.Image")));
-            this.tsb_abandon.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_abandon.Name = "tsb_abandon";
-            this.tsb_abandon.Size = new System.Drawing.Size(52, 22);
-            this.tsb_abandon.Text = "放弃";
-            this.tsb_abandon.Click += new System.EventHandler(this.tsb_abandon_Click);
-            // 
             // tsb_modify
             // 
             this.tsb_modify.Image = ((System.Drawing.Image)(resources.GetObject("tsb_modify.Image")));
@@ -606,6 +618,15 @@
             this.tsb_modify.Text = "修改";
             this.tsb_modify.Click += new System.EventHandler(this.tsb_modify_Click);
             // 
+            // tsb_abandon
+            // 
+            this.tsb_abandon.Image = ((System.Drawing.Image)(resources.GetObject("tsb_abandon.Image")));
+            this.tsb_abandon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_abandon.Name = "tsb_abandon";
+            this.tsb_abandon.Size = new System.Drawing.Size(52, 22);
+            this.tsb_abandon.Text = "放弃";
+            this.tsb_abandon.Click += new System.EventHandler(this.tsb_abandon_Click);
+            // 
             // tsb_query
             // 
             this.tsb_query.Image = ((System.Drawing.Image)(resources.GetObject("tsb_query.Image")));
@@ -614,6 +635,15 @@
             this.tsb_query.Size = new System.Drawing.Size(52, 22);
             this.tsb_query.Text = "查询";
             this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
+            // 
+            // tsb_audit
+            // 
+            this.tsb_audit.Image = global::scrapSettlement.Properties.Resources.Authorization;
+            this.tsb_audit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_audit.Name = "tsb_audit";
+            this.tsb_audit.Size = new System.Drawing.Size(52, 22);
+            this.tsb_audit.Text = "审核";
+            this.tsb_audit.Click += new System.EventHandler(this.tsb_audit_Click);
             // 
             // tsb_previewPrint
             // 
@@ -651,14 +681,14 @@
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
             // 
-            // tsb_audit
+            // tsb_giveUpAudit
             // 
-            this.tsb_audit.Image = global::scrapSettlement.Properties.Resources.Authorization;
-            this.tsb_audit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_audit.Name = "tsb_audit";
-            this.tsb_audit.Size = new System.Drawing.Size(52, 22);
-            this.tsb_audit.Text = "审核";
-            this.tsb_audit.Click += new System.EventHandler(this.tsb_audit_Click);
+            this.tsb_giveUpAudit.Image = global::scrapSettlement.Properties.Resources.giveUpAudit;
+            this.tsb_giveUpAudit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_giveUpAudit.Name = "tsb_giveUpAudit";
+            this.tsb_giveUpAudit.Size = new System.Drawing.Size(52, 22);
+            this.tsb_giveUpAudit.Text = "弃审";
+            this.tsb_giveUpAudit.Click += new System.EventHandler(this.tsb_giveUpAudit_Click);
             // 
             // printPreviewDialog1
             // 
@@ -677,25 +707,6 @@
             // printDocument1
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
-            // lbl_voucherState
-            // 
-            this.lbl_voucherState.AutoSize = true;
-            this.lbl_voucherState.Location = new System.Drawing.Point(600, 19);
-            this.lbl_voucherState.Name = "lbl_voucherState";
-            this.lbl_voucherState.Size = new System.Drawing.Size(65, 12);
-            this.lbl_voucherState.TabIndex = 16;
-            this.lbl_voucherState.Text = "单据状态：";
-            // 
-            // lbl_voucherStateValue
-            // 
-            this.lbl_voucherStateValue.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_voucherStateValue.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_voucherStateValue.ForeColor = System.Drawing.Color.Red;
-            this.lbl_voucherStateValue.Location = new System.Drawing.Point(671, 17);
-            this.lbl_voucherStateValue.Name = "lbl_voucherStateValue";
-            this.lbl_voucherStateValue.Size = new System.Drawing.Size(71, 14);
-            this.lbl_voucherStateValue.TabIndex = 6;
             // 
             // Frm_weighingSettltement
             // 
@@ -783,6 +794,7 @@
         private System.Windows.Forms.ToolStripButton tsb_audit;
         private System.Windows.Forms.Label lbl_voucherState;
         private System.Windows.Forms.Label lbl_voucherStateValue;
+        private System.Windows.Forms.ToolStripButton tsb_giveUpAudit;
     }
 }
 

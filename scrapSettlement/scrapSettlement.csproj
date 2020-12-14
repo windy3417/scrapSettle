@@ -28,7 +28,7 @@
     <SuiteName>生产业务管理系统</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -290,6 +290,7 @@
     <None Include="Resources\Desktop_EditDesktop.png" />
     <None Include="Resources\exit.gif" />
     <None Include="Resources\Authorization.gif" />
+    <None Include="Resources\giveUpAudit.gif" />
     <Content Include="scrapSettleLogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

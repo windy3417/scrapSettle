@@ -113,6 +113,16 @@ namespace scrapSettlement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap giveUpAudit {
+            get {
+                object obj = ResourceManager.GetObject("giveUpAudit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap icon_edit2 {
             get {
                 object obj = ResourceManager.GetObject("icon_edit2", resourceCulture);
