@@ -15,6 +15,8 @@ namespace ScrapSettlement.DAL.Model
         [Key]
         public int Code { get; set; }
         public string Name { get; set; }
+
+        public string pwd { get; set; }
       
         public DateTime EffectDate { get; set; }
 

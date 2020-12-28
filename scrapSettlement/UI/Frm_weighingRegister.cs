@@ -984,7 +984,25 @@ namespace ScrapSettlement
         /// <param name="e"></param>
         private void tsb_giveUpAudit_Click(object sender, EventArgs e)
         {
+            if (lbl_vouchNoValue.Text != "")
+            {
+                try
+                {
+                    using (var db = new ScrapSettleContext())
+                    {
+                        WeighingSettlement w = db.WeighingSettlement.Where(s => s.vocherNO == lbl_vouchNoValue.Text).FirstOrDefault();
+                        w.auditFlag = (int)EnumModle.voucherStatus.开立;
+                        db.SaveChanges();
+                        MessageBox.Show("单据弃审成功", "弃审提示");
+                        lbl_voucherStateValue.Text = EnumModle.voucherStatus.开立.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
 
+                    MessageBox.Show(ex.Message + ex.InnerException, "弃审错误提示");
+                }
+            }
         }
     }
 }
