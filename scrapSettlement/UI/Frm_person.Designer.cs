@@ -30,11 +30,15 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_person));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_person));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_voucherStatus = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cusCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.effectDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.failuerDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_customer = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,10 +57,8 @@
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
-            this.cusCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.effectDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.failuerDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_pwd = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -116,6 +118,41 @@
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
             // 
+            // cusCode
+            // 
+            this.cusCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.cusCode.DataPropertyName = "Code";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.cusCode.DefaultCellStyle = dataGridViewCellStyle2;
+            this.cusCode.FillWeight = 50.76142F;
+            this.cusCode.Frozen = true;
+            this.cusCode.HeaderText = "人员编码";
+            this.cusCode.Name = "cusCode";
+            this.cusCode.ReadOnly = true;
+            // 
+            // cusName
+            // 
+            this.cusName.DataPropertyName = "Name";
+            this.cusName.FillWeight = 149.2386F;
+            this.cusName.HeaderText = "人员名称";
+            this.cusName.Name = "cusName";
+            this.cusName.ReadOnly = true;
+            // 
+            // effectDate
+            // 
+            this.effectDate.DataPropertyName = "effectDate";
+            this.effectDate.HeaderText = "生效日期";
+            this.effectDate.Name = "effectDate";
+            this.effectDate.ReadOnly = true;
+            // 
+            // failuerDate
+            // 
+            this.failuerDate.DataPropertyName = "failuerDate";
+            this.failuerDate.HeaderText = "失效日期";
+            this.failuerDate.Name = "failuerDate";
+            this.failuerDate.ReadOnly = true;
+            // 
             // lbl_customer
             // 
             this.lbl_customer.AutoSize = true;
@@ -141,11 +178,14 @@
             this.tableLayoutPanel1.Controls.Add(this.tbd_effect, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.tbd_failure, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txt_pwd, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 70);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(738, 122);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -153,7 +193,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 85);
+            this.label1.Location = new System.Drawing.Point(3, 54);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 12);
             this.label1.TabIndex = 0;
@@ -164,7 +204,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 24);
+            this.label2.Location = new System.Drawing.Point(3, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 0;
@@ -174,7 +214,7 @@
             // txt_cusCode
             // 
             this.txt_cusCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_cusCode.Location = new System.Drawing.Point(111, 20);
+            this.txt_cusCode.Location = new System.Drawing.Point(111, 9);
             this.txt_cusCode.Name = "txt_cusCode";
             this.txt_cusCode.Size = new System.Drawing.Size(252, 21);
             this.txt_cusCode.TabIndex = 1;
@@ -184,7 +224,7 @@
             // txt_cusName
             // 
             this.txt_cusName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_cusName.Location = new System.Drawing.Point(111, 81);
+            this.txt_cusName.Location = new System.Drawing.Point(111, 49);
             this.txt_cusName.Name = "txt_cusName";
             this.txt_cusName.Size = new System.Drawing.Size(252, 21);
             this.txt_cusName.TabIndex = 2;
@@ -194,7 +234,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(381, 24);
+            this.label3.Location = new System.Drawing.Point(381, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 0;
@@ -204,7 +244,7 @@
             // tbd_effect
             // 
             this.tbd_effect.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbd_effect.Location = new System.Drawing.Point(477, 20);
+            this.tbd_effect.Location = new System.Drawing.Point(477, 9);
             this.tbd_effect.Name = "tbd_effect";
             this.tbd_effect.Size = new System.Drawing.Size(252, 21);
             this.tbd_effect.TabIndex = 3;
@@ -214,7 +254,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(381, 85);
+            this.label4.Location = new System.Drawing.Point(381, 54);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 0;
@@ -224,7 +264,7 @@
             // tbd_failure
             // 
             this.tbd_failure.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbd_failure.Location = new System.Drawing.Point(477, 81);
+            this.tbd_failure.Location = new System.Drawing.Point(477, 49);
             this.tbd_failure.Name = "tbd_failure";
             this.tbd_failure.Size = new System.Drawing.Size(252, 21);
             this.tbd_failure.TabIndex = 3;
@@ -310,40 +350,25 @@
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
             // 
-            // cusCode
+            // label5
             // 
-            this.cusCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.cusCode.DataPropertyName = "Code";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            this.cusCode.DefaultCellStyle = dataGridViewCellStyle2;
-            this.cusCode.FillWeight = 50.76142F;
-            this.cusCode.Frozen = true;
-            this.cusCode.HeaderText = "人员编码";
-            this.cusCode.Name = "cusCode";
-            this.cusCode.ReadOnly = true;
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Tag = "密码标签";
+            this.label5.Text = "授权密码:";
             // 
-            // cusName
+            // txt_pwd
             // 
-            this.cusName.DataPropertyName = "Name";
-            this.cusName.FillWeight = 149.2386F;
-            this.cusName.HeaderText = "人员名称";
-            this.cusName.Name = "cusName";
-            this.cusName.ReadOnly = true;
-            // 
-            // effectDate
-            // 
-            this.effectDate.DataPropertyName = "effectDate";
-            this.effectDate.HeaderText = "生效日期";
-            this.effectDate.Name = "effectDate";
-            this.effectDate.ReadOnly = true;
-            // 
-            // failuerDate
-            // 
-            this.failuerDate.DataPropertyName = "failuerDate";
-            this.failuerDate.HeaderText = "失效日期";
-            this.failuerDate.Name = "failuerDate";
-            this.failuerDate.ReadOnly = true;
+            this.txt_pwd.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_pwd.Location = new System.Drawing.Point(111, 90);
+            this.txt_pwd.Name = "txt_pwd";
+            this.txt_pwd.Size = new System.Drawing.Size(252, 21);
+            this.txt_pwd.TabIndex = 2;
+            this.txt_pwd.Tag = "密码";
             // 
             // Frm_person
             // 
@@ -396,5 +421,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
         private System.Windows.Forms.DataGridViewTextBoxColumn effectDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn failuerDate;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txt_pwd;
     }
 }

@@ -15,6 +15,7 @@ using ScrapSettlement.Common;
 using ScrapSettlement.Properties;
 using scrapSettlement.Properties;
 using ScrapSettlement.DAL.Modle;
+using ScrapSettlement.UI;
 
 namespace ScrapSettlement
 {
@@ -134,7 +135,7 @@ namespace ScrapSettlement
 
         #endregion
 
-        #region 单据增删改查审
+        #region 单据增删改查审弃事件
 
         /// <summary>
         /// 新增单据
@@ -247,6 +248,28 @@ namespace ScrapSettlement
                     MessageBox.Show(ex.Message + ex.InnerException, "审核错误提示");
                 }
             }
+        }
+
+        /// <summary>
+        /// 放弃审核事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_giveUpAudit_Click(object sender, EventArgs e)
+        {
+
+            Frm_authorization f = new Frm_authorization();
+            f.authorizPass += giveUpAudit;
+
+            f.ShowDialog();
+
+
+            if (f.DialogResult == DialogResult.Cancel)
+            {
+                f.Close();
+            }
+
+
         }
 
         /// <summary>
@@ -977,12 +1000,14 @@ namespace ScrapSettlement
         #endregion
 
 
+        #region 内部方法
+
         /// <summary>
-        /// 放弃审核
+        /// 单据弃审方法
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsb_giveUpAudit_Click(object sender, EventArgs e)
+        /// <param name="authorizationEventArgs"></param>
+        private void giveUpAudit(Object sender, AuthorizationEventArgs authorizationEventArgs)
         {
             if (lbl_vouchNoValue.Text != "")
             {
@@ -1004,6 +1029,12 @@ namespace ScrapSettlement
                 }
             }
         }
+
+        #endregion
+
+        
+
+        
     }
 }
 

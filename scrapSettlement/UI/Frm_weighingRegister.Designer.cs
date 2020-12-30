@@ -82,8 +82,8 @@
             this.tsb_previewPrint = new System.Windows.Forms.ToolStripButton();
             this.tsb_print = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
-            this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.tsb_giveUpAudit = new System.Windows.Forms.ToolStripButton();
+            this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
@@ -580,10 +580,10 @@
             this.tsb_abandon,
             this.tsb_query,
             this.tsb_audit,
+            this.tsb_giveUpAudit,
+            this.tsb_delete,
             this.tsb_previewPrint,
             this.tsb_print,
-            this.tsb_delete,
-            this.tsb_giveUpAudit,
             this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -672,15 +672,6 @@
             this.tsb_delete.Text = "删除";
             this.tsb_delete.Click += new System.EventHandler(this.tsb_delete_Click);
             // 
-            // tsb_close
-            // 
-            this.tsb_close.Image = global::scrapSettlement.Properties.Resources.exit;
-            this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_close.Name = "tsb_close";
-            this.tsb_close.Size = new System.Drawing.Size(52, 22);
-            this.tsb_close.Text = "关闭";
-            this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
-            // 
             // tsb_giveUpAudit
             // 
             this.tsb_giveUpAudit.Image = global::scrapSettlement.Properties.Resources.giveUpAudit;
@@ -689,6 +680,15 @@
             this.tsb_giveUpAudit.Size = new System.Drawing.Size(52, 22);
             this.tsb_giveUpAudit.Text = "弃审";
             this.tsb_giveUpAudit.Click += new System.EventHandler(this.tsb_giveUpAudit_Click);
+            // 
+            // tsb_close
+            // 
+            this.tsb_close.Image = global::scrapSettlement.Properties.Resources.exit;
+            this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_close.Name = "tsb_close";
+            this.tsb_close.Size = new System.Drawing.Size(52, 22);
+            this.tsb_close.Text = "关闭";
+            this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
             // 
             // printPreviewDialog1
             // 

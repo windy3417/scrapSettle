@@ -63,6 +63,9 @@ namespace ScrapSettlement.UI
 
         }
 
+
+        #region 菜单事件
+
         #region 增删改查
 
         /// <summary>
@@ -72,7 +75,7 @@ namespace ScrapSettlement.UI
         /// <param name="e"></param>
         private void Tsb_add_Click(object sender, EventArgs e)
         {
-            
+
             lbl_voucherStatus.Text = "档案状态：新增";
             lbl_voucherStatus.Visible = true;
 
@@ -92,22 +95,22 @@ namespace ScrapSettlement.UI
             //tsb_query.Enabled = false;
             tsb_modify.Enabled = false;
             this.tableLayoutPanel1.Enabled = true;
-           
-                        
+
+
             //给自定义日期控件赋值，其中的textBox控件为显示值
             //日期控件的文本为将需要存储的值
-            this.tbd_effect.Controls[2].Text = DateTime.Now.ToString().Substring(0,10);
+            this.tbd_effect.Controls[2].Text = DateTime.Now.ToString().Substring(0, 10);
             tbd_effect.Text = DateTime.Now.ToString().Substring(0, 10);
 
             //取最大编号时速度太慢，三秒左右，同时最大号算法有误，取到第10号则不向上递增了???。
             using (var db = new ScrapSettleContext())
             {
-                Person  person = new Person();
+                Person person = new Person();
 
                 var Query = from s in db.Peple.AsNoTracking()
 
-                                select s.Code;
-                if (Query.Count()==0)
+                            select s.Code;
+                if (Query.Count() == 0)
                 {
                     maxCode = 1;
                 }
@@ -115,7 +118,7 @@ namespace ScrapSettlement.UI
                 {
                     maxCode = Convert.ToInt32(Query.Max()) + 1;
                 }
-               
+
 
 
             }
@@ -126,7 +129,7 @@ namespace ScrapSettlement.UI
 
         }
 
-        
+
         /// <summary>
         /// 删除选择定行
         /// </summary>
@@ -144,8 +147,8 @@ namespace ScrapSettlement.UI
                     ScrapSettleContext db = new ScrapSettleContext();
 
                     List<Person> del = (from d in db.Peple
-                                                  where d.Code ==selected
-                                                  select d).ToList<Person>();
+                                        where d.Code == selected
+                                        select d).ToList<Person>();
                     //移除数据库的数据
                     db.Peple.Remove(del[0]);
                     db.SaveChanges();
@@ -158,9 +161,9 @@ namespace ScrapSettlement.UI
                     if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.save.ToString())
                     {
 
-                        List<Person> person = archivesList.Where(c => c.Code== System.Convert.ToInt32(selected)).ToList<Person>();
+                        List<Person> person = archivesList.Where(c => c.Code == System.Convert.ToInt32(selected)).ToList<Person>();
                         archivesList.Remove(person[0]);
-                        
+
                     }
                     bind_gv_dateSource();
                 }
@@ -171,7 +174,7 @@ namespace ScrapSettlement.UI
         }
 
         /// <summary>
-        /// 保存客户档案
+        /// 保存客户档案事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -209,14 +212,14 @@ namespace ScrapSettlement.UI
             clearDate();
             lbl_voucherStatus.Text = "档案状态：查询";
             lbl_voucherStatus.Visible = true;
-            
+
             saveOrModifQueryFlag = saveOrChangeOrQueryMolde.query.ToString();
             this.tsb_save.Enabled = false;
             this.bind_gv_dateSource();
             this.tsb_modify.Enabled = true;
 
             this.tsb_delete.Enabled = true;
-            if (dataGridView1.Rows.Count>0)
+            if (dataGridView1.Rows.Count > 0)
             {
                 this.dataGridView1.Rows[0].Selected = true;
             }
@@ -226,6 +229,10 @@ namespace ScrapSettlement.UI
 
 
         #endregion
+
+        #endregion
+
+
 
         #region 输入校验
 
@@ -311,6 +318,111 @@ namespace ScrapSettlement.UI
         #endregion
 
 
+        #region 内部方法
+
+        /// <summary>
+        /// 清除录入与查询出的数据
+        /// </summary>
+        private void clearDate()
+        {
+            foreach (Control item in this.tableLayoutPanel1.Controls)
+            {
+
+                //if (item.Name.Substring(0, 3) != "lbl")
+                if (item.GetType() != typeof(Label))
+                {
+                    item.Text = "";
+                }
+
+
+
+            }
+        }
+
+        /// <summary>
+        /// 数据保存与修改
+        /// </summary>
+        private void saveOrChang()
+        {
+
+            if (inputVlidate())
+            {
+                //新增后保存
+                if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.save.ToString())
+                {
+                    using (var db = new ScrapSettleContext())
+                    {
+
+                        Person person = new Person();
+                        person.Code = Convert.ToInt32(txt_cusCode.Text);
+                        person.Name = this.txt_cusName.Text;
+                        person.pwd = Encrypt.Encode(txt_pwd.Text);
+                        person.EffectDate = Convert.ToDateTime(this.tbd_effect.Text);
+                        if (this.tbd_failure.Text != null & tbd_failure.Text != "")
+                        {
+                            person.FailuerDate = Convert.ToDateTime(this.tbd_failure.Text);
+                        }
+
+
+                        db.Peple.Add(person);
+                        try
+                        {
+                            db.SaveChanges();
+                        }
+                        catch (Exception e)
+                        {
+
+                            MessageBox.Show("数据保存错误:" + e.Message + e.InnerException, "数据保存提示");
+                            return;
+                        }
+
+                        archivesList.Add(person);
+                       
+                        this.bind_gv_dateSource();
+
+                        //清空填制记录
+                      
+                        clearDate();
+
+                        //再次调用新增事件
+
+                        this.tsb_add.PerformClick();
+                    }
+                }
+
+                //查询之后修改并保存
+                if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.query.ToString())
+                {
+                    using (var db = new ScrapSettleContext())
+                    {
+                        Person person = db.Peple.Where(c => c.Code.ToString() == txt_cusCode.Text).FirstOrDefault();
+
+                        person.Code = System.Convert.ToInt32(txt_cusCode.Text);
+
+                        person.Name = this.txt_cusName.Text;
+                        person.pwd = Encrypt.Encode(txt_pwd.Text);
+
+                        person.EffectDate = Convert.ToDateTime(this.tbd_effect.Text);
+                        if (this.tbd_failure.Text != null & this.tbd_failure.Text != "")
+                        {
+                            person.FailuerDate = Convert.ToDateTime(this.tbd_failure.Text);
+                        }
+                        db.SaveChanges();
+                        this.bind_gv_dateSource();
+
+                        //清空修改记录
+                        clearDate();
+                    }
+                }
+            };
+
+
+
+
+        }
+
+        #endregion
+
         #region 数据处理与绑定
         /// <summary>
         /// 绑定dataGridView的数据源
@@ -339,107 +451,10 @@ namespace ScrapSettlement.UI
 
         }
 
-        /// <summary>
-        /// 清除录入与查询出的数据
-        /// </summary>
-        private void clearDate()
-        {
-            foreach (Control item in this.tableLayoutPanel1.Controls)
-            {
-
-                //if (item.Name.Substring(0, 3) != "lbl")
-                if (item.GetType() != typeof(Label))
-                {
-                    item.Text ="" ;
-                }
+        
 
 
-
-            }
-        }
-
-        /// <summary>
-        /// 数据保存与修改
-        /// </summary>
-        private void saveOrChang()
-        {
-
-            if (inputVlidate())
-            {
-                //新增后保存
-                if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.save.ToString())
-                {
-                    using (var db = new ScrapSettleContext())
-                    {
-
-                        Person person = new Person();
-                        person.Code= Convert.ToInt32( txt_cusCode.Text);
-                        person.Name=this.txt_cusName.Text;
-                        person.EffectDate= Convert.ToDateTime(this.tbd_effect.Text);
-                        if (this.tbd_failure.Text != null & tbd_failure.Text != "")
-                        {
-                            person.FailuerDate= Convert.ToDateTime(this.tbd_failure.Text);
-                        }
-                      
-
-                        db.Peple.Add(person);
-                        try
-                        {
-                            db.SaveChanges();
-                        }
-                        catch (Exception e)
-                        {
-
-                            MessageBox.Show("数据保存错误:" + e.Message+e.InnerException, "数据保存提示");
-                            return;
-                        }
-                        
-                        archivesList.Add(person);
-                        //this.dataGridView1.DataSource = null;
-                        //this.dataGridView1.DataSource = customerList;
-                        //MessageBox.Show("数据保存成功", "保存提示");
-                        this.bind_gv_dateSource();
-
-                        //清空填制记录
-                        //this.txt_cusCode.Text = null;
-                        //this.txt_cusName.Text = null;
-                        clearDate();
-
-                        //再次调用新增事件
-
-                        this.tsb_add.PerformClick();
-                    }
-                }
-
-                //查询之后修改并保存
-                if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.query.ToString())
-                {
-                    using (var db = new ScrapSettleContext())
-                    {
-                        Person person = db.Peple.Where(c => c.Code.ToString() ==txt_cusCode.Text).FirstOrDefault();
-
-                        person.Code = System.Convert.ToInt32(txt_cusCode.Text); 
-                            
-                        person.Name = this.txt_cusName.Text;
-
-                        person.EffectDate= Convert.ToDateTime(this.tbd_effect.Text);
-                        if (this.tbd_failure.Text != null & this.tbd_failure.Text != "")
-                        {
-                            person.FailuerDate = Convert.ToDateTime(this.tbd_failure.Text);
-                        }
-                        db.SaveChanges();
-                        this.bind_gv_dateSource();
-
-                        //清空修改记录
-                        clearDate();
-                    }
-                }
-            };
-
-
-
-
-        }
+        
 
         /// <summary>
         /// 选择当前行数据进行处理
