@@ -49,6 +49,8 @@
             this.tbd_effect = new Utility.UControl.txtBoxWithDate();
             this.label4 = new System.Windows.Forms.Label();
             this.tbd_failure = new Utility.UControl.txtBoxWithDate();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_pwd = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_add = new System.Windows.Forms.ToolStripButton();
             this.tsb_abandon = new System.Windows.Forms.ToolStripButton();
@@ -57,8 +59,7 @@
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txt_pwd = new System.Windows.Forms.TextBox();
+            this.tsb_pwdModify = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -270,6 +271,26 @@
             this.tbd_failure.TabIndex = 3;
             this.tbd_failure.Tag = "失效日期";
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Tag = "密码标签";
+            this.label5.Text = "授权密码:";
+            // 
+            // txt_pwd
+            // 
+            this.txt_pwd.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_pwd.Location = new System.Drawing.Point(111, 90);
+            this.txt_pwd.Name = "txt_pwd";
+            this.txt_pwd.Size = new System.Drawing.Size(252, 21);
+            this.txt_pwd.TabIndex = 2;
+            this.txt_pwd.Tag = "密码";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -279,6 +300,7 @@
             this.tsb_modify,
             this.tsb_query,
             this.tsb_delete,
+            this.tsb_pwdModify,
             this.tsb_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -350,25 +372,14 @@
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
             // 
-            // label5
+            // tsb_pwdModify
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 12);
-            this.label5.TabIndex = 0;
-            this.label5.Tag = "密码标签";
-            this.label5.Text = "授权密码:";
-            // 
-            // txt_pwd
-            // 
-            this.txt_pwd.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_pwd.Location = new System.Drawing.Point(111, 90);
-            this.txt_pwd.Name = "txt_pwd";
-            this.txt_pwd.Size = new System.Drawing.Size(252, 21);
-            this.txt_pwd.TabIndex = 2;
-            this.txt_pwd.Tag = "密码";
+            this.tsb_pwdModify.Image = global::scrapSettlement.Properties.Resources.edit;
+            this.tsb_pwdModify.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_pwdModify.Name = "tsb_pwdModify";
+            this.tsb_pwdModify.Size = new System.Drawing.Size(76, 22);
+            this.tsb_pwdModify.Text = "密码修改";
+            this.tsb_pwdModify.Click += new System.EventHandler(this.tsb_pwdModify_Click);
             // 
             // Frm_person
             // 
@@ -423,5 +434,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn failuerDate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_pwd;
+        private System.Windows.Forms.ToolStripButton tsb_pwdModify;
     }
 }

@@ -28,7 +28,7 @@
     <SuiteName>生产业务管理系统</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -131,6 +131,12 @@
       <DependentUpon>202012050836437_addColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="UI\Frm_modifyPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_modifyPwd.Designer.cs">
+      <DependentUpon>Frm_modifyPwd.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Frm_authorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012050836437_addColumn.resx">
       <DependentUpon>202012050836437_addColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_modifyPwd.resx">
+      <DependentUpon>Frm_modifyPwd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_authorization.resx">
       <DependentUpon>Frm_authorization.cs</DependentUpon>
@@ -300,6 +309,7 @@
     <None Include="Resources\exit.gif" />
     <None Include="Resources\Authorization.gif" />
     <None Include="Resources\giveUpAudit.gif" />
+    <None Include="Resources\edit.gif" />
     <Content Include="scrapSettleLogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

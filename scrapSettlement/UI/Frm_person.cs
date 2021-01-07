@@ -56,6 +56,7 @@ namespace ScrapSettlement.UI
             this.tsb_modify.Enabled = false;
             this.tsb_delete.Enabled = false;
             tsb_abandon.Enabled = false;
+
             this.dataGridView1.AutoGenerateColumns = false;
             this.tableLayoutPanel1.Enabled = false;
             lbl_voucherStatus.Visible = false;
@@ -196,8 +197,10 @@ namespace ScrapSettlement.UI
             lbl_voucherStatus.Visible = true;
 
             tableLayoutPanel1.Enabled = true;
-            //编码不能被修改
+            //编码及密码不能被修改
             txt_cusCode.Enabled = false;
+            txt_pwd.Enabled = false;
+
             tsb_save.Enabled = true;
 
         }
@@ -230,9 +233,55 @@ namespace ScrapSettlement.UI
 
         #endregion
 
+        /// <summary>
+        /// 放弃新增
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tsb_abandon_Click(object sender, EventArgs e)
+        {
+            tsb_save.Enabled = false;
+            tsb_modify.Enabled = false;
+            tsb_delete.Enabled = false;
+            tsb_query.Enabled = true;
+            tsb_abandon.Enabled = false;
+
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsb_pwdModify_Click(object sender, EventArgs e)
+        {
+            Frm_modifyPwd f = new Frm_modifyPwd();
+
+            //传送人员编码给密码修改窗体
+           
+            f.userCode = Convert.ToInt32(txt_cusCode.Text);
+            f.authorizPass += modifyPwdResult;
+
+            f.ShowDialog();
+
+
+            if (f.DialogResult == DialogResult.Cancel)
+            {
+                f.Close();
+            }
+        }
+
         #endregion
 
+        #region dataGridView事件处理
 
+
+        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            tsb_delete.Enabled = true;
+        }
+
+        #endregion
 
         #region 输入校验
 
@@ -421,6 +470,36 @@ namespace ScrapSettlement.UI
 
         }
 
+
+        /// <summary>
+        /// 密码修改方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="authorizationEventArgs"></param>
+        private void modifyPwdResult(Object sender, ModifyPwdEventArgs auth)
+        {
+            if (txt_cusCode.Text != "")
+            {
+                try
+                {
+                    using (var db = new ScrapSettleContext())
+                    {
+                        int code = Convert.ToInt32(txt_cusCode.Text);
+                        Person w = db.Peple.Where(s => s.Code == code).FirstOrDefault();
+                        w.pwd = Encrypt.Encode(auth.pwd);
+                        db.SaveChanges();
+                        MessageBox.Show("密码修改成功", "密码修改提示");
+                        txt_pwd.Text = Encrypt.Encode(auth.pwd);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message + ex.InnerException, "修改密码错误提示");
+                }
+            }
+        }
+
         #endregion
 
         #region 数据处理与绑定
@@ -536,24 +615,12 @@ namespace ScrapSettlement.UI
 
         #endregion
 
-        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            tsb_delete.Enabled = true;
-        }
 
-        /// <summary>
-        /// 放弃新增
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Tsb_abandon_Click(object sender, EventArgs e)
-        {
-            tsb_save.Enabled = false;
-            tsb_modify.Enabled = false;
-            tsb_delete.Enabled = false;
-            tsb_query.Enabled = true;
-            tsb_abandon.Enabled = false;
+   
 
-        }
+     
+
+
+      
     }
 }
