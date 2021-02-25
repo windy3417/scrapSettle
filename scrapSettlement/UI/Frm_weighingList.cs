@@ -864,7 +864,6 @@ namespace ScrapSettlement.UI
         #endregion
 
 
-
         #region DataGridView事件处理
 
         
